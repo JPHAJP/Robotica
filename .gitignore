@@ -1,0 +1,12 @@
+#Ignorar venv
+venv/
+#Ignorar archivos de configuración
+*.pyc
+*.pyo
+*.env
+*.log
+*.db
+*.sqlite3
+
+#Ignorar cache
+__pycache__/
