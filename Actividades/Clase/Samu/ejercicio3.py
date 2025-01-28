@@ -185,4 +185,4 @@ ax.set_zlabel('Z')
 
 # Agregar cuadrícula, leyenda y mostrar
 ax.grid(True, linestyle='--', alpha=0.5)
-plt.show()
+#plt.show()
