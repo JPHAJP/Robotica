@@ -38,7 +38,7 @@ def trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z):
 fig, ax = crear_plot()
 
 # Definir el punto inicial en 3D
-x1, y1, z1 = 2, 2, 2
+x1, y1, z1 = 2, 0, 2
 P1 = np.array([x1, y1, z1, 1])  # Punto inicial en coordenadas homogéneas
 
 eje_x = np.array([1, 0, 0, 0])
@@ -46,7 +46,7 @@ eje_y = np.array([0, 1, 0, 0])
 eje_z = np.array([0, 0, 1, 0])
 
 # Definir el vector de traslación en 3D
-sx, sy, sz = -1.0, -1.0, 2
+sx, sy, sz = 1, -1, -2
 tras_m = np.array([
     [1, 0, 0, sx],
     [0, 1, 0, sy],
@@ -56,7 +56,7 @@ tras_m = np.array([
 
 # Ángulos de rotación
 #ang_z, ang_y, ang_x= 30, 45, 60
-ang_z, ang_y, ang_x= 20, 45, 10
+ang_z, ang_y, ang_x= 60, 45, 60
 
 # Definir la matriz de rotación en 3D
 alpha_z = np.radians(ang_z)
@@ -69,6 +69,7 @@ rot_z = np.array([
     [0, 0, 1, sz],
     [0, 0, 0, 1]
 ])  # Matriz de rotación en Z
+print(rot_z)
 
 rot_x = np.array([
     [1, 0, 0, 0],
@@ -76,6 +77,7 @@ rot_x = np.array([
     [0, np.sin(gamma_x), np.cos(gamma_x), 0],
     [0, 0, 0, 1]
 ])  # Matriz de rotación en X
+print(rot_x)
 
 rot_y = np.array([
     [np.cos(beta_y), 0, np.sin(beta_y), 0],
@@ -83,10 +85,11 @@ rot_y = np.array([
     [-np.sin(beta_y), 0, np.cos(beta_y), 0],
     [0, 0, 0, 1]
 ])  # Matriz de rotación en Y
+print(rot_y)
 
 # Definir la matriz de rotación total
 rot_m = rot_z @ rot_x @ rot_y
-print(rot_m)
+#print(rot_m)
 
 # Aplicar la rotación y traslación al punto
 P2 = rot_m @ P1
@@ -118,6 +121,7 @@ ax.plot([x1, P2[0]], [y1, P2[1]], [z1, P2[2]], color='black', linestyle='dashed'
 
 # Imprimir resultados
 print("Resultados de la transformación:")
+print(f'Matriz de rotación: \n{np.round(rot_m,2)}')
 print(f"Punto inicial (x, y, z): ({P1[0]:.2f}, {P1[1]:.2f}, {P1[2]:.2f})")
 print(f"Punto final (x, y, z): ({P2[0]:.2f}, {P2[1]:.2f}, {P2[2]:.2f})")
 

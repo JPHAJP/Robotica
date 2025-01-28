@@ -14,6 +14,7 @@ def rotacion(ang_z, ang_y, ang_x, sx, sy, sz):
         [0, 0, 1, sz],
         [0, 0, 0, 1]
     ])  # Matriz de rotación en Z
+    #print(rot_z)
 
     rot_x = np.array([
         [1, 0, 0, 0],
@@ -21,6 +22,7 @@ def rotacion(ang_z, ang_y, ang_x, sx, sy, sz):
         [0, np.sin(gamma_x), np.cos(gamma_x), 0],
         [0, 0, 0, 1]
     ])  # Matriz de rotación en X
+    #print(rot_x)
 
     rot_y = np.array([
         [np.cos(beta_y), 0, np.sin(beta_y), 0],
@@ -28,6 +30,7 @@ def rotacion(ang_z, ang_y, ang_x, sx, sy, sz):
         [-np.sin(beta_y), 0, np.cos(beta_y), 0],
         [0, 0, 0, 1]
     ])  # Matriz de rotación en Y
+    #print(rot_y)
     return rot_z @ rot_x @ rot_y
 
 def traslacion(sx, sy, sz):
@@ -74,6 +77,8 @@ def trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z):
 # Crear la figura
 fig, ax = crear_plot()
 
+#---------------------------------------------------------------#
+
 # Transformación A -> B
 print('Transformación A -> B')
 
@@ -92,19 +97,16 @@ tras_m = traslacion(sx, sy, sz)
 # Definir los ángulos de rotación en grados
 ang_z, ang_y, ang_x= 180, 0, 0
 rot_m = rotacion(ang_z, ang_y, ang_x, sx, sy, sz)
-
 P2_B = rot_m @ P1_A
 
 # Imprimir resultados
-print("Resultados de la transformación:")
+print("Resultados de la transformación P2_B:")
+print(f'Matriz homogenea: \n{np.round(rot_m, 2)}')
 print(f"Punto inicial (x, y, z): ({P1_A[0]:.2f}, {P1_A[1]:.2f}, {P1_A[2]:.2f})")
 print(f"Punto final (x, y, z): ({P2_B[0]:.2f}, {P2_B[1]:.2f}, {P2_B[2]:.2f})")
 
 
 # Dibujar ejes en el punto inicial (trasladados, pero no rotados)
-# tras_eje_x = tras_m @ eje_x
-# tras_eje_y = tras_m @ eje_y
-# tras_eje_z = tras_m @ eje_z
 tras_eje_x = eje_x
 tras_eje_y = eje_y
 tras_eje_z = eje_z
@@ -127,21 +129,26 @@ ax.quiver(P2_B[0], P2_B[1], P2_B[2], rot_eje_z1[0], rot_eje_z1[1], rot_eje_z1[2]
 # Transformación A -> C
 print('\nTransformación A -> C')
 
+# Punto inicial AC en 3D
+x1, y1, z1 = 0, 0, 0
+P1_A = np.array([x1, y1, z1, 1])  # Punto inicial en coordenadas homogéneas
+
 # Definir el vector de traslación en 3D
 sx, sy, sz = 3, 0, 2
 tras_m = traslacion(sx, sy, sz)
 
 # Definir los ángulos de rotación en grados
-ang_z, ang_y, ang_x= 0, -90, 150
+ang_z, ang_y, ang_x= 30, 90, 0
 rot_m = rotacion(ang_z, ang_y, ang_x, sx, sy, sz)
 
 P3_C = rot_m @ P1_A
 
-# Imprimir resultados
-print("Resultados de la transformación:")
+# # Imprimir resultados
+print("Resultados de la transformación P3_C:")
+print(f'Matriz homogenea: \n{np.round(rot_m, 2)}')
 print(f"Punto inicial (x, y, z): ({P1_A[0]:.2f}, {P1_A[1]:.2f}, {P1_A[2]:.2f})")
 print(f"Punto final (x, y, z): ({P3_C[0]:.2f}, {P3_C[1]:.2f}, {P3_C[2]:.2f})")
-print(f'Matriz homogenea: {rot_m}')
+
 
 # ----------------------------------------------------------------#
 
@@ -151,7 +158,7 @@ ax.text(x1, y1, z1, 'A', color='green', fontsize=12)
 
 # Dibujar el punto
 ax.scatter(P3_C[0], P3_C[1], P3_C[2], color='orange', s=25, label='C')
-ax.text(P3_C[0], P3_C[1], P3_C[2], 'B', color='orange', fontsize=12)
+ax.text(P3_C[0], P3_C[1], P3_C[2], 'C', color='orange', fontsize=12)
 
 # Dibujar ejes trasladados y rotados
 rot_eje_x2, rot_eje_y2, rot_eje_z2 = trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z)
