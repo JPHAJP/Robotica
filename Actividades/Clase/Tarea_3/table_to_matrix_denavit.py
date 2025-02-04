@@ -93,7 +93,7 @@ sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
 print("\nMatriz T3:")
 sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
 print("\nMatriz homogénea total T:")
-sp.pprint(reemplazar_trigonometria(T)) # Redondear a 2 decimales
+sp.pprint(reemplazar_trigonometria(sp.simplify(T))) # Redondear a 2 decimales
 
 # Ejercicio 3:
 print("\nEjercicio 3:")
@@ -164,3 +164,92 @@ print("\n\n Columna 1")
 sp.pprint(reemplazar_trigonometria(T_total).col(2))
 print("\n\n Columna 3")
 sp.pprint(reemplazar_trigonometria(T_total).col(3))
+
+
+#Ejercicio 4
+print("\nEjercicio 4:")
+
+# Definir las variables simbólicas
+th1, th2, th3, th4, th5, th6, d1, d2, d3, d4, d5, d6 = sp.symbols('th1 th2 th3 th4 th5 th6 d1 d2 d3 d4 d5 d6')
+
+# Primera fila de la tabla DH: [α=-90, a=0, θ=th1, d=d1]
+T1 = dh_matrix(th1, d1, 0, -sp.pi/2)
+# Segunda fila de la tabla DH: [α=0, a=d2, θ=th2, d=0]
+T2 = dh_matrix(th2, 0, d2, 0)
+# Tercera fila de la tabla DH: [α=-90, a=0, θ=th3, d=d3]
+T3 = dh_matrix(th3, d3, 0, -sp.pi/2)
+# Cuarta fila de la tabla DH: [α=-90, a=0, θ=th4, d=d4]
+T4 = dh_matrix(th4, d4, 0, -sp.pi/2)
+# Quinta fila de la tabla DH: [α=90, a=0, θ=th5, d=0]
+T5 = dh_matrix(th5, 0, 0, sp.pi/2)
+# Sexta fila de la tabla DH: [α=0, a=0, θ=th6, d=d5]
+T6 = dh_matrix(th6, d5, 0, 0)
+
+# Matriz final: Producto de las transformaciones
+T = T1 @ T2 @ T3 @ T4 @ T5 @ T6
+
+# Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+print("Matriz T1:")
+sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+print("\nMatriz T2:")
+sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+print("\nMatriz T3:")
+sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
+print("\nMatriz T4:")
+sp.pprint(reemplazar_trigonometria(T4))  # Redondear a 2 decimales
+print("\nMatriz T5:")
+sp.pprint(reemplazar_trigonometria(T5))  # Redondear a 2 decimales
+print("\nMatriz T6:")
+sp.pprint(reemplazar_trigonometria(T6))  # Redondear a 2 decimales
+print("\nMatriz homogénea total T:")
+sp.pprint(reemplazar_trigonometria(sp.simplify(T)))  # Redondear a 2 decimales
+
+# Ejercicio 5:
+print("\nEjercicio 5:")
+# Definir las variables simbólicas
+th1, th2, th3, th4, th5, th6, d1, d2, d3, d4, d5, d6 = sp.symbols('th1 th2 th3 th4 th5 th6 d1 d2 d3 d4 d5 d6')
+
+# Primera fila de la tabla DH: [α=-90, a=0, θ=th1, d=d1]
+T1 = dh_matrix(th1, d1, 0, -sp.pi/2)
+# Segunda fila de la tabla DH: [α=0, a=d2, θ=th2, d=0]
+T2 = dh_matrix(th2, 0, d2, 0)
+# Tercera fila de la tabla DH: [α=-90, a=0, θ=th3, d=d3]
+T3 = dh_matrix(th3, d3, 0, -sp.pi/2)
+# Cuarta fila de la tabla DH: [α=0, a=0, θ=th4, d=d4]
+T4 = dh_matrix(th4, d4, 0, 0)
+# Quinta fila de la tabla DH: [α=-90, a=0, θ=th5, d=d5]
+T5 = dh_matrix(th5, d5, 0, -sp.pi/2)
+# Sexta fila de la tabla DH: [α=0, a=0, θ=th6, d=d6]
+T6 = dh_matrix(th6, d6, 0, 0)
+
+# Matriz final: Producto de las transformaciones
+T_1 = T1 @ T2 @ T3 @ T4
+T_2 = T5 @ T6
+
+# Juntar las matrices T1 y T2
+x_angle = -(sp.pi / 2)  # Rotación en X
+y_angle = 0
+z_angle = 0
+
+# Calcular la matriz de rotación combinada
+T_rotation = rotation_matrix(x_angle, y_angle, z_angle)
+# Matriz total combinada
+T = T_1 @ T_rotation @ T_2
+
+
+
+# Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+print("Matriz T1:")
+sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+print("\nMatriz T2:")
+sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+print("\nMatriz T3:")
+sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
+print("\nMatriz T4:")
+sp.pprint(reemplazar_trigonometria(T4))  # Redondear a 2 decimales
+print("\nMatriz T5:")
+sp.pprint(reemplazar_trigonometria(T5))  # Redondear a 2 decimales
+print("\nMatriz T6:")
+sp.pprint(reemplazar_trigonometria(T6))  # Redondear a 2 decimales
+print("\nMatriz homogénea total T:")
+sp.pprint(reemplazar_trigonometria(sp.simplify(T)))  # Redondear a 2 decimales
