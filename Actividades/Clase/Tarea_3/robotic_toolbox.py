@@ -1,7 +1,7 @@
 from roboticstoolbox import DHRobot, PrismaticDH, RevoluteDH
 from spatialmath import SE3
 import numpy as np
- 
+import matplotlib.pyplot as plt
 
 # Define the Cartesian robot with 3 prismatic joints
 robot = DHRobot(
@@ -30,4 +30,5 @@ t_values = [np.radians(0),
             np.radians(0),]  # Example: [X, Y, Z] displacements in meters
  
 # Plot the robot at the specified position
-robot.plot(t_values, block=True, jointaxes=True, eeframe=True, jointlabels=True)
+robot.plot(t_values, block=False, jointaxes=True, eeframe=True, jointlabels=True)
+plt.savefig("Actividades/Clase/Tarea_3/robot_configuration.png", dpi=600, bbox_inches='tight',  pad_inches=0.1)
