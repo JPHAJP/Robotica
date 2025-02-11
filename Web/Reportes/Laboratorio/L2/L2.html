@@ -51,7 +51,7 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Práctica 1</h1>
+                <h1 class="display-4 fw-bolder">Práctica 2</h1>
                 <p class="lead fw-normal text-white-50 mb-0">Ejercicio de Repaso.</p>
                 <a class="btn btn-primary btn-xl" href="../../../laboratorio.html">Regresar a Laboratorio</a>
             </div>
@@ -63,12 +63,13 @@
             <h3 class="text-secondary mb-0">Introducción</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6">
-                    <p>El presente reporte tiene como objetivo documentar el proceso de configuración y operación del
-                        robot Kuka KR 16R2010-2, con especial enfoque en la declaración y configuración de la
-                        herramienta lápiz en el robot manipulador. Se explorará la interfaz de usuario, los tipos de
-                        ajuste para el movimiento manual, los ajustes de velocidad, y el menú de configuración de
-                        herramientas. Finalmente, se describirá el proceso detalladamente y se evaluará cómo verificar
-                        la correcta configuración de la herramienta.
+                    <p>En el presente reporte se documenta el proceso de programación y operación del robot industrial
+                        KUKA KR 16R2010-2 para realizar movimientos controlados en diferentes trayectorias (circular,
+                        lineal y PTP) y capturar un video mientras sigue el objeto en tiempo real. El objetivo principal
+                        es demostrar cómo programar al robot para ejecutar trayectorias predefinidas tras calcular el
+                        Tool Center Point (TCP) mediante el método XYZ de 4 puntos. Esta práctica busca desarrollar
+                        habilidades en la programación de robots industriales y en la configuración precisa de
+                        herramientas, fomentando el aprendizaje en aplicaciones de automatización.
                     </p>
                     <!-- <a class="btn btn-primary btn-xl" href="assets/Ejercicios repaso.pdf" target="_blank">Instrucciones
                         PDF</a> -->
@@ -177,21 +178,21 @@
                             <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
                                 loop></video> -->
                             <iframe id="pdfViewer"
-                                src="assets/Reporte 1 - Declaración de herrmienta en KUKA - Equipo 1.pdf" width="100%"
-                                height="800px"></iframe>
+                                src="assets/Reporte 2 - Manejo de movimientos en KUKA - Equipo 1.pdf"
+                                width="100%" height="800px"></iframe>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">Pasos para la declaración de herramienta en robot KUKA</a>
+                            <h5 class="card-title"><a href="">Pasos para la declaración de trayectorias para robot
+                                    KUKA</a>
                             </h5>
                             <p class="fst-italic text-center">En esta prática se calibró el TCP mediante el método de 4
                                 puntos XYZ, utilizando una referencia y una herremienta específica se programó al robot
-                                Kuka KR 16R2010-2 para su uso. En un primer momento se requirio conocer a su vez la
-                                forma de inicio de sesión en usuario experto para poder realizar esta configuración; y
-                                al mismo tiempo se conoció las formas de mover al robot desde la tableta de
-                                programación.</p>
+                                Kuka KR 16R2010-2 para su uso. Después de la calibración de la herramienta se procedio
+                                con la creación de un porgrama que genera trayectorias de manera programada para el
+                                robot KUKA.</p>
                             <p class="card-text"></p>
                             <a class="btn btn-primary btn-xl"
-                                href="assets/Reporte 1 - Declaración de herrmienta en KUKA - Equipo 1.pdf"
+                                href="assets/Reporte 2 - Manejo de movimientos en KUKA - Equipo 1.pdf"
                                 target="_blank">Descargar Reporte PDF</a>
                         </div>
                     </div>
@@ -201,156 +202,64 @@
     </section>
     <br>
     <section id="events" class="events section">
-        <!-- <div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
             <div class="row">
-                <div class="col-md-6 d-flex align-items-stretch">
+                <div class="col-md-12 d-flex align-items-stretch">
                     <div class="card">
                         <div class="card-img">
-                            <div class="">
-                                <img class="card-img-top mb-5 mb-md-0" src="assets/C1.png" alt="...">
-                                <img class="" style="margin-left: 25%;" src="assets/1.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/1.mp4" controls muted autoplay
-                                    loop></video>
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Imágenes en la parte superior -->
+                                    <div class="col-md-6 mb-3">
+                                        <img class="img-fluid w-100" style="margin-top: 5%;" src="assets/im1.jpg"
+                                            alt="Imagen 1">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <img class="img-fluid w-100" style="margin-top: 20%;" src="assets/im2.jpg"
+                                            alt="Imagen 2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Videos en la parte inferior -->
+                                    <div class="col-md-6 mb-3">
+                                        <video class="w-100" src="assets/V1.mp4" controls muted autoplay loop></video>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <video class="w-100" src="assets/V2.mp4" controls muted autoplay loop></video>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Videos en la parte inferior -->
+                                    <div class="col-md-12 mb-3">
+                                        <img class="img-fluid w-100" src="assets/im3.jpg" alt="Imagen 2">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">1er Circuito</a></h5>
-                            <p class="fst-italic text-center">En este primer circuito se conecta una lámpara a 120
-                                volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="card-img-top mb-5 mb-md-0" src="assets/C2.png" alt="...">
-                                <img class="" src="assets/2.jpg" width="49.6%" alt="...">
-                                <img class="" src="assets/2.1.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/2.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">2do Circuito</a></h5>
-                            <p class="fst-italic text-center">Se conecta un botón y cuando se presiona se enciende la
-                                lámpara a 120 volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" src="assets/C3.png" width="100%" alt="...">
-                                <img class="" style="margin-left: 25%;" src="assets/3.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/3.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">3er Circuito</a></h5>
-                            <p class="fst-italic text-center">Con un botón se conectan dos lámparas en paralelo, cuando
-                                se presionan ambas encienden.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" src="assets/C4.png" width="100%" alt="...">
-                                <img class="" src="assets/4.jpg" width="49.6%" alt="...">
-                                <img class="" src="assets/4.1.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/4.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">4to Circuito</a></h5>
-                            <p class="fst-italic text-center">Con un botón se conectan dos lámparas en serie, cuando se
-                                presionan ambas encienden.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" width="100%" src="assets/C5.png" alt="...">
-                                <img style="margin-left: 15.5%;" class="" width="33%" src="assets/5.jpg" alt="...">
-                                <img class="" width="33%" src="assets/5.1.jpg" alt="...">
-                                <video width="100%" height="auto" src="assets/5.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">5to Circuito</a></h5>
-                            <p class="fst-italic text-center">Se crea un circuito con dos botones en serie emulando una
-                                función AND, cuando ambos se presionan se enciende una lámpara con 120 volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="card-img-top mb-5 mb-md-0" src="assets/C6.png" alt="...">
-                                <img class="" width="32.95%" src="assets/6.jpg" alt="...">
-                                <img class="" width="32.95%" src="assets/6.1.jpg" alt="...">
-                                <img class="" width="32.95%" src="assets/6.2.jpg" alt="...">
-                                <video width="100%" height="auto" src="assets/6.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">6to Circuito</a></h5>
-                            <p class="fst-italic text-center">Se crea un circuito con dos botones en paralelo emulando
-                                una función OR, cuando se presionan cualquiera de los botones se enciende una lámpara
-                                con 120 volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" style="margin-left:33%;" src="assets/C7.png" width="33%" alt="...">
-                                <br>
-                                <img class="" src="assets/7.1.jpg" width="33.15%" alt="...">
-                                <img class="" src="assets/7.2.jpg" width="33.15%" alt="...">
-                                <img class="" src="assets/7.3.jpg" width="33.15%" alt="...">
-                                <video style="margin-left: 25%;" width="50%" height="auto" src="assets/7.mp4" controls
-                                    muted autoplay loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">7mo Circuito</a></h5>
-                            <p class="fst-italic text-center">Se crea un circuito de retención (memoria) tipo LATCH,
-                                cuando se presiona el botón de activación este activa el circuito hasta que se presione
-                                el botón de paro y se dentenga el paso de energía. Para comprobarlo se añade una lámpara
-                                para ver los 120 volts al activarse y desactivarse.</p>
+                            <h5 class="card-title"><a href="">Evidencias</a></h5>
+                            <p class="fst-italic text-center">Se presentan los videos y fotografías como evidencia de la
+                                práctica para ver como es que el programa realizado en la tableta se comporta al
+                                utilizar el robot; se muestra el programa generado, la herramienta colocada y dos videos
+                                del robot en movimiento.</p>
                             <p class="card-text"></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </section>
     <section class="py-5 text-white">
         <div class="container px-4 px-lg-5 my-5">
             <h3 class="text-secondary mb-0">Conclusión</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-12">
-                    <p class="text-white">Para comprobar que la herramienta está bien configurada, se realizan pruebas de precisión en las trayectorias y puntos programados. Si el punto de contacto de la herramienta coincide con los valores teóricos y no hay desviaciones en la ejecución de los movimientos, se puede confirmar que la configuración es correcta.
-                        Es fundamental seguir el método TCP XYZ 4 Puntos con precisión para minimizar errores en la calibración. Además, el operador debe asegurarse de que la interfaz de usuario esté configurada adecuadamente y que los parámetros de velocidad y movimiento sean los adecuados para evitar posibles colisiones o imprecisiones en la trayectoria del robot.
-                        Con una correcta configuración y verificación, el robot Kuka KR 16R2010-2 puede desempeñar tareas de manera eficiente y precisa, optimizando los procesos industriales en los que se utilice.
+                    <p class="text-white">La práctica permitió demostrar la importancia de una correcta configuración
+                        del TCP para garantizar la precisión de los movimientos del robot. Se logró programar y ejecutar
+                        trayectorias lineales, circulares y PTP, lo que evidencia la versatilidad del KUKA KR 16R2010-2.
+                        La integración de la cámara también fue exitosa, ya que el robot siguió el objeto sin perderlo
+                        de vista. Estas habilidades son fundamentales para aplicaciones industriales donde se requieren
+                        movimientos precisos y tareas automatizadas.
                     </p>
                 </div>
             </div>
@@ -359,15 +268,16 @@
             <h2 class="text-center mb-4">Referencias Bibliográficas</h2>
             <ul class="list-group">
                 <li class="list-group-item">
-                    DIG Automation & Technology. (21-08-2023). <i>KUKA Tool Calibration, TCP Calibration (XYZ 4 Point).</i> YouTube.
+                    DIG Automation & Technology. (21-08-2023). <i>KUKA Tool Calibration, TCP Calibration (XYZ 4
+                        Point).</i> YouTube.
                     Disponible en: <a
                         href="https://www.youtube.com/watch?v=G1NT-39wqqE&ab_channel=DIGAutomation%26Technology"
                         target="_blank">YouTube</a>.
                 </li>
                 <li class="list-group-item">
                     KUKA. (n.d.). <i>Manual de usuario KUKA</i>. Disponible en: <a
-                    href="https://www.kuka.com/-/media/kuka-downloads/imported/8350ff3ca11642998dbdc81dcc2ed44c/0000262124_es.pdf"
-                    target="_blank">KUKA</a>.
+                        href="https://www.kuka.com/-/media/kuka-downloads/imported/8350ff3ca11642998dbdc81dcc2ed44c/0000262124_es.pdf"
+                        target="_blank">KUKA</a>.
                 </li>
             </ul>
         </div>
@@ -395,7 +305,8 @@
         <img src="../../../Recursos/Imagenes/IM3.png" alt="University Logo" style="width:100px;">
         <p>Universidad Iberoamericana Puebla.</p>
         <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title"
-                rel="cc:attributionURL" href="https://jphajp.github.io/automatizacion/">Portafolio Robótica Aplicada</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName"
+                rel="cc:attributionURL" href="https://jphajp.github.io/automatizacion/">Portafolio Robótica Aplicada</a>
+            by <a rel="cc:attributionURL dct:creator" property="cc:attributionName"
                 href="https://github.com/JPHAJP">José Pablo Hernández Alonso</a>, Dirk Anton Topcic Martínez & Luis
             Alejandro Bulas Tenorio is licensed under <a
                 href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
