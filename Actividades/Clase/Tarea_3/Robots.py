@@ -159,7 +159,7 @@ a6 = 0.1
 robot = DHRobot(
     [
         RevoluteDH( alpha=-np.pi/2,     a=0,    d=a1,       offset=0),
-        RevoluteDH( alpha=0,            a=a2,   d=0,        offset=np.pi/2),
+        RevoluteDH( alpha=0,            a=a2,   d=0,        offset=-np.pi/2),
         RevoluteDH( alpha=np.pi/2,      a=0,    d=0,        offset=0),
         RevoluteDH( alpha=-np.pi/2,     a=0,    d=a3+a4,    offset=0),
         RevoluteDH( alpha=np.pi/2,      a=0,    d=0,        offset=0),
