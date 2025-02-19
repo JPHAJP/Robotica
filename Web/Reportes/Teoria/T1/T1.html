@@ -20,16 +20,20 @@
         }
     </style>
     <!-- Prism CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css"
+        rel="stylesheet" />
 
-<!-- Prism JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
 
 
 </head>
@@ -52,8 +56,8 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Tarea 1</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Manejo de robot KUKA y posicionamiento de herramienta.</p>
-                <a class="btn btn-primary btn-xl" href="../../../laboratorio.html">Regresar a Laboratorio</a>
+                <p class="lead fw-normal text-white-50 mb-0">Traslación y rotación</p>
+                <a class="btn btn-primary btn-xl" href="../../../teoria.html">Regresar a Teoría</a>
             </div>
         </div>
     </header>
@@ -63,365 +67,379 @@
             <h3 class="text-secondary mb-0">Introducción</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6">
-                    <p>.
+                    <p>Se muestra como modificar y trasladar origenes en el espacio aplicando rotaciones en X,Y,Z y
+                        movimientos de traslación. Se plantean matrices homogéneas para unir rotaciones y traslaciones.
                     </p>
-                    <!-- <a class="btn btn-primary btn-xl" href="assets/Ejercicios repaso.pdf" target="_blank">Instrucciones
-                        PDF</a> -->
+                    </p>
+                    <a class="btn btn-primary btn-xl" href="assets/Transformadas.pdf" target="_blank">
+                        Descargar teoría PDF</a>
                 </div>
                 <div class="col-lg-6">
                     <img class="img-fluid" width="50%" height="auto"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYz5enxpiNLi7j5esOv14811oF3cdi37bZ0w&s"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Euler2.gif/300px-Euler2.gif"
                         alt="...">
 
 
                 </div>
             </div>
         </div>
-        <!-- <div class="container my-5">
-            <h1 class="text-center mb-4">Marco Teórico: Circuitos Básicos y Control Eléctrico</h1>
-
-            <section class="mb-5">
-                <h2>Circuitos en Serie y Paralelo</h2>
-                <p>Las <strong>conexiones en serie</strong> son aquellas donde los componentes están conectados uno tras
-                    otro, de modo que la corriente fluye a través de cada componente en la misma dirección. Este tipo de
-                    conexión es ideal para circuitos donde se requiere que cada componente dependa de los demás para que
-                    el sistema funcione.</p>
-                <p>Por otro lado, en los <strong>circuitos en paralelo</strong>, los componentes están conectados de tal
-                    forma que la corriente se divide y puede fluir por varios caminos. Estos circuitos son útiles en
-                    aplicaciones donde se necesita que cada componente funcione de manera independiente.</p>
-            </section>
-
-            <section class="mb-5">
-                <h2>Compuertas Lógicas: AND y OR</h2>
-                <p>Las compuertas lógicas se utilizan ampliamente en la lógica de control. Las compuertas
-                    <strong>AND</strong> permiten que una señal de salida se active solo cuando todas las entradas son
-                    verdaderas. En cambio, las compuertas <strong>OR</strong> permiten que la salida se active cuando al
-                    menos una de las entradas es verdadera. Estas compuertas son clave en el diseño de circuitos lógicos
-                    y sistemas de control en aplicaciones eléctricas.</p>
-            </section>
-
-            <section class="mb-5">
-                <h2>Circuito de Enclavamiento</h2>
-                <p>El <strong>circuito de enclavamiento</strong> es un tipo de configuración que se utiliza para
-                    mantener una carga, como una lámpara o un motor, en estado de encendido hasta que una condición
-                    específica se cumple para desactivarlo. Este tipo de circuito se construye utilizando
-                    <strong>botones</strong> de encendido y apagado, <strong>relevadores</strong> y una fuente de
-                    alimentación de <strong>127V</strong>.</p>
-                <p>Un ejemplo común de este circuito es el uso de dos botones: uno para encender y otro para apagar la
-                    lámpara. Este diseño es fundamental en aplicaciones de control industrial para evitar que los
-                    dispositivos se apaguen accidentalmente.</p>
-            </section>
-
-            <section class="mb-5">
-                <h2>Software de Simulación: FluidSim</h2>
-                <p>Para asegurar el funcionamiento de los circuitos antes de construirlos físicamente, se utilizó el
-                    software <strong>FluidSim</strong>. Este programa permite simular circuitos eléctricos y comprobar
-                    su funcionalidad, ayudando a evitar errores costosos y mejorar el diseño de los sistemas. FluidSim
-                    es una herramienta poderosa en el área de sistemas eléctricos, especialmente para la enseñanza y la
-                    práctica en automatización y control.</p>
-            </section>
-        </div> -->
-        <!-- <div class="container px-4 px-lg-5 my-5">
-            <h3 class="text-secondary mb-0">Objetivo general</h3>
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-lg-12">
-                    <p>Conocer, investigar e identificar el funcionamiento de los motores DC, AC (monofásicos y
-                        trifásicos).</p>
-                </div>
-            </div>
-        </div>
-        <div class="container px-4 px-lg-5 my-5">
-            <h3 class="text-secondary mb-0">Objetivos específicos</h3>
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-lg-12">
-                    <ul class="list-group">
-                        <li class="list-group-item">Identifica cada uno de los componentes del circuito 1 y 2 (Motor DC)
-                            y realiza una tabla comparativa con su función, simbología y foto de componente real.</li>
-                        <li class="list-group-item">Realiza la simulación en Fluidsim del Circuito 1 y 2, graba un video
-                            del funcionamiento y adjúntalo en la página del reporte de práctica.</li>
-                        <li class="list-group-item">Identifica la diferencia entre cada circuito y las características
-                            de utilizar un motor DC.</li>
-                        <li class="list-group-item">Identifica cada uno de los componentes del circuito 3 (Motor AC
-                            Monofásico) y realiza una tabla comparativa con su función, simbología y foto de componente
-                            real.</li>
-                        <li class="list-group-item">Realiza la simulación en Fluidsim del Circuito 3, graba un video del
-                            funcionamiento y adjúntalo en la página del reporte de práctica. Construye los circuitos
-                            físicamente.</li>
-                        <li class="list-group-item">Identifica la diferencia entre los primeros circuitos y el tercero.
-                        </li>
-                        <li class="list-group-item">Identifica cada uno de los componentes del circuito 4 y 5 (Motor AC
-                            Trifásico) y realiza una tabla comparativa con su función, simbología y foto de componente
-                            real.</li>
-                        <li class="list-group-item">Realiza la simulación en Fluidsim del Circuito 4 y 5, graba un video
-                            del funcionamiento y adjúntalo en la página del reporte de práctica. Construye los circuitos
-                            físicamente.</li>
-                        <li class="list-group-item">Explica el funcionamiento de estos últimos circuitos.</li>
-                        <li class="list-group-item">Elabora una tabla comparativa de las diferencias entre un motor DC,
-                            AC Monofásico y AC Trifásico.</li>
-                    </ul>
-                </div>
-            </div> -->
     </section>
     <!-- Events Section -->
     <section id="events" class="events section">
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="d-flex align-items-stretch">
-                    <div class="card">
+                    <div class="card col-md-12 d-flex align-items-stretch">
                         <div class="card-img">
                             <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
                                 loop></video> -->
-                            <iframe id="pdfViewer"
-                                src="assets/Reporte 1 - Declaración de herrmienta en KUKA - Equipo 1.pdf" width="100%"
-                                height="800px"></iframe>
+                            <iframe id="pdfViewer" src="assets/Transformadas.pdf" width="100%" height="800px"></iframe>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">Pasos para la declaración de herramienta en robot KUKA</a>
+                            <h5 class="card-title"><a href="">Teoría de transformaciones</a>
                             </h5>
-                            <p class="fst-italic text-center">En esta prática se calibró el TCP mediante el método de 4
-                                puntos XYZ, utilizando una referencia y una herremienta específica se programó al robot
-                                Kuka KR 16R2010-2 para su uso. En un primer momento se requirio conocer a su vez la
-                                forma de inicio de sesión en usuario experto para poder realizar esta configuración; y
-                                al mismo tiempo se conoció las formas de mover al robot desde la tableta de
-                                programación.</p>
-                            <p class="card-text"></p>
-                            <a class="btn btn-primary btn-xl"
-                                href="assets/Reporte 1 - Declaración de herrmienta en KUKA - Equipo 1.pdf"
-                                target="_blank">Descargar Reporte PDF</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br>
-    <section id="events" class="events section">
-        <!-- <div class="container" data-aos="fade-up">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="card-img-top mb-5 mb-md-0" src="assets/C1.png" alt="...">
-                                <img class="" style="margin-left: 25%;" src="assets/1.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/1.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">1er Circuito</a></h5>
-                            <p class="fst-italic text-center">En este primer circuito se conecta una lámpara a 120
-                                volts.</p>
+                            <p class="fst-italic text-center"></p>
                             <p class="card-text"></p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="card-img-top mb-5 mb-md-0" src="assets/C2.png" alt="...">
-                                <img class="" src="assets/2.jpg" width="49.6%" alt="...">
-                                <img class="" src="assets/2.1.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/2.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">2do Circuito</a></h5>
-                            <p class="fst-italic text-center">Se conecta un botón y cuando se presiona se enciende la
-                                lámpara a 120 volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" src="assets/C3.png" width="100%" alt="...">
-                                <img class="" style="margin-left: 25%;" src="assets/3.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/3.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">3er Circuito</a></h5>
-                            <p class="fst-italic text-center">Con un botón se conectan dos lámparas en paralelo, cuando
-                                se presionan ambas encienden.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" src="assets/C4.png" width="100%" alt="...">
-                                <img class="" src="assets/4.jpg" width="49.6%" alt="...">
-                                <img class="" src="assets/4.1.jpg" width="49.6%" alt="...">
-                                <video width="100%" height="auto" src="assets/4.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">4to Circuito</a></h5>
-                            <p class="fst-italic text-center">Con un botón se conectan dos lámparas en serie, cuando se
-                                presionan ambas encienden.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" width="100%" src="assets/C5.png" alt="...">
-                                <img style="margin-left: 15.5%;" class="" width="33%" src="assets/5.jpg" alt="...">
-                                <img class="" width="33%" src="assets/5.1.jpg" alt="...">
-                                <video width="100%" height="auto" src="assets/5.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">5to Circuito</a></h5>
-                            <p class="fst-italic text-center">Se crea un circuito con dos botones en serie emulando una
-                                función AND, cuando ambos se presionan se enciende una lámpara con 120 volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="card-img-top mb-5 mb-md-0" src="assets/C6.png" alt="...">
-                                <img class="" width="32.95%" src="assets/6.jpg" alt="...">
-                                <img class="" width="32.95%" src="assets/6.1.jpg" alt="...">
-                                <img class="" width="32.95%" src="assets/6.2.jpg" alt="...">
-                                <video width="100%" height="auto" src="assets/6.mp4" controls muted autoplay
-                                    loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">6to Circuito</a></h5>
-                            <p class="fst-italic text-center">Se crea un circuito con dos botones en paralelo emulando
-                                una función OR, cuando se presionan cualquiera de los botones se enciende una lámpara
-                                con 120 volts.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="">
-                                <img class="" style="margin-left:33%;" src="assets/C7.png" width="33%" alt="...">
-                                <br>
-                                <img class="" src="assets/7.1.jpg" width="33.15%" alt="...">
-                                <img class="" src="assets/7.2.jpg" width="33.15%" alt="...">
-                                <img class="" src="assets/7.3.jpg" width="33.15%" alt="...">
-                                <video style="margin-left: 25%;" width="50%" height="auto" src="assets/7.mp4" controls
-                                    muted autoplay loop></video>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">7mo Circuito</a></h5>
-                            <p class="fst-italic text-center">Se crea un circuito de retención (memoria) tipo LATCH,
-                                cuando se presiona el botón de activación este activa el circuito hasta que se presione
-                                el botón de paro y se dentenga el paso de energía. Para comprobarlo se añade una lámpara
-                                para ver los 120 volts al activarse y desactivarse.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    </section>
-    <section class="py-5 text-white">
-        <div class="container px-4 px-lg-5 my-5">
-            <h3 class="text-secondary mb-0">Código de ejemplo</h3>
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-lg-12">
-                    <pre class="line-numbers"><code class="language-python">def calcular_posicion_robot(x, y, z, roll, pitch, yaw):
-        """
-        Calcula la posición del robot KUKA basado en coordenadas y ángulos.
-        
-        Parámetros:
-        x, y, z: Coordenadas cartesianas
-        roll, pitch, yaw: Ángulos de rotación
-        
-        Retorna:
-        dict: Diccionario con la posición calculada
-        """
-        # Inicializar posición
-        posicion = {
-            'coordenadas': {
-                'x': x,
-                'y': y,
-                'z': z
-            },
-            'rotacion': {
-                'roll': roll,
-                'pitch': pitch,
-                'yaw': yaw
-            }
-        }
-        
-        # Verificar límites
-        if x > 1000 or y > 1000 or z > 1000:
-            raise ValueError("Coordenadas fuera de rango")
-            
-        return posicion
-    
-    # Ejemplo de uso
-    try:
-        pos = calcular_posicion_robot(500, 300, 200, 0, 45, 90)
-        print("Posición calculada:", pos)
-    except ValueError as e:
-        print("Error:", str(e))</code></pre>
                 </div>
             </div>
         </div>
     </section>
     <section class="py-5 text-white">
         <div class="container px-4 px-lg-5 my-5">
-            <h3 class="text-secondary mb-0">Conclusión</h3>
+            <h3 class="text-secondary mb-0">Código 1</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-12">
-                    <p class="text-white">Para comprobar que la herramienta está bien configurada, se realizan pruebas
-                        de precisión en las trayectorias y puntos programados. Si el punto de contacto de la herramienta
-                        coincide con los valores teóricos y no hay desviaciones en la ejecución de los movimientos, se
-                        puede confirmar que la configuración es correcta.
-                        Es fundamental seguir el método TCP XYZ 4 Puntos con precisión para minimizar errores en la
-                        calibración. Además, el operador debe asegurarse de que la interfaz de usuario esté configurada
-                        adecuadamente y que los parámetros de velocidad y movimiento sean los adecuados para evitar
-                        posibles colisiones o imprecisiones en la trayectoria del robot.
-                        Con una correcta configuración y verificación, el robot Kuka KR 16R2010-2 puede desempeñar
-                        tareas de manera eficiente y precisa, optimizando los procesos industriales en los que se
-                        utilice.
-                    </p>
+                    <pre class="line-numbers">
+<code class="language-python">import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+def rotacion_y(angulo_grados):
+    angulo_rad = np.radians(angulo_grados)
+    R_y = np.array([
+        [np.cos(angulo_rad), 0, np.sin(angulo_rad)],
+        [0, 1, 0],
+        [-np.sin(angulo_rad), 0, np.cos(angulo_rad)]
+    ])
+    return R_y
+
+def rotacion_x(angulo_grados):
+    angulo_rad = np.radians(angulo_grados)
+    R_x = np.array([
+        [1, 0, 0],
+        [0, np.cos(angulo_rad), -np.sin(angulo_rad)],
+        [0, np.sin(angulo_rad), np.cos(angulo_rad)]
+    ])
+    return R_x
+
+# Ángulos de rotación
+angulo_y = 45  # grados
+angulo_x = 60  # grados
+
+# Matrices de rotación individuales
+R_y = rotacion_y(angulo_y)
+R_x = rotacion_x(angulo_x)
+
+# Matriz de rotación compuesta (primero R_y, luego R_x)
+R_total = R_x @ R_y
+
+# Imprimir resultados
+print("Matriz de rotación alrededor de Y:")
+print(R_y)
+print("\nMatriz de rotación alrededor de X:")
+print(R_x)
+print("\nMatriz de rotación total (primero Y, luego X):")
+print(R_total)</code></pre>
+                </div>
+            </div>
+            <div class="card col-md-12 d-flex align-items-stretch">
+                <div class="card">
+                    <div class="card-img">
+                        <div class="">
+                            <img class="card-img-top mb-5 mb-md-0" src="assets/resultado_eje_1.png" alt="...">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="">Resultado</a></h5>
+                        <p class="fst-italic text-center"></p>
+                        <p class="card-text"></p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="container px-4 px-lg-5 my-5">
+            <h3 class="text-secondary mb-0">Código 2</h3>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-12">
+                    <pre class="line-numbers">
+<code class="language-python">import numpy as np
+def rotacion_x(angulo_grados):
+    """Genera una matriz de rotación alrededor del eje X."""
+    angulo_rad = np.radians(angulo_grados)
+    R_x = np.array([
+        [1, 0, 0],
+        [0, np.cos(angulo_rad), -np.sin(angulo_rad)],
+        [0, np.sin(angulo_rad), np.cos(angulo_rad)]
+    ])
+    R_x = np.round(R_x, 4)
+    return R_x
+
+def matriz_transformacion_homogenea(R, t):
+    """Construye la matriz de transformación homogénea dada una rotación y una traslación."""
+    T = np.eye(4)  # Matriz identidad 4x4
+    T[:3, :3] = R  # Inserta la matriz de rotación
+    T[:3, 3] = t   # Inserta el vector de traslación
+    #imprimir matriz de transformación homogénea a 2 decimales
+    T = np.round(T, 4)
+    return T
+
+# Ángulo de rotación y vector de traslación
+angulo_x = 30  # grados
+traslacion = np.array([5, 10, 0])  # Vector de traslación
+
+# Matriz de rotación alrededor de X
+R_x = rotacion_x(angulo_x)
+
+# Construcción de la matriz de transformación homogénea
+T = matriz_transformacion_homogenea(R_x, traslacion)
+
+# Imprimir resultados
+print("Matriz de rotación alrededor de X:")
+print(R_x)
+print("\nMatriz de transformación homogénea:")
+print(T)</code></pre>
+                </div>
+            </div>
+            <div class="card col-md-12 d-flex align-items-stretch">
+                <div class="card">
+                    <div class="card-img">
+                        <div class="">
+                            <img class="card-img-top mb-5 mb-md-0" src="assets/resultado_eje_2.png" alt="...">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="">Resultado</a></h5>
+                        <p class="fst-italic text-center"></p>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container px-4 px-lg-5 my-5">
+            <h3 class="text-secondary mb-0">Código 3</h3>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-12">
+                    <pre class="line-numbers">
+<code class="language-python">import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+def rotacion(ang_z, ang_y, ang_x, sx, sy, sz):
+    # Definir la matriz de rotación en 3D
+    alpha_z = np.radians(ang_z)
+    beta_y = np.radians(ang_y)
+    gamma_x = np.radians(ang_x)
+
+    rot_z = np.array([
+        [np.cos(alpha_z), -np.sin(alpha_z), 0, sx],
+        [np.sin(alpha_z), np.cos(alpha_z), 0, sy],
+        [0, 0, 1, sz],
+        [0, 0, 0, 1]
+    ])  # Matriz de rotación en Z
+    #print(rot_z)
+
+    rot_x = np.array([
+        [1, 0, 0, 0],
+        [0, np.cos(gamma_x), -np.sin(gamma_x), 0],
+        [0, np.sin(gamma_x), np.cos(gamma_x), 0],
+        [0, 0, 0, 1]
+    ])  # Matriz de rotación en X
+    #print(rot_x)
+
+    rot_y = np.array([
+        [np.cos(beta_y), 0, np.sin(beta_y), 0],
+        [0, 1, 0, 0],
+        [-np.sin(beta_y), 0, np.cos(beta_y), 0],
+        [0, 0, 0, 1]
+    ])  # Matriz de rotación en Y
+    #print(rot_y)
+    return rot_z @ rot_x @ rot_y
+
+def traslacion(sx, sy, sz):
+    tras_m = np.array([
+        [1, 0, 0, sx],
+        [0, 1, 0, sy],
+        [0, 0, 1, sz],
+        [0, 0, 0, 1]
+    ])  # Matriz de traslación en 3D
+    return tras_m
+
+def crear_plot():
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    # Graficar las flechas de los ejes principales
+    ax.quiver(0, 0, 0, 5, 0, 0, color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X
+    ax.quiver(0, 0, 0, 0, 5, 0, color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y
+    ax.quiver(0, 0, 0, 0, 0, 5, color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z
+
+    # Etiquetas de los ejes
+    ax.text(5.2, 0, 0, 'X', fontsize=12, color='black')
+    ax.text(0, 5.2, 0, 'Y', fontsize=12, color='black')
+    ax.text(0, 0, 5.2, 'Z', fontsize=12, color='black')
+
+    # Configurar los límites de los ejes
+    plot_limit_inf = 5
+    plot_limit_sup = 5
+    ax.set_xlim(-plot_limit_inf, plot_limit_sup)
+    ax.set_ylim(-plot_limit_inf, plot_limit_sup)
+    ax.set_zlim(-plot_limit_inf, plot_limit_sup)
+
+    # Configurar los ejes
+    ax.set_xlabel('Eje X')
+    ax.set_ylabel('Eje Y')
+    ax.set_zlabel('Eje Z')
+    return fig, ax
+
+def trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z):
+    rot_eje_x = tras_m @ rot_m @ eje_x
+    rot_eje_y = tras_m @ rot_m @ eje_y
+    rot_eje_z = tras_m @ rot_m @ eje_z
+    return rot_eje_x, rot_eje_y, rot_eje_z
+
+# Crear la figura
+fig, ax = crear_plot()
+
+#---------------------------------------------------------------#
+
+# Transformación A -> B
+print('Transformación A -> B')
+
+# Punto inicial AP en 3D
+x1, y1, z1 = 0, 0, 0
+P1_A = np.array([x1, y1, z1, 1])  # Punto inicial en coordenadas homogéneas
+
+eje_x = np.array([1, 0, 0, 0])
+eje_y = np.array([0, 1, 0, 0])
+eje_z = np.array([0, 0, 1, 0])
+
+# Definir el vector de traslación en 3D
+sx, sy, sz = 3, 0, 0
+tras_m = traslacion(sx, sy, sz)
+
+# Definir los ángulos de rotación en grados
+ang_z, ang_y, ang_x= 180, 0, 0
+rot_m = rotacion(ang_z, ang_y, ang_x, sx, sy, sz)
+P2_B = rot_m @ P1_A
+
+# Imprimir resultados
+print("Resultados de la transformación P2_B:")
+print(f'Matriz homogenea: \n{np.round(rot_m, 2)}')
+print(f"Punto inicial (x, y, z): ({P1_A[0]:.2f}, {P1_A[1]:.2f}, {P1_A[2]:.2f})")
+print(f"Punto final (x, y, z): ({P2_B[0]:.2f}, {P2_B[1]:.2f}, {P2_B[2]:.2f})")
+
+
+# Dibujar ejes en el punto inicial (trasladados, pero no rotados)
+tras_eje_x = eje_x
+tras_eje_y = eje_y
+tras_eje_z = eje_z
+ax.quiver(P1_A[0], P1_A[1], P1_A[2], tras_eje_x[0], tras_eje_x[1], tras_eje_x[2], color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X inicial trasladado
+ax.quiver(P1_A[0], P1_A[1], P1_A[2], tras_eje_y[0], tras_eje_y[1], tras_eje_y[2], color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y inicial trasladado
+ax.quiver(P1_A[0], P1_A[1], P1_A[2], tras_eje_z[0], tras_eje_z[1], tras_eje_z[2], color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z inicial trasladado
+
+# Dibujar el punto
+ax.scatter(P2_B[0], P2_B[1], P2_B[2], color='red', s=25, label='B')
+ax.text(P2_B[0], P2_B[1], P2_B[2], 'B', color='red', fontsize=12)
+
+# Dibujar ejes trasladados y rotados
+rot_eje_x1, rot_eje_y1, rot_eje_z1 = trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z)
+ax.quiver(P2_B[0], P2_B[1], P2_B[2], rot_eje_x1[0], rot_eje_x1[1], rot_eje_x1[2], color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X
+ax.quiver(P2_B[0], P2_B[1], P2_B[2], rot_eje_y1[0], rot_eje_y1[1], rot_eje_y1[2], color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y
+ax.quiver(P2_B[0], P2_B[1], P2_B[2], rot_eje_z1[0], rot_eje_z1[1], rot_eje_z1[2], color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z
+
+#----------------------------------------------------------------#
+
+# Transformación A -> C
+print('\nTransformación A -> C')
+
+# Punto inicial AC en 3D
+x1, y1, z1 = 0, 0, 0
+P1_A = np.array([x1, y1, z1, 1])  # Punto inicial en coordenadas homogéneas
+
+# Definir el vector de traslación en 3D
+sx, sy, sz = 3, 0, 2
+tras_m = traslacion(sx, sy, sz)
+
+# Definir los ángulos de rotación en grados
+ang_z, ang_y, ang_x= 30, 90, 0
+rot_m = rotacion(ang_z, ang_y, ang_x, sx, sy, sz)
+
+P3_C = rot_m @ P1_A
+
+# # Imprimir resultados
+print("Resultados de la transformación P3_C:")
+print(f'Matriz homogenea: \n{np.round(rot_m, 2)}')
+print(f"Punto inicial (x, y, z): ({P1_A[0]:.2f}, {P1_A[1]:.2f}, {P1_A[2]:.2f})")
+print(f"Punto final (x, y, z): ({P3_C[0]:.2f}, {P3_C[1]:.2f}, {P3_C[2]:.2f})")
+
+
+# ----------------------------------------------------------------#
+
+# Dibujar el punto inicial
+ax.scatter(x1, y1, z1, color='green', s=25, label='A')
+ax.text(x1, y1, z1, 'A', color='green', fontsize=12)
+
+# Dibujar el punto
+ax.scatter(P3_C[0], P3_C[1], P3_C[2], color='orange', s=25, label='C')
+ax.text(P3_C[0], P3_C[1], P3_C[2], 'C', color='orange', fontsize=12)
+
+# Dibujar ejes trasladados y rotados
+rot_eje_x2, rot_eje_y2, rot_eje_z2 = trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z)
+ax.quiver(P3_C[0], P3_C[1], P3_C[2], rot_eje_x2[0], rot_eje_x2[1], rot_eje_x2[2], color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X
+ax.quiver(P3_C[0], P3_C[1], P3_C[2], rot_eje_y2[0], rot_eje_y2[1], rot_eje_y2[2], color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y
+ax.quiver(P3_C[0], P3_C[1], P3_C[2], rot_eje_z2[0], rot_eje_z2[1], rot_eje_z2[2], color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z
+
+# Mostrar la leyenda
+plt.legend()
+plt.show()</code></pre>
+                </div>
+            </div>
+            <div class="card col-md-12 d-flex align-items-stretch">
+                <div class="card">
+                    <div class="card-img">
+                        <div class="">
+                            <img class="card-img-top mb-5 mb-md-0" src="assets/resultado_eje_3.png" alt="...">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="">Resultado</a></h5>
+                        <p class="fst-italic text-center"></p>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5 text-white">
         <div class="container mt-5">
             <h2 class="text-center mb-4">Referencias Bibliográficas</h2>
             <ul class="list-group">
                 <li class="list-group-item">
-                    DIG Automation & Technology. (21-08-2023). <i>KUKA Tool Calibration, TCP Calibration (XYZ 4
-                        Point).</i> YouTube.
-                    Disponible en: <a
-                        href="https://www.youtube.com/watch?v=G1NT-39wqqE&ab_channel=DIGAutomation%26Technology"
-                        target="_blank">YouTube</a>.
+                    Niku, S. B. (2020). <i>Introduction to robotics: Analysis, control, applications</i>. John Wiley and
+                    Sons Ltd.
                 </li>
                 <li class="list-group-item">
-                    KUKA. (n.d.). <i>Manual de usuario KUKA</i>. Disponible en: <a
-                        href="https://www.kuka.com/-/media/kuka-downloads/imported/8350ff3ca11642998dbdc81dcc2ed44c/0000262124_es.pdf"
-                        target="_blank">KUKA</a>.
+                    Craig, J. J. (2018). <i>Introduction to robotics: Mechanics and control</i>. Pearson.
+                </li>
+                <li class="list-group-item">
+                    D'Addario, M. (2016). <i>Manual de robótica industrial: Fundamentos, usos y aplicaciones</i>.
+                    CreateSpace Independent Publishing Platform.
                 </li>
             </ul>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer text-center">
