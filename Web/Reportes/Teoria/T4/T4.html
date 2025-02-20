@@ -55,8 +55,8 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Introducción</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Introducción e instalación</p>
+                <h1 class="display-4 fw-bolder">Tarea 4</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Cinemática Inversa</p>
                 <a class="btn btn-primary btn-xl" href="../../../teoria.html">Regresar a Teoría</a>
             </div>
         </div>
@@ -67,24 +67,15 @@
             <h3 class="text-secondary mb-0">Introducción</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6">
-                    <p>Se muestra una introducción a robótica y los pasos para la instalación de python-roboticstoolbox.
+                    <p>Se utiliza un análisis geométrico de los robots para su cinemática inversa.
                     </p>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a class="btn btn-primary btn-xl" href="assets/Introduccion.pdf" target="_blank">
-                            Descargar teoría PDF</a>
-                        <a class="btn btn-primary btn-xl" href="assets/Instalar Toolbox.pdf" target="_blank">
-                            Descargar instrucciones toolbox</a>
-                    </div>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-top: 10px;">
-                        <a class="btn btn-primary btn-xl" href="assets/Quick change tool KUKA.zip" target="_blank">
-                            Quick change tool KUKA</a>
-                        <a class="btn btn-primary btn-xl" href="assets/Quick change tool UR.zip" target="_blank">
-                            Quick change tool UR</a>
-                    </div>
+                    </p>
+                    <a class="btn btn-primary btn-xl" href="assets/Cinematica Inversa.pdf" target="_blank">
+                        Descargar teoría PDF</a>
                 </div>
                 <div class="col-lg-6">
                     <img class="img-fluid" width="50%" height="auto"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Euler2.gif/300px-Euler2.gif"
+                        src="https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-981-16-0550-5_103/MediaObjects/487800_1_En_103_Fig2_HTML.png"
                         alt="...">
 
 
@@ -101,27 +92,11 @@
                         <div class="card-img">
                             <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
                                 loop></video> -->
-                            <iframe id="pdfViewer" src="assets/Introduccion.pdf" width="100%" height="800px"></iframe>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Introducción</a>
-                            </h5>
-                            <p class="fst-italic text-center"></p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-stretch" style="margin-top: 20px;">
-                    <div class="card col-md-12 d-flex align-items-stretch">
-                        <div class="card-img">
-                            <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
-                                loop></video> -->
-                            <iframe id="pdfViewer" src="assets/Instalar Toolbox.pdf" width="100%"
+                            <iframe id="pdfViewer" src="assets/Cinematica Inversa.pdf" width="100%"
                                 height="800px"></iframe>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">Instalación toolbox</a>
+                            <h5 class="card-title"><a href="">Teoría de cinemática Inversa</a>
                             </h5>
                             <p class="fst-italic text-center"></p>
                             <p class="card-text"></p>
@@ -132,6 +107,118 @@
         </div>
     </section>
     <section class="py-5 text-white">
+        <div class="container px-4 px-lg-5 my-5">
+            <h3 class="text-secondary mb-0">Código</h3>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-12">
+                    <pre class="line-numbers">
+<code class="language-python">import sympy as sp
+    import numpy as np
+    
+    # Robot esferico --------------------------------------------------------------
+    name = "Robot Esferico"
+    th1, th2 = sp.symbols('th1 th2')
+    a1, a2, a3, a4, a5, h, d1 = sp.symbols('a1 a2 a3 a4 a5 h d1')
+    x, y, z = sp.symbols('x y z')
+    
+    a4 = z-a1
+    a5 = sp.sqrt(x**2 + y**2)
+    h=sp.sqrt(a5**2 + a4**2)
+    
+    d1 = h -a2 -a3
+    th1 = sp.atan(y/x)
+    th2 = sp.atan(a4/a5)
+    
+    # Mostrar los resultados
+    print(f"\n--- Inverse by Geometry {name} ---")
+    print("th1:", sp.deg(th1))
+    print("th2:", sp.deg(th2))
+    print("d1:", d1)
+    
+    # Robot articulado -----------------------------------------------------------
+    name = "Robot Articulado"
+    th1, th2, th3 = sp.symbols('th1 th2 th3')
+    a1, a2, a3, n1, n2, n3 = sp.symbols('a1 a2 a3 n1 n2 n3')
+    x, y, z = sp.symbols('x y z')
+    
+    n1 = z-a1
+    n2 = sp.sqrt(x**2 + y**2)
+    n3 = sp.sqrt(n1**2 + n2**2)
+    
+    alpha1 = sp.atan(n1/n2)
+    alpha2 = sp.acos(-(a3**2 - (a2**2) - (n3**2))/(2*a2*n3))
+    alpha3 = sp.acos(-(n3**2 - (a2**2) - (a3**2))/(2*a2*a3))
+    
+    th1 = sp.atan(y/x)
+    th2 = alpha1 - alpha2
+    th3 = sp.rad(180) - alpha3
+    
+    # Mostrar los resultados
+    print(f"\n--- Inverse by Geometry {name} ---")
+    print("th1:", sp.deg(th1))
+    print("th2:", sp.deg(th2))
+    print("th3:", sp.deg(th3))
+    
+    # Robot PRP V_alineado ------------------------------------------------------------------
+    name = "Robot PRP V_alineado"
+    th1 = sp.symbols('th1')
+    d1, d2 = sp.symbols('d1 d2')
+    a1, a2 = sp.symbols('a1 a2')
+    x, y, z = sp.symbols('x y z')
+    
+    d1 = z - a1
+    d2 = sp.sqrt(x**2 + y**2)-a2
+    th1 = sp.atan(y/x)
+    
+    # Mostrar los resultados
+    print(f"\n--- Inverse by Geometry {name} ---")
+    print("th1:", sp.deg(th1))
+    print("d1:", d1)
+    print("d2:", d2)
+    
+    # Robot PRP V_no_alineado ------------------------------------------------------------------
+    name = "Robot PRP V_no_alineado"
+    th1 = sp.symbols('th1')
+    d1, d2 = sp.symbols('d1 d2')
+    a1, a2, a3, h, phi1, phi2 = sp.symbols('a1 a2 a3 h phi1 phi2')
+    x, y, z = sp.symbols('x y z')
+    
+    h = sp.sqrt(x**2 + y**2)
+    
+    phi1 = sp.atan(x/y)
+    phi2 = sp.atan(a3/h)
+    
+    d1 = z - a1
+    d2 = (sp.atan(phi2)*a3)-a2
+    th1 = sp.atan(y/x)
+    
+    # Mostrar los resultados
+    print(f"\n--- Inverse by Geometry {name} ---")
+    print("th1:", sp.deg(th1))
+    print("d1:", d1)
+    print("d2:", d2)</code></pre>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="margin-top: 20px;">
+                <div class="card col-md-8 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/Inverse_kinematics.jpg" alt="Imagen 2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-center mt-3">
+                            <h5 class="card-title"><a href="#">Robots</a></h5>
+                            <p class="fst-italic text-black">Se presentan 3 robots: Esférico, Articulado & PRP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+    <section class=" text-white">
         <div class="container mt-5">
             <h2 class="text-center mb-4">Referencias Bibliográficas</h2>
             <ul class="list-group">

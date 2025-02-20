@@ -56,7 +56,7 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Tarea 3</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Multiplicación de matrices de transformación homogéneas</p>
+                <p class="lead fw-normal text-white-50 mb-0">Cinemática Directa</p>
                 <a class="btn btn-primary btn-xl" href="../../../teoria.html">Regresar a Teoría</a>
             </div>
         </div>
@@ -71,12 +71,12 @@
                         robot; posteriormente se utiliza la librería de python-roboticstoolbox para la comprobación.
                     </p>
                     </p>
-                    <a class="btn btn-primary btn-xl" href="../T1/assets/Transformadas.pdf" target="_blank">
+                    <a class="btn btn-primary btn-xl" href="assets/Cinematica Directa.pdf" target="_blank">
                         Descargar teoría PDF</a>
                 </div>
                 <div class="col-lg-6">
                     <img class="img-fluid" width="50%" height="auto"
-                        src="https://sigmoidal.ai/wp-content/uploads/2023/03/Unknown.png" alt="...">
+                        src="https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-981-16-0550-5_103/MediaObjects/487800_1_En_103_Fig2_HTML.png" alt="...">
 
 
                 </div>
@@ -92,11 +92,11 @@
                         <div class="card-img">
                             <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
                                 loop></video> -->
-                            <iframe id="pdfViewer" src="../T1/assets/Transformadas.pdf" width="100%"
+                            <iframe id="pdfViewer" src="assets/Cinematica Directa.pdf" width="100%"
                                 height="800px"></iframe>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">Teoría de transformaciones</a>
+                            <h5 class="card-title"><a href="">Teoría de cinemática Directa</a>
                             </h5>
                             <p class="fst-italic text-center"></p>
                             <p class="card-text"></p>
@@ -108,140 +108,457 @@
     </section>
     <section class="py-5 text-white">
         <div class="container px-4 px-lg-5 my-5">
-            <h3 class="text-secondary mb-0">Código</h3>
+            <h3 class="text-secondary mb-0">Código resolución mediante matrices homogeneas (simbólico)</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-12">
                     <pre class="line-numbers">
-<code class="language-python">import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
+<code class="language-python">import sympy as sp
 
-def crear_plot():
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    # Graficar las flechas de los ejes principales
-    ax.quiver(0, 0, 0, 5, 0, 0, color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X
-    ax.quiver(0, 0, 0, 0, 5, 0, color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y
-    ax.quiver(0, 0, 0, 0, 0, 5, color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z
+    # Función para calcular la matriz homogénea
+    def dh_matrix(theta, d, a, alpha):
+        return sp.Matrix([
+            [sp.cos(theta), -sp.sin(theta)*sp.cos(alpha),  sp.sin(theta)*sp.sin(alpha), a*sp.cos(theta)],
+            [sp.sin(theta),  sp.cos(theta)*sp.cos(alpha), -sp.cos(theta)*sp.sin(alpha), a*sp.sin(theta)],
+            [0,              sp.sin(alpha),                sp.cos(alpha),               d],
+            [0,              0,                            0,                           1]
+        ])
+    #dh_matrix(θ, d , a, α)
+    
+    # Función para generar una matriz de rotación homogénea
+    def rotation_matrix(x_angle=0, y_angle=0, z_angle=0):
+        # Rotación alrededor del eje X
+        R_x = sp.Matrix([
+            [1, 0, 0, 0],
+            [0, sp.cos(x_angle), -sp.sin(x_angle), 0],
+            [0, sp.sin(x_angle), sp.cos(x_angle), 0],
+            [0, 0, 0, 1]
+        ])
+        
+        # Rotación alrededor del eje Y
+        R_y = sp.Matrix([
+            [sp.cos(y_angle), 0, sp.sin(y_angle), 0],
+            [0, 1, 0, 0],
+            [-sp.sin(y_angle), 0, sp.cos(y_angle), 0],
+            [0, 0, 0, 1]
+        ])
+        
+        # Rotación alrededor del eje Z
+        R_z = sp.Matrix([
+            [sp.cos(z_angle), -sp.sin(z_angle), 0, 0],
+            [sp.sin(z_angle), sp.cos(z_angle), 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
+        ])
+        
+        # Matriz de rotación combinada
+        return R_x @ R_y @ R_z  # Usar @ para multiplicación de matrices
+    
+    def reemplazar_trigonometria(matriz, n=3):
+        """
+        Reemplaza las funciones trigonométricas en la matriz:
+        sin -> S
+        cos -> C
+        y evalúa los valores numéricos con 2 decimales.
+        """
+        matriz_reemplazada = matriz.applyfunc(lambda expr: expr.replace(sp.sin, lambda x: sp.Symbol(f'S({x})')).replace(sp.cos, lambda x: sp.Symbol(f'C({x})')))
+        return matriz_reemplazada.evalf(n)
+    
+    n=3
+    
+    # Ejercicio 1:
+    print("\nEjercicio 1:")
+    
+    # Definir las variables simbólicas
+    th1, a2, a1, a3, d1 = sp.symbols('th1 a2 a1 a3 d1')
+    
+    # Primera fila de la tabla DH: [α=90, a=a2, θ=θ1, d=0]
+    T1 = dh_matrix(th1, 0, a2, sp.pi/2)
+    # Segunda fila de la tabla DH: [α=0, a=0, θ=0, d=a1 + a3 + d1]
+    T2 = dh_matrix(0, a1 + a3 + d1, 0, 0)
+    # Matriz final: Producto de las transformaciones
+    T = T1 @ T2
+    # Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+    print("Matriz T1:")
+    sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+    print("\nMatriz T2:")
+    sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T:")
+    sp.pprint(reemplazar_trigonometria(T))  # Redondear a 2 decimales
+    
+    # Ejercicio 2:
+    print("\nEjercicio 2:")
+    
+    # Definir las variables simbólicas
+    a2, a1, a3, d1, d2, d3 = sp.symbols('a2 a1 a3 d1 d2 d3')
+    
+    # Primera fila de la tabla DH: [α=-90, a=0, θ=90, d=a1+d1]
+    T1 = dh_matrix(sp.pi/2, a1 + d1, 0, -sp.pi/2)
+    # Segunda fila de la tabla DH: [α=90, a=0, θ=-90, d=a2+d2]
+    T2 = dh_matrix(-sp.pi/2, a2 + d2, 0, sp.pi/2)
+    # Tercera fila de la tabla DH: [α=0, a=0, θ=0, d=a3+d3]
+    T3 = dh_matrix(0, a3 + d3, 0, 0)
+    # Matriz final: Producto de las transformaciones
+    T = T1 @ T2 @ T3
+    # Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+    print("Matriz T1:")
+    sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+    print("\nMatriz T2:")
+    sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+    print("\nMatriz T3:")
+    sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T:")
+    sp.pprint(reemplazar_trigonometria(sp.simplify(T))) # Redondear a 2 decimales
+    
+    # Ejercicio 3:
+    print("\nEjercicio 3:")
+    # Definir las variables simbólicas
+    th1, th2, th3, th4, th5, th6, d1, d2, d3, d4, d5, d6 = sp.symbols('th1 th2 th3 th4 th5 th6 d1 d2 d3 d4 d5 d6')
+    
+    # Primera fila de la tabla DH: [α=-90, a=0, θ=th1, d=d1]
+    T1 = dh_matrix(th1, d1, 0, -sp.pi/2)
+    # Segunda fila de la tabla DH: [α=0, a=d2, θ=th2, d=0]
+    T2 = dh_matrix(th2, 0, d2, 0)
+    # Tercera fila de la tabla DH: [α=0, a=d3, θ=th3, d=0]
+    T3 = dh_matrix(th3, 0, d3, 0)
+    
+    #------------Roptura de robot por no cumplir denavit----------------
+    # Cuarta fila de la tabla DH: [α=-90, a=0, θ=th4, d=d4]
+    T4 = dh_matrix(th4, d4, 0, -sp.pi/2)
+    # Quinta fila de la tabla DH: [α=90, a=d5, θ=th5, d=0]
+    T5 = dh_matrix(th5, 0, d5, sp.pi/2)
+    # Sexta fila de la tabla DH: [α=0, a=0, θ=th6, d=d6]
+    T6 = dh_matrix(th6, d6, 0, 0)
+    
+    # Matriz final: Producto de las transformaciones
+    T_1 = T1 * T2 * T3
+    T_2 = T4 * T5 * T6
+    
+    # Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+    print("Matriz T1:")
+    sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+    print("\nMatriz T2:")
+    sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+    print("\nMatriz T3:")
+    sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
+    print("\nMatriz T4:")
+    sp.pprint(reemplazar_trigonometria(T4))  # Redondear a 2 decimales
+    print("\nMatic T5:")
+    sp.pprint(reemplazar_trigonometria(T5))  # Redondear a 2 decimales
+    print("\nMatiz T6:")
+    sp.pprint(reemplazar_trigonometria(T6))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T1:")
+    sp.pprint(reemplazar_trigonometria(T_1))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T2:")
+    sp.pprint(reemplazar_trigonometria(T_2))  # Redondear a 2 decimales
+    
+    # Juntar las matrices T1 y T2
+    x_angle = 0  # Rotación en X
+    y_angle = sp.pi / 2  # Rotación en Y (90°)
+    z_angle = sp.pi  # Rotación en Z (180°)
+    
+    # Calcular la matriz de rotación combinada
+    T_rotation = rotation_matrix(x_angle, y_angle, z_angle)
+    # Matriz total combinada
+    T_total = T_1 @ T_rotation @ T_2
+    
+    
+    # Mostrar la matriz de rotación y la matriz total, redondeado a 2 decimales
+    print("\nMatriz de rotación:")
+    sp.pprint(reemplazar_trigonometria(T_rotation))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T:")
+    sp.pprint(reemplazar_trigonometria(T_total))  # Redondear a 2 decimales
+    
+    
+    #Imprimir por columnas la matriz total
+    print("\n\n Columna 0")
+    sp.pprint(reemplazar_trigonometria(T_total).col(0))
+    print("\n\n Columna 2")
+    sp.pprint(reemplazar_trigonometria(T_total).col(1))
+    print("\n\n Columna 1")
+    sp.pprint(reemplazar_trigonometria(T_total).col(2))
+    print("\n\n Columna 3")
+    sp.pprint(reemplazar_trigonometria(T_total).col(3))
+    
+    
+    #Ejercicio 4
+    print("\nEjercicio 4:")
+    
+    # Definir las variables simbólicas
+    th1, th2, th3, th4, th5, th6, d1, d2, d3, d4, d5, d6 = sp.symbols('th1 th2 th3 th4 th5 th6 d1 d2 d3 d4 d5 d6')
+    
+    # Primera fila de la tabla DH: [α=-90, a=0, θ=th1, d=d1]
+    T1 = dh_matrix(th1, d1, 0, -sp.pi/2)
+    # Segunda fila de la tabla DH: [α=0, a=d2, θ=th2, d=0]
+    T2 = dh_matrix(th2, 0, d2, 0)
+    # Tercera fila de la tabla DH: [α=-90, a=0, θ=th3, d=d3]
+    T3 = dh_matrix(th3, d3, 0, -sp.pi/2)
+    # Cuarta fila de la tabla DH: [α=-90, a=0, θ=th4, d=d4]
+    T4 = dh_matrix(th4, d4, 0, -sp.pi/2)
+    # Quinta fila de la tabla DH: [α=90, a=0, θ=th5, d=0]
+    T5 = dh_matrix(th5, 0, 0, sp.pi/2)
+    # Sexta fila de la tabla DH: [α=0, a=0, θ=th6, d=d5]
+    T6 = dh_matrix(th6, d5, 0, 0)
+    
+    # Matriz final: Producto de las transformaciones
+    T = T1 @ T2 @ T3 @ T4 @ T5 @ T6
+    
+    # Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+    print("Matriz T1:")
+    sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+    print("\nMatriz T2:")
+    sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+    print("\nMatriz T3:")
+    sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
+    print("\nMatriz T4:")
+    sp.pprint(reemplazar_trigonometria(T4))  # Redondear a 2 decimales
+    print("\nMatriz T5:")
+    sp.pprint(reemplazar_trigonometria(T5))  # Redondear a 2 decimales
+    print("\nMatriz T6:")
+    sp.pprint(reemplazar_trigonometria(T6))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T:")
+    sp.pprint(reemplazar_trigonometria(sp.simplify(T)))  # Redondear a 2 decimales
+    
+    # Ejercicio 5:
+    print("\nEjercicio 5:")
+    # Definir las variables simbólicas
+    th1, th2, th3, th4, th5, th6, d1, d2, d3, d4, d5, d6 = sp.symbols('th1 th2 th3 th4 th5 th6 d1 d2 d3 d4 d5 d6')
+    
+    # Primera fila de la tabla DH: [α=-90, a=0, θ=th1, d=d1]
+    T1 = dh_matrix(th1, d1, 0, -sp.pi/2)
+    # Segunda fila de la tabla DH: [α=0, a=d2, θ=th2, d=0]
+    T2 = dh_matrix(th2, 0, d2, 0)
+    # Tercera fila de la tabla DH: [α=-90, a=0, θ=th3, d=d3]
+    T3 = dh_matrix(th3, d3, 0, -sp.pi/2)
+    # Cuarta fila de la tabla DH: [α=0, a=0, θ=th4, d=d4]
+    T4 = dh_matrix(th4, d4, 0, 0)
+    # Quinta fila de la tabla DH: [α=-90, a=0, θ=th5, d=d5]
+    T5 = dh_matrix(th5, d5, 0, -sp.pi/2)
+    # Sexta fila de la tabla DH: [α=0, a=0, θ=th6, d=d6]
+    T6 = dh_matrix(th6, d6, 0, 0)
+    
+    # Matriz final: Producto de las transformaciones
+    T_1 = T1 @ T2 @ T3 @ T4
+    T_2 = T5 @ T6
+    
+    # Juntar las matrices T1 y T2
+    x_angle = -(sp.pi / 2)  # Rotación en X
+    y_angle = 0
+    z_angle = 0
+    
+    # Calcular la matriz de rotación combinada
+    T_rotation = rotation_matrix(x_angle, y_angle, z_angle)
+    # Matriz total combinada
+    T = T_1 @ T_rotation @ T_2
+    
+    
+    
+    # Mostrar las matrices individuales y el producto final, redondeado a 2 decimales
+    print("Matriz T1:")
+    sp.pprint(reemplazar_trigonometria(T1))  # Redondear a 2 decimales
+    print("\nMatriz T2:")
+    sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
+    print("\nMatriz T3:")
+    sp.pprint(reemplazar_trigonometria(T3))  # Redondear a 2 decimales
+    print("\nMatriz T4:")
+    sp.pprint(reemplazar_trigonometria(T4))  # Redondear a 2 decimales
+    print("\nMatriz T5:")
+    sp.pprint(reemplazar_trigonometria(T5))  # Redondear a 2 decimales
+    print("\nMatriz T6:")
+    sp.pprint(reemplazar_trigonometria(T6))  # Redondear a 2 decimales
+    print("\nMatriz homogénea total T:")
+    sp.pprint(reemplazar_trigonometria(sp.simplify(T)))  # Redondear a 2 decimales
+</code></pre>
+                </div>
+            </div>
+            <h3 class="text-secondary mb-0">Código resolución mediante toolbox</h3>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-12">
+                    <pre class="line-numbers">
+<code class="language-python">#Codigo para ejecutar la simulación de los 5 robots
 
-    # Etiquetas de los ejes
-    ax.text(5.2, 0, 0, 'X', fontsize=12, color='black')
-    ax.text(0, 5.2, 0, 'Y', fontsize=12, color='black')
-    ax.text(0, 0, 5.2, 'Z', fontsize=12, color='black')
-
-    # Configurar los límites de los ejes
-    plot_limit_inf = 5
-    plot_limit_sup = 5
-    ax.set_xlim(-plot_limit_inf, plot_limit_sup)
-    ax.set_ylim(-plot_limit_inf, plot_limit_sup)
-    ax.set_zlim(-plot_limit_inf, plot_limit_sup)
-
-    # Configurar los ejes
-    ax.set_xlabel('Eje X')
-    ax.set_ylabel('Eje Y')
-    ax.set_zlabel('Eje Z')
-    return fig, ax
-
-def trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z):
-    rot_eje_x = tras_m @ rot_m @ eje_x
-    rot_eje_y = tras_m @ rot_m @ eje_y
-    rot_eje_z = tras_m @ rot_m @ eje_z
-    return rot_eje_x, rot_eje_y, rot_eje_z
-
-# Crear la figura
-fig, ax = crear_plot()
-
-# Definir el punto inicial en 3D
-x1, y1, z1 = 2, 0, 2
-P1 = np.array([x1, y1, z1, 1])  # Punto inicial en coordenadas homogéneas
-
-eje_x = np.array([1, 0, 0, 0])
-eje_y = np.array([0, 1, 0, 0])
-eje_z = np.array([0, 0, 1, 0])
-
-# Definir el vector de traslación en 3D
-sx, sy, sz = 1, -1, -2
-tras_m = np.array([
-    [1, 0, 0, sx],
-    [0, 1, 0, sy],
-    [0, 0, 1, sz],
-    [0, 0, 0, 1]
-])  # Matriz de traslación en 3D
-
-# Ángulos de rotación
-#ang_z, ang_y, ang_x= 30, 45, 60
-ang_z, ang_y, ang_x= 60, 45, 60
-
-# Definir la matriz de rotación en 3D
-alpha_z = np.radians(ang_z)
-beta_y = np.radians(ang_y)
-gamma_x = np.radians(ang_x)
-
-rot_z = np.array([
-    [np.cos(alpha_z), -np.sin(alpha_z), 0, sx],
-    [np.sin(alpha_z), np.cos(alpha_z), 0, sy],
-    [0, 0, 1, sz],
-    [0, 0, 0, 1]
-])  # Matriz de rotación en Z
-print(rot_z)
-
-rot_x = np.array([
-    [1, 0, 0, 0],
-    [0, np.cos(gamma_x), -np.sin(gamma_x), 0],
-    [0, np.sin(gamma_x), np.cos(gamma_x), 0],
-    [0, 0, 0, 1]
-])  # Matriz de rotación en X
-print(rot_x)
-
-rot_y = np.array([
-    [np.cos(beta_y), 0, np.sin(beta_y), 0],
-    [0, 1, 0, 0],
-    [-np.sin(beta_y), 0, np.cos(beta_y), 0],
-    [0, 0, 0, 1]
-])  # Matriz de rotación en Y
-print(rot_y)
-
-# Definir la matriz de rotación total
-rot_m = rot_z @ rot_x @ rot_y
-#print(rot_m)
-
-# Aplicar la rotación y traslación al punto
-P2 = rot_m @ P1
-
-# Dibujar el punto inicial
-ax.scatter(x1, y1, z1, color='green', s=25, label='A')
-ax.text(x1, y1, z1, 'A', color='green', fontsize=12)
-
-# Dibujar ejes en el punto inicial (trasladados, pero no rotados)
-tras_eje_x = tras_m @ eje_x
-tras_eje_y = tras_m @ eje_y
-tras_eje_z = tras_m @ eje_z
-ax.quiver(P1[0], P1[1], P1[2], tras_eje_x[0], tras_eje_x[1], tras_eje_x[2], color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X inicial trasladado
-ax.quiver(P1[0], P1[1], P1[2], tras_eje_y[0], tras_eje_y[1], tras_eje_y[2], color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y inicial trasladado
-ax.quiver(P1[0], P1[1], P1[2], tras_eje_z[0], tras_eje_z[1], tras_eje_z[2], color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z inicial trasladado
-
-# Dibujar el punto final
-ax.scatter(P2[0], P2[1], P2[2], color='red', s=25, label='B')
-ax.text(P2[0], P2[1], P2[2], 'B', color='red', fontsize=12)
-
-# Dibujar ejes trasladados y rotados
-rot_eje_x1, rot_eje_y1, rot_eje_z1 = trasladar_y_rotar_ejes(tras_m, rot_m, eje_x, eje_y, eje_z)
-ax.quiver(P2[0], P2[1], P2[2], rot_eje_x1[0], rot_eje_x1[1], rot_eje_x1[2], color='r', linewidth=1, arrow_length_ratio=0.1)  # Eje X
-ax.quiver(P2[0], P2[1], P2[2], rot_eje_y1[0], rot_eje_y1[1], rot_eje_y1[2], color='g', linewidth=1, arrow_length_ratio=0.1)  # Eje Y
-ax.quiver(P2[0], P2[1], P2[2], rot_eje_z1[0], rot_eje_z1[1], rot_eje_z1[2], color='b', linewidth=1, arrow_length_ratio=0.1)  # Eje Z
-
-# Dibujar las líneas que conectan los puntos
-ax.plot([x1, P2[0]], [y1, P2[1]], [z1, P2[2]], color='black', linestyle='dashed')
-
-# Imprimir resultados
-print("Resultados de la transformación:")
-print(f'Matriz de rotación: \n{np.round(rot_m,2)}')
-print(f"Punto inicial (x, y, z): ({P1[0]:.2f}, {P1[1]:.2f}, {P1[2]:.2f})")
-print(f"Punto final (x, y, z): ({P2[0]:.2f}, {P2[1]:.2f}, {P2[2]:.2f})")
-
-# Mostrar la leyenda
-plt.legend()
-plt.show()</code></pre>
+    from roboticstoolbox import DHRobot, PrismaticDH, RevoluteDH
+    from spatialmath import SE3
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    Status_block = False
+    
+    # Robot 1 --------------------------------------------------------------
+    name = "1_Planar"
+    # Define the planar robot with 1 revolute joint and 1 prismatic joint
+    a1 = 0.1  # Desplazamiento para la articulación prismática
+    a2 = 0.05 # Longitud del eslabón para la articulación revoluta
+    a3 = 0.1  # Desplazamiento adicional para la articulación prismática
+    
+    robot = DHRobot(
+        [
+            RevoluteDH( alpha=np.pi/2, a=a2, d=0, offset=np.pi/2),
+            PrismaticDH(                          offset=a1 + a3 )
+        ],
+        name=name
+    )
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each prismatic joint
+    t_values = [np.radians(0)]
+    d_values = [0.1]  # Example: [X, Y, Z] displacements in meters
+    q_values = [t_values[0], d_values[0]]
+    
+    print("Matriz de transformación (Directa):")
+    T = robot.fkine(q_values)  # Forward kinematics
+    print(T)
+    robot.plot(q_values, block=Status_block, jointaxes=True, eeframe=True, jointlabels=True)
+    plt.savefig(f"Actividades/Clase/Tarea_3/CF {name}.png", dpi=600, bbox_inches='tight',  pad_inches=0.1)
+    
+    
+    # Robot 2 --------------------------------------------------------------
+    name = "2_Cartesiano"
+    a1 = 0.1  # Desplazamiento para la articulación prismática
+    a2 = 0.1  # Desplazamiento para la articulación prismática
+    a3 = 0.1  # Desplazamiento para la articulación prismática
+    # Define the Cartesian robot with 3 prismatic joints
+    robot = DHRobot(
+        [
+            PrismaticDH(offset=a1,    alpha=-np.pi/2,  a=0, theta=np.pi/2),
+            PrismaticDH(offset=a2,    alpha=np.pi/2,   a=0, theta=-np.pi/2),
+            PrismaticDH(offset=a3,    alpha=0,         a=0, theta=0)
+     
+        ],
+        base = SE3(0, 0, 0),   # shift the entire robot 0.5m along Z
+        name=name
+    )
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each prismatic joint
+    t_values = [0] 
+    d_values = [0.1, 0.1, 0.1]  # Example: [X, Y, Z] displacements in meters
+    q_values = [d_values[0], d_values[1], d_values[2]]
+    
+    print("Matriz de transformación (Directa):")
+    T = robot.fkine(q_values)  # Forward kinematics
+    print(T)
+    
+    robot.plot(q_values, block=Status_block, jointaxes=True, eeframe=True, jointlabels=True)
+    plt.savefig(f"Actividades/Clase/Tarea_3/CF {name}.png", dpi=600, bbox_inches='tight',  pad_inches=0.1)
+    
+    
+    
+    # Robot 3 --------------------------------------------------------------
+    name = "3_Articulado"
+    a1 = 0.1  
+    a2 = 0.1
+    a3 = 0.1
+    a4 = 0.1
+    a5 = 0.1
+    a6 = 0.1
+    # longitud del eslabón para la articulación revoluta
+    
+    # Define the articulated robot with 6 revolute joints
+    robot = DHRobot(
+        [
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=a1,       offset=0),
+            RevoluteDH( alpha=0,            a=a2,   d=0,        offset=-np.pi/2),
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=0,        offset=0),
+            RevoluteDH( alpha=np.pi/2,      a=0,    d=a3+a4,    offset=np.pi/2),
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=0,        offset=0),
+            RevoluteDH( alpha=0,            a=0,    d=a5+a6,    offset=0)
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [0, 0, 0, 0, 0, 0]
+    d_values = [0, 0, 0, 0, 0, 0]  # Example: [X, Y, Z] displacements in meters
+    q_values = [t_values[0], t_values[1], t_values[2], t_values[3], t_values[4], t_values[5]]
+    
+    print("Matriz de transformación (Directa):")
+    T = robot.fkine(q_values)  # Forward kinematics
+    print(T)
+    
+    robot.plot(q_values, block=Status_block, jointaxes=True, eeframe=True, jointlabels=True)
+    plt.savefig(f"Actividades/Clase/Tarea_3/CF {name}.png", dpi=600, bbox_inches='tight',  pad_inches=0.1)
+    
+    
+    # Robot 4 --------------------------------------------------------------
+    name = "4_Articulado"
+    a1 = 0.2  
+    a2 = 0.1
+    a3 = 0.1
+    a4 = 0.1
+    a5 = 0.1
+    a6 = 0.1
+    
+    # Define the articulated robot with 6 revolute joints
+    robot = DHRobot(
+        [
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=a1,       offset=0),
+            RevoluteDH( alpha=-np.pi/2,     a=a2,   d=0,        offset=0),
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=0,        offset=0),
+            RevoluteDH( alpha=np.pi/2,      a=0,    d=a3+a4,    offset=0),
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=0,        offset=0),
+            RevoluteDH( alpha=0,            a=0,    d=a5+a6,    offset=0)
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [0, 0, 0, 0, 0, 0]
+    d_values = [0, 0, 0, 0, 0, 0]  # Example: [X, Y, Z] displacements in meters
+    q_values = [t_values[0], t_values[1], t_values[2], t_values[3], t_values[4], t_values[5]]
+    
+    print("Matriz de transformación (Directa):")
+    T = robot.fkine(q_values)  # Forward kinematics
+    print(T)
+    
+    robot.plot(q_values, block=Status_block, jointaxes=True, eeframe=True, jointlabels=True)
+    plt.savefig(f"Actividades/Clase/Tarea_3/CF {name}.png", dpi=600, bbox_inches='tight',  pad_inches=0.1)
+    
+    
+    # Robot 5 --------------------------------------------------------------
+    name = "5_Articulado"
+    a1 = 0.1
+    a2 = 0.1
+    a3 = 0.1
+    a4 = 0.1
+    a5 = 0.1
+    a6 = 0.1
+    
+    # Define the articulated robot with 6 revolute joints
+    robot = DHRobot(
+        [
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=a1,       offset=0),
+            RevoluteDH( alpha=0,            a=a2,   d=0,        offset=-np.pi/2),
+            RevoluteDH( alpha=np.pi/2,      a=0,    d=0,        offset=0),
+            RevoluteDH( alpha=-np.pi/2,     a=0,    d=a3+a4,    offset=0),
+            RevoluteDH( alpha=np.pi/2,      a=0,    d=0,        offset=0),
+            RevoluteDH( alpha=0,            a=0,    d=a5+a6,    offset=0)
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [0, 0, 0, 0, 0, 0]
+    d_values = [0, 0, 0, 0, 0, 0]  # Example: [X, Y, Z] displacements in meters
+    q_values = [t_values[0], t_values[1], t_values[2], t_values[3], t_values[4], t_values[5]]
+    
+    print("Matriz de transformación (Directa):")
+    T = robot.fkine(q_values)  # Forward kinematics
+    print(T)
+    
+    robot.plot(q_values, block=Status_block, jointaxes=True, eeframe=True, jointlabels=True)
+    plt.savefig(f"Actividades/Clase/Tarea_3/CF {name}.png", dpi=600, bbox_inches='tight',  pad_inches=0.1)    
+</code></pre>
                 </div>
             </div>
 
@@ -251,23 +568,33 @@ plt.show()</code></pre>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card">
-                                <img class="card-img-top" src="assets/1.png" alt="Imagen 1">
+                                <img class="card-img-top" src="assets/CF 1_Planar.png" alt="Imagen 1">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
-                                <img class="card-img-top" src="assets/2.png" alt="Imagen 2">
+                                <img class="card-img-top" src="assets/CF 2_Cartesiano.png" alt="Imagen 2">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
-                                <img class="card-img-top" src="assets/3.png" alt="Imagen 3">
+                                <img class="card-img-top" src="assets/CF 3_Articulado.png" alt="Imagen 3">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img class="card-img-top" src="assets/CF 4_Articulado.png" alt="Imagen 3">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img class="card-img-top" src="assets/CF 5_Articulado.png" alt="Imagen 3">
                             </div>
                         </div>
                     </div>
                     <div class="card-body text-center mt-3">
-                        <h5 class="card-title"><a href="#">Resultado</a></h5>
-                        <p class="fst-italic"></p>
+                        <h5 class="card-title"><a href="#">Robots</a></h5>
+                        <p class="fst-italic">Se presentan 5 robots: 1 Planar, 2 Cartesiano, 3 Articulado, 4 Articulado, 5 Articulado</p>
                         <p class="card-text"></p>
                     </div>
                 </div>
