@@ -1,0 +1,379 @@
+/home/jpgod/Documentos/Robotica/venv/bin/python /home/jpgod/Documentos/Robotica/Web/Reportes/Teoria/T6/assets/IK_numeric.py
+Detalles del Robot:  UR5
+DHRobot: UR5, 6 joints (RRRRRR), dynamics, standard DH parameters
+┌────────────┬────────┬─────────┬────────┬─────────┬────────┐
+│     θⱼ     │   dⱼ   │   aⱼ    │   ⍺ⱼ   │   q⁻    │   q⁺   │
+├────────────┼────────┼─────────┼────────┼─────────┼────────┤
+│  q1        │ 0.1625 │       0 │  90.0° │ -180.0° │ 180.0° │
+│  q2 - 90°  │      0 │  -0.425 │   0.0° │ -180.0° │ 180.0° │
+│  q3        │      0 │ -0.3922 │   0.0° │ -180.0° │ 180.0° │
+│  q4 - 90°  │ 0.1333 │       0 │  90.0° │ -180.0° │ 180.0° │
+│  q5        │ 0.0997 │       0 │ -90.0° │ -180.0° │ 180.0° │
+│  q6 + 180° │ 0.0996 │       0 │   0.0° │ -360.0° │ 360.0° │
+└────────────┴────────┴─────────┴────────┴─────────┴────────┘
+
+┌──┬──┐
+└──┴──┘
+
+Matriz de transformación (Directa):
+   1         0         0         0         
+   0         0        -1        -0.2329    
+   0         1         0         1.079     
+   0         0         0         1         
+
+Matriz de transformación (Inversa):
+   0         0         1         0.5       
+   0         1         0         0.2       
+  -1         0         0         0.3       
+   0         0         0         1         
+
+Levenberg-Marquardt (ikine_LM): IKSolution: q=[-2.981, 0.187, 1.862, 1.093, 1.732, 1.571], success=True, iterations=8, searches=1, residual=4.81e-08
+IK LM (Grados):  [-170.78513894   10.71363655  106.67011311   62.61625035   99.21486106
+   90.00000004]
+FK con NR:
+   -4.757e-11  2.2e-11   1         0.5       
+   7.325e-10  1        -2.2e-11   0.2       
+  -1         7.325e-10 -4.757e-11  0.3       
+   0         0         0         1         
+
+Gauss-Newton (ikine_GN): IKSolution: q=[-2.981, 2.437, -2.039, -0.3978, -1.732, -1.571], success=True, iterations=11, searches=1, residual=3.89e-11
+IK LM (Grados):  [-170.78513695  139.62426322 -116.83017479  -22.79408292  -99.21486615
+  -90.00000636]
+FK con GN:
+   -9.492e-08  5.395e-08  1         0.5       
+  -1.263e-07  1        -5.395e-08  0.2       
+  -1        -1.263e-07 -9.492e-08  0.3       
+   0         0         0         1         
+
+Newton-Raphson (ikine_NR): IKSolution: q=[-2.981, 2.437, -2.039, -0.3978, -1.732, -1.571], success=True, iterations=11, searches=1, residual=3.89e-11
+IK LM (Grados):  [-170.78513695  139.62426322 -116.83017479  -22.79408292  -99.21486615
+  -90.00000636]
+FK con LM:
+   -9.492e-08  5.395e-08  1         0.5       
+  -1.263e-07  1        -5.395e-08  0.2       
+  -1        -1.263e-07 -9.492e-08  0.3       
+   0         0         0         1         
+
+
+Menores iteraciones:
+Levenberg-Marquardt 8
+
+Menor error:
+Newton-Raphson 3.893290071828963e-11
+
+Resumen de success:
+Levenberg-Marquardt: True
+Gauss-Newton: True
+Newton-Raphson: True
+Detalles del Robot:  1_Planar
+DHRobot: 1_Planar, 2 joints (RP), dynamics, standard DH parameters
+┌───────────┬───────────┬──────┬───────┬─────────┬────────┐
+│    θⱼ     │    dⱼ     │  aⱼ  │  ⍺ⱼ   │   q⁻    │   q⁺   │
+├───────────┼───────────┼──────┼───────┼─────────┼────────┤
+│  q1 + 90° │         0 │ 0.05 │ 90.0° │ -180.0° │ 180.0° │
+│ 0.0°      │  q2 + 0.2 │    0 │  0.0° │     0.0 │    0.2 │
+└───────────┴───────────┴──────┴───────┴─────────┴────────┘
+
+┌──┬──┐
+└──┴──┘
+
+Matriz de transformación (Directa):
+  -0.7071    0         0.7071    0.1768    
+   0.7071    0         0.7071    0.2475    
+   0         1         0         0         
+   0         0         0         1         
+
+Matriz de transformación (Inversa):
+[[-0.707  0.     0.707  0.176]
+ [ 0.707  0.     0.707  0.245]
+ [ 0.     1.     0.     0.   ]
+ [ 0.     0.     0.     1.   ]]
+Levenberg-Marquardt (ikine_LM): IKSolution: q=[0.7813, 0.09749], success=True, iterations=4, searches=1, residual=1.95e-08
+IK LM (Grados):  [44.76711445  5.58583301]
+FK con NR:
+   -0.7042    0         0.71      0.176     
+   0.71      0         0.7042    0.245     
+   0         1         0         0         
+   0         0         0         1         
+
+Gauss-Newton (ikine_GN): IKSolution: q=[1.416, 0.1467], success=False, reason=iteration and search limit reached, 1000 numpy.LinAlgError encountered, iterations=1000, searches=1000, residual=0
+IK LM (Grados):  [81.10729219  8.40261884]
+FK con GN:
+   -0.988     0         0.1546    0.004188  
+   0.1546    0         0.988     0.3502    
+   0         1         0         0         
+   0         0         0         1         
+
+Newton-Raphson (ikine_NR): IKSolution: q=[0.9705, 0.1463], success=False, reason=iteration and search limit reached, 1000 numpy.LinAlgError encountered, iterations=1000, searches=1000, residual=0
+IK LM (Grados):  [55.6051253   8.38360618]
+FK con LM:
+   -0.8252    0         0.5649    0.1544    
+   0.5649    0         0.8252    0.314     
+   0         1         0         0         
+   0         0         0         1         
+
+
+Menores iteraciones:
+Levenberg-Marquardt 4
+
+Menor error:
+No se encontró una solución válida
+
+Resumen de success:
+Levenberg-Marquardt: True
+Gauss-Newton: False
+Newton-Raphson: False
+Detalles del Robot:  2_Cartesiano
+DHRobot: 2_Cartesiano, 3 joints (PPP), dynamics, standard DH parameters
+┌────────┬───────────┬────┬────────┬─────┬─────┐
+│   θⱼ   │    dⱼ     │ aⱼ │   ⍺ⱼ   │ q⁻  │ q⁺  │
+├────────┼───────────┼────┼────────┼─────┼─────┤
+│ 90.0°  │  q1 + 0.1 │  0 │ -90.0° │ 0.0 │ 0.2 │
+│ -90.0° │  q2 + 0.1 │  0 │  90.0° │ 0.0 │ 0.2 │
+│ 0.0°   │  q3 + 0.1 │  0 │   0.0° │ 0.0 │ 0.2 │
+└────────┴───────────┴────┴────────┴─────┴─────┘
+
+┌──┬──┐
+└──┴──┘
+
+Matriz de transformación (Directa):
+   0        -1         0        -0.2       
+   0         0        -1        -0.2       
+   1         0         0         0.2       
+   0         0         0         1         
+
+Matriz de transformación (Inversa):
+[[1.  0.  0.  0.1]
+ [0.  1.  0.  0.1]
+ [0.  0.  1.  0.1]
+ [0.  0.  0.  1. ]]
+Levenberg-Marquardt (ikine_LM): IKSolution: q=[0, -0.2, -0.2], success=True, iterations=5, searches=1, residual=2.31e-08
+IK LM (Grados):  [ 1.44193627e-10 -1.14591559e+01 -1.14591559e+01]
+FK con NR:
+    0        -1         0         0.1       
+   0         0        -1         0.1       
+   1         0         0         0.1       
+   0         0         0         1         
+
+Gauss-Newton (ikine_GN): IKSolution: q=[0.1217, 0.04879, 0.0449], success=False, reason=iteration and search limit reached, 1000 numpy.LinAlgError encountered, iterations=1000, searches=1000, residual=0
+IK LM (Grados):  [6.97439252 2.79525679 2.57247966]
+FK con GN:
+    0        -1         0        -0.1488    
+   0         0        -1        -0.1449    
+   1         0         0         0.2217    
+   0         0         0         1         
+
+Newton-Raphson (ikine_NR): IKSolution: q=[0.03493, 0.1481, 0.05422], success=False, reason=iteration and search limit reached, 1000 numpy.LinAlgError encountered, iterations=1000, searches=1000, residual=0
+IK LM (Grados):  [2.00160656 8.48666888 3.10658856]
+FK con LM:
+    0        -1         0        -0.2481    
+   0         0        -1        -0.1542    
+   1         0         0         0.1349    
+   0         0         0         1         
+
+
+Menores iteraciones:
+Levenberg-Marquardt 5
+
+Menor error:
+No se encontró una solución válida
+
+Resumen de success:
+Levenberg-Marquardt: True
+Gauss-Newton: False
+Newton-Raphson: False
+Detalles del Robot:  3_Articulado
+DHRobot: 3_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
+┌───────────┬─────┬─────┬────────┐
+│    θⱼ     │ dⱼ  │ aⱼ  │   ⍺ⱼ   │
+├───────────┼─────┼─────┼────────┤
+│  q1       │ 0.1 │   0 │ -90.0° │
+│  q2 - 90° │   0 │ 0.1 │   0.0° │
+│  q3       │   0 │   0 │ -90.0° │
+│  q4 + 90° │ 0.2 │   0 │  90.0° │
+│  q5       │   0 │   0 │ -90.0° │
+│  q6       │ 0.2 │   0 │   0.0° │
+└───────────┴─────┴─────┴────────┘
+
+┌──┬──┐
+└──┴──┘
+
+Matriz de transformación (Directa):
+   0         0         1         0.4       
+   1         0         0         0         
+   0         1         0         0.2       
+   0         0         0         1         
+
+Matriz de transformación (Inversa):
+[[0.  0.  1.  0.4]
+ [1.  0.  0.  0. ]
+ [0.  1.  0.  0.2]
+ [0.  0.  0.  1. ]]
+Levenberg-Marquardt (ikine_LM): IKSolution: q=[0.4142, 1.583, -2.296, 0.5448, -1.226, 1.117], success=True, iterations=5, searches=2, residual=2.64e-07
+IK LM (Grados):  [  23.73449995   90.68912218 -131.54331611   31.21624284  -70.26662054
+   64.01787774]
+FK con NR:
+    0.08414   0.5202    0.8499    0.4       
+   0.4077    0.7603   -0.5057    3.89e-07  
+  -0.9092    0.3891   -0.1481    0.2       
+   0         0         0         1         
+
+Gauss-Newton (ikine_GN): IKSolution: q=[3.142, 0, 3.142, 1.323, -4.114e-05, -1.323], success=True, iterations=111, searches=2, residual=8.61e-07
+IK LM (Grados):  [ 1.79999782e+02  2.48773703e-05  1.79997614e+02  7.58189362e+01
+ -2.35699812e-03 -7.58189365e+01]
+FK con GN:
+   -6.279e-06  1.318e-06  1         0.4       
+   1         4.286e-09  6.279e-06  4.958e-07  
+  -4.277e-09  1        -1.318e-06  0.2       
+   0         0         0         1         
+
+Newton-Raphson (ikine_NR): IKSolution: q=[0, 0, 0, -2.62, 0, -0.5211], success=True, iterations=31, searches=2, residual=4.95e-09
+IK LM (Grados):  [ 3.25281688e-09 -8.10325397e-06  8.10028592e-06 -1.50143301e+02
+  9.36416365e-09 -2.98566980e+01]
+FK con LM:
+    8.497e-11  2.956e-11  1         0.4       
+   1        -2.335e-08 -8.497e-11 -5.64e-12  
+   2.335e-08  1        -2.956e-11  0.2       
+   0         0         0         1         
+
+
+Menores iteraciones:
+Levenberg-Marquardt 5
+
+Menor error:
+Newton-Raphson 4.946200684473602e-09
+
+Resumen de success:
+Levenberg-Marquardt: True
+Gauss-Newton: True
+Newton-Raphson: True
+Detalles del Robot:  4_Articulado
+DHRobot: 4_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
+┌─────┬─────┬─────┬────────┐
+│ θⱼ  │ dⱼ  │ aⱼ  │   ⍺ⱼ   │
+├─────┼─────┼─────┼────────┤
+│  q1 │ 0.2 │   0 │ -90.0° │
+│  q2 │   0 │ 0.1 │ -90.0° │
+│  q3 │   0 │   0 │ -90.0° │
+│  q4 │ 0.2 │   0 │  90.0° │
+│  q5 │   0 │   0 │ -90.0° │
+│  q6 │ 0.2 │   0 │   0.0° │
+└─────┴─────┴─────┴────────┘
+
+┌──┬──┐
+└──┴──┘
+
+Matriz de transformación (Directa):
+   1         0         0        -0.1       
+   0         0        -1        -0.4       
+   0         1         0         0.2       
+   0         0         0         1         
+
+Matriz de transformación (Inversa):
+[[ 1.   0.   0.  -0.1]
+ [ 0.   0.  -1.  -0.4]
+ [ 0.   1.   0.   0.2]
+ [ 0.   0.   0.   1. ]]
+Levenberg-Marquardt (ikine_LM): IKSolution: q=[-3.108, 0, 3.046, 0, 0.2584, 0], success=True, iterations=6, searches=1, residual=1.27e-09
+IK LM (Grados):  [-1.78089704e+02  0.00000000e+00  1.74516164e+02  5.08888749e-14
+  1.48043165e+01  0.00000000e+00]
+FK con NR:
+    0.9916    0        -0.129    -0.1       
+  -0.129     0        -0.9916   -0.4       
+   0         1         0         0.2       
+   0         0         0         1         
+
+Gauss-Newton (ikine_GN): IKSolution: q=[3.142, 5.011e-05, 3.142, -0.8475, -1.449e-05, 0.8475], success=True, iterations=20, searches=2, residual=9.73e-07
+IK LM (Grados):  [ 1.79998692e+02  2.87130938e-03  1.79998358e+02 -4.85597291e+01
+ -8.30447481e-04  4.85571475e+01]
+FK con GN:
+    1        -5.057e-06  1.541e-05 -0.1       
+   1.541e-05 -1.086e-05 -1        -0.4       
+   5.057e-06  1        -1.086e-05  0.2       
+   0         0         0         1         
+
+Newton-Raphson (ikine_NR): IKSolution: q=[3.142, 0, 3.142, 1.607, 0, -1.607], success=True, iterations=134, searches=2, residual=1.37e-10
+IK LM (Grados):  [ 1.80000000e+02 -7.51841398e-07  1.80000000e+02  9.20808099e+01
+ -3.79405671e-07 -9.20808092e+01]
+FK con LM:
+    1         2.201e-10  2.596e-09 -0.1       
+   2.596e-09  6.618e-09 -1        -0.4       
+  -2.201e-10  1         6.618e-09  0.2       
+   0         0         0         1         
+
+
+Menores iteraciones:
+Levenberg-Marquardt 6
+
+Menor error:
+Newton-Raphson 1.3654896747857107e-10
+
+Resumen de success:
+Levenberg-Marquardt: True
+Gauss-Newton: True
+Newton-Raphson: True
+Detalles del Robot:  5_Articulado
+DHRobot: 5_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
+┌───────────┬─────┬─────┬────────┐
+│    θⱼ     │ dⱼ  │ aⱼ  │   ⍺ⱼ   │
+├───────────┼─────┼─────┼────────┤
+│  q1       │ 0.1 │   0 │ -90.0° │
+│  q2 - 90° │   0 │ 0.1 │   0.0° │
+│  q3       │   0 │   0 │  90.0° │
+│  q4       │ 0.2 │   0 │ -90.0° │
+│  q5       │   0 │   0 │  90.0° │
+│  q6       │ 0.2 │   0 │   0.0° │
+└───────────┴─────┴─────┴────────┘
+
+┌──┬──┐
+└──┴──┘
+
+Matriz de transformación (Directa):
+   0         0        -1        -0.4       
+   0        -1         0         0         
+  -1         0         0         0.2       
+   0         0         0         1         
+
+Matriz de transformación (Inversa):
+[[ 0.   0.  -1.  -0.4]
+ [ 0.  -1.   0.   0. ]
+ [-1.   0.   0.   0.2]
+ [ 0.   0.   0.   1. ]]
+Levenberg-Marquardt (ikine_LM): IKSolution: q=[-3.142, 0.3181, 2.412, 0, 0.7957, 0], success=True, iterations=6, searches=1, residual=2.97e-11
+IK LM (Grados):  [-180.           18.2267378   138.19774545    0.           45.59182706
+    0.        ]
+FK con NR:
+    0.3749    0        -0.9271   -0.4       
+   0        -1         0         0         
+  -0.9271    0        -0.3749    0.2       
+   0         0         0         1         
+
+Gauss-Newton (ikine_GN): IKSolution: q=[0, -2.214, -3.142, 3.142, 0.9273, 0], success=True, iterations=56, searches=2, residual=2.42e-10
+IK LM (Grados):  [-5.68375808e-08 -1.26869898e+02 -1.79999999e+02  1.80000000e+02
+  5.31301026e+01  3.48871735e-08]
+FK con GN:
+   -2.421e-09 -1.208e-09 -1        -0.4       
+  -4.467e-10 -1         1.208e-09  4.4e-10   
+  -1         4.467e-10  2.421e-09  0.2       
+   0         0         0         1         
+
+Newton-Raphson (ikine_NR): IKSolution: q=[0, 1.318e-06, -1.848e-05, -0.1227, 1.7e-05, -3.019], success=True, iterations=10, searches=2, residual=3.78e-07
+IK LM (Grados):  [-6.22883017e-06  7.54881163e-05 -1.05886960e-03 -7.02768693e+00
+  9.73908269e-04 -1.72972308e+02]
+FK con LM:
+    2.93e-07  1.971e-06 -1        -0.4       
+  -9.144e-08 -1        -1.971e-06 -3.724e-07  
+  -1         9.144e-08 -2.93e-07  0.2       
+   0         0         0         1         
+
+
+Menores iteraciones:
+Levenberg-Marquardt 6
+
+Menor error:
+Levenberg-Marquardt 2.969764527070306e-11
+
+Resumen de success:
+Levenberg-Marquardt: True
+Gauss-Newton: True
+Newton-Raphson: True
