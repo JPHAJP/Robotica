@@ -1,4 +1,5 @@
 /home/jpgod/Documentos/Robotica/venv/bin/python /home/jpgod/Documentos/Robotica/Web/Reportes/Teoria/T6/assets/IK_numeric.py
+------------------------------------------
 Detalles del Robot:  UR5
 DHRobot: UR5, 6 joints (RRRRRR), dynamics, standard DH parameters
 ┌────────────┬────────┬─────────┬────────┬─────────┬────────┐
@@ -12,8 +13,6 @@ DHRobot: UR5, 6 joints (RRRRRR), dynamics, standard DH parameters
 │  q6 + 180° │ 0.0996 │       0 │   0.0° │ -360.0° │ 360.0° │
 └────────────┴────────┴─────────┴────────┴─────────┴────────┘
 
-┌──┬──┐
-└──┴──┘
 
 Matriz de transformación (Directa):
    1         0         0         0         
@@ -65,6 +64,7 @@ Resumen de success:
 Levenberg-Marquardt: True
 Gauss-Newton: True
 Newton-Raphson: True
+------------------------------------------
 Detalles del Robot:  1_Planar
 DHRobot: 1_Planar, 2 joints (RP), dynamics, standard DH parameters
 ┌───────────┬───────────┬──────┬───────┬─────────┬────────┐
@@ -74,8 +74,6 @@ DHRobot: 1_Planar, 2 joints (RP), dynamics, standard DH parameters
 │ 0.0°      │  q2 + 0.2 │    0 │  0.0° │     0.0 │    0.2 │
 └───────────┴───────────┴──────┴───────┴─────────┴────────┘
 
-┌──┬──┐
-└──┴──┘
 
 Matriz de transformación (Directa):
   -0.7071    0         0.7071    0.1768    
@@ -123,6 +121,7 @@ Resumen de success:
 Levenberg-Marquardt: True
 Gauss-Newton: False
 Newton-Raphson: False
+------------------------------------------
 Detalles del Robot:  2_Cartesiano
 DHRobot: 2_Cartesiano, 3 joints (PPP), dynamics, standard DH parameters
 ┌────────┬───────────┬────┬────────┬─────┬─────┐
@@ -133,8 +132,6 @@ DHRobot: 2_Cartesiano, 3 joints (PPP), dynamics, standard DH parameters
 │ 0.0°   │  q3 + 0.1 │  0 │   0.0° │ 0.0 │ 0.2 │
 └────────┴───────────┴────┴────────┴─────┴─────┘
 
-┌──┬──┐
-└──┴──┘
 
 Matriz de transformación (Directa):
    0        -1         0        -0.2       
@@ -182,6 +179,7 @@ Resumen de success:
 Levenberg-Marquardt: True
 Gauss-Newton: False
 Newton-Raphson: False
+------------------------------------------
 Detalles del Robot:  3_Articulado
 DHRobot: 3_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
 ┌───────────┬─────┬─────┬────────┐
@@ -195,8 +193,6 @@ DHRobot: 3_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
 │  q6       │ 0.2 │   0 │   0.0° │
 └───────────┴─────┴─────┴────────┘
 
-┌──┬──┐
-└──┴──┘
 
 Matriz de transformación (Directa):
    0         0         1         0.4       
@@ -247,6 +243,7 @@ Resumen de success:
 Levenberg-Marquardt: True
 Gauss-Newton: True
 Newton-Raphson: True
+------------------------------------------
 Detalles del Robot:  4_Articulado
 DHRobot: 4_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
 ┌─────┬─────┬─────┬────────┐
@@ -260,8 +257,6 @@ DHRobot: 4_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
 │  q6 │ 0.2 │   0 │   0.0° │
 └─────┴─────┴─────┴────────┘
 
-┌──┬──┐
-└──┴──┘
 
 Matriz de transformación (Directa):
    1         0         0        -0.1       
@@ -312,6 +307,7 @@ Resumen de success:
 Levenberg-Marquardt: True
 Gauss-Newton: True
 Newton-Raphson: True
+------------------------------------------
 Detalles del Robot:  5_Articulado
 DHRobot: 5_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
 ┌───────────┬─────┬─────┬────────┐
@@ -325,8 +321,6 @@ DHRobot: 5_Articulado, 6 joints (RRRRRR), dynamics, standard DH parameters
 │  q6       │ 0.2 │   0 │   0.0° │
 └───────────┴─────┴─────┴────────┘
 
-┌──┬──┐
-└──┴──┘
 
 Matriz de transformación (Directa):
    0         0        -1        -0.4       
