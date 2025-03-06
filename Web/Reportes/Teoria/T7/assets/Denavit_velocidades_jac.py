@@ -51,10 +51,8 @@ def reemplazar_trigonometria(matriz, n=3):
 
 # Ejercicio 1:
 print("\nEjercicio 1:")
-
 # Definir las variables simbólicas
 th1, a1, a2, a3, a4, th2 = sp.symbols('th1 a1 a2 a3 a4 th2')
-
 # Primera fila de la tabla DH:
 T1 = dh_matrix(a2,0,a1,th1)
 # Segunda fila de la tabla DH: 
@@ -68,3 +66,53 @@ print("\nMatriz T2:")
 sp.pprint(reemplazar_trigonometria(T2))  # Redondear a 2 decimales
 print("\nMatriz homogénea total T:")
 sp.pprint(reemplazar_trigonometria(T))  # Redondear a 2 decimales
+
+# Jacobiano de velocidades
+ 
+x_v,y_v,z_v,w_x,w_y,w_z = sp.symbols('x_v y_v z_v w_x w_y w_z')
+
+#Vector de velocidades
+V = sp.Matrix([x_v, y_v, z_v, w_x, w_y, w_z])
+
+#Obtencion de vector de velocidades lineales th1
+R=sp.Matrix([0, 0, 1])
+#Tomar solo los valores de la matriz de transformación homogénea
+D = T[0:3,3]
+Vth1_lin = R.cross(D)
+print("\nVector de velocidades lineales th1:")
+sp.pprint(Vth1_lin)
+
+#Obtencion de vector de velocidades lineales th2
+R=sp.Matrix([0, 0, 1])
+D=T[0:3,3]-T1[0:3,3]
+Vth2_lin = R.cross(D)
+print("\nVector de velocidades lineales th2:")
+sp.pprint(Vth2_lin)
+
+#Obtencion de vector de velocidades angulares th1
+R=sp.Matrix([0, 0, 1])
+Vth1_ang = R
+print("\nVector de velocidades angulares th1:")
+sp.pprint(Vth1_ang)
+
+#Obtencion de vector de velocidades angulares th2
+R=sp.Matrix([0, 0, 1])
+Vth2_ang = R
+print("\nVector de velocidades angulares th2:")
+sp.pprint(Vth2_ang)
+
+#Meterlo en una matriz de 6x2 y multiplicar por el vector de [th1, th2]
+V_R=sp.Matrix([
+    [Vth1_lin[0], Vth2_lin[0]],
+    [Vth1_lin[1], Vth2_lin[1]],
+    [Vth1_lin[2], Vth2_lin[2]],
+    [Vth1_ang[0], Vth2_ang[0]],
+    [Vth1_ang[1], Vth2_ang[1]],
+    [Vth1_ang[2], Vth2_ang[2]]
+])
+th_v = sp.Matrix([th1, th2])
+
+J = V_R @ th_v
+print("\nJacobiano de velocidades:")
+sp.pprint(J)
+
