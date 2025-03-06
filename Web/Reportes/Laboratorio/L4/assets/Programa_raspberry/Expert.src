@@ -1,0 +1,28 @@
+&ACCESS RVP
+&COMMENT 
+&ACCESS RVP
+&REL 1
+&PARAM TEMPLATE = C:\KRC\Roboter\Template\vorgabe
+&PARAM EDITMASK = *
+&ACCESS RVP
+DEF Expert( )
+
+   EXT P_in_1()
+   EXT P_in_2()
+   EXT P_ou_1()
+   EXT P_ou_2()
+   EXT P_fl_1()
+   EXT P_fl_2()
+
+   ; Llamar a los subprogramas en orden
+   P_in_1()
+   P_in_2()
+   P_ou_1()
+   P_ou_2()
+   P_fl_1()
+   P_fl_2()
+
+   ; Finalizar programa
+   HALT
+
+END
