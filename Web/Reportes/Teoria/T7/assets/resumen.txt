@@ -1,0 +1,346 @@
+Ejercicio 1: ------------------------------------------------
+Matriz T1:
+⎡C(th1)  -S(th1)   0   C(th1)⋅a₂⎤
+⎢                               ⎥
+⎢S(th1)  C(th1)    0   S(th1)⋅a₂⎥
+⎢                               ⎥
+⎢  0        0     1.0     a₁    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+
+Matriz T2:
+⎡C(th2)  -S(th2)   0   C(th2)⋅a₄⎤
+⎢                               ⎥
+⎢S(th2)  C(th2)    0   S(th2)⋅a₄⎥
+⎢                               ⎥
+⎢  0        0     1.0     a₃    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+
+Matriz homogénea total T:
+⎡C(th1)⋅C(th2) - S(th1)⋅S(th2)  -C(th1)⋅S(th2) - C(th2)⋅S(th1)   0   C(th1)⋅C(th2)⋅a₄ + C(th1)⋅a₂ - S(th1)⋅S(th2)⋅a₄⎤
+⎢                                                                                                                   ⎥
+⎢C(th1)⋅S(th2) + C(th2)⋅S(th1)  C(th1)⋅C(th2) - S(th1)⋅S(th2)    0   C(th1)⋅S(th2)⋅a₄ + C(th2)⋅S(th1)⋅a₄ + S(th1)⋅a₂⎥
+⎢                                                                                                                   ⎥
+⎢              0                              0                 1.0                      a₁ + a₃                    ⎥
+⎢                                                                                                                   ⎥
+⎣              0                              0                  0                         1.0                      ⎦
+
+Vector de velocidades lineales th1:
+⎡-a₂⋅sin(th₁) - a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁)⎤
+⎢                                                          ⎥
+⎢a₂⋅cos(th₁) - a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂) ⎥
+⎢                                                          ⎥
+⎣                            0                             ⎦
+
+Vector de velocidades lineales th2:
+⎡-a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁)⎤
+⎢                                            ⎥
+⎢-a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂)⎥
+⎢                                            ⎥
+⎣                     0                      ⎦
+
+Vector de velocidades angulares th1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+
+Vector de velocidades angulares th2:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+
+Vector de velocidades:
+⎡xᵥ ⎤   ⎡th₁⋅(-a₂⋅sin(th₁) - a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁)) + th₂⋅(-a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁))⎤
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎢yᵥ ⎥   ⎢th₁⋅(a₂⋅cos(th₁) - a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂)) + th₂⋅(-a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂)) ⎥
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎢zᵥ ⎥   ⎢                                                          0                                                          ⎥
+⎢   ⎥ = ⎢                                                                                                                     ⎥
+⎢wₓ ⎥   ⎢                                                          0                                                          ⎥
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎢w_y⎥   ⎢                                                          0                                                          ⎥
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎣w_z⎦   ⎣                                                      th₁ + th₂                                                      ⎦
+
+Ejercicio 2: ------------------------------------------------
+Matriz T1:
+⎡C(th1)   0    -S(th1)   0 ⎤
+⎢                          ⎥
+⎢S(th1)   0    C(th1)    0 ⎥
+⎢                          ⎥
+⎢  0     -1.0     0     a₁ ⎥
+⎢                          ⎥
+⎣  0      0       0     1.0⎦
+
+Matriz T2:
+⎡C(th2)  -S(th2)   0   C(th2)⋅a₂⎤
+⎢                               ⎥
+⎢S(th2)  C(th2)    0   S(th2)⋅a₂⎥
+⎢                               ⎥
+⎢  0        0     1.0      0    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+
+Matriz T3:
+⎡C(th3)  -S(th3)   0   C(th3)⋅a₃⎤
+⎢                               ⎥
+⎢S(th3)  C(th3)    0   S(th3)⋅a₃⎥
+⎢                               ⎥
+⎢  0        0     1.0      0    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+
+Matriz homogénea total T:
+⎡C(th1)⋅C(th2)⋅C(th3) - C(th1)⋅S(th2)⋅S(th3)  -C(th1)⋅C(th2)⋅S(th3) - C(th1)⋅C(th3)⋅S(th2)  -S(th1)  C(th1)⋅C(th2)⋅C(th3)⋅a₃ + C(th1)⋅C(th2)⋅a₂ - C(th1)⋅S(th2)⋅S(th3)⋅a₃⎤
+⎢                                                                                                                                                                        ⎥
+⎢C(th2)⋅C(th3)⋅S(th1) - S(th1)⋅S(th2)⋅S(th3)  -C(th2)⋅S(th1)⋅S(th3) - C(th3)⋅S(th1)⋅S(th2)  C(th1)   C(th2)⋅C(th3)⋅S(th1)⋅a₃ + C(th2)⋅S(th1)⋅a₂ - S(th1)⋅S(th2)⋅S(th3)⋅a₃⎥
+⎢                                                                                                                                                                        ⎥
+⎢      -C(th2)⋅S(th3) - C(th3)⋅S(th2)                -C(th2)⋅C(th3) + S(th2)⋅S(th3)            0            -C(th2)⋅S(th3)⋅a₃ - C(th3)⋅S(th2)⋅a₃ - S(th2)⋅a₂ + a₁        ⎥
+⎢                                                                                                                                                                        ⎥
+⎣                     0                                            0                           0                                     1.0                                 ⎦
+
+Vector de velocidades lineales th1:
+⎡-a₂⋅sin(th₁)⋅cos(th₂) + a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) - a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃)⎤
+⎢                                                                                     ⎥
+⎢a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃) ⎥
+⎢                                                                                     ⎥
+⎣                                          0                                          ⎦
+
+Vector de velocidades lineales th2:
+⎡                                                              (-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁)                                                               ⎤
+⎢                                                                                                                                                                                                  ⎥
+⎢                                                              (-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁)                                                               ⎥
+⎢                                                                                                                                                                                                  ⎥
+⎣-(a₂⋅sin(th₁)⋅cos(th₂) - a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁)⎦
+
+Vector de velocidades lineales th3:
+⎡                                               (-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁)                                                ⎤
+⎢                                                                                                                                                      ⎥
+⎢                                               (-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁)                                                ⎥
+⎢                                                                                                                                                      ⎥
+⎣-(-a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (-a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁)⎦
+
+Vector de velocidades angulares th1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+
+Vector de velocidades angulares th2:
+⎡-sin(th₁)⎤
+⎢         ⎥
+⎢cos(th₁) ⎥
+⎢         ⎥
+⎣    0    ⎦
+
+Vector de velocidades angulares th3:
+⎡-sin(th₁)⎤
+⎢         ⎥
+⎢cos(th₁) ⎥
+⎢         ⎥
+⎣    0    ⎦
+
+Vector de velocidades:
+⎡xᵥ ⎤   ⎡                                                                 th₁⋅(-a₂⋅sin(th₁)⋅cos(th₂) + a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) - a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃)) + th₂⋅(-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁) + th₃⋅(-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁)                                                                 ⎤
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢yᵥ ⎥   ⎢                                                                 th₁⋅(a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃)) + th₂⋅(-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁) + th₃⋅(-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁)                                                                  ⎥
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢zᵥ ⎥   ⎢th₂⋅(-(a₂⋅sin(th₁)⋅cos(th₂) - a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁)) + th₃⋅(-(-a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (-a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁))⎥
+⎢   ⎥ = ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢wₓ ⎥   ⎢                                                                                                                                                                     -th₂⋅sin(th₁) - th₃⋅sin(th₁)                                                                                                                                                                      ⎥
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢w_y⎥   ⎢                                                                                                                                                                      th₂⋅cos(th₁) + th₃⋅cos(th₁)                                                                                                                                                                      ⎥
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎣w_z⎦   ⎣                                                                                                                                                                                  th₁                                                                                                                                                                                  ⎦
+
+Ejercicio 3: ------------------------------------------------
+Matriz T1:
+⎡C(th1)   0    -S(th1)   0 ⎤
+⎢                          ⎥
+⎢S(th1)   0    C(th1)    0 ⎥
+⎢                          ⎥
+⎢  0     -1.0     0     a₁ ⎥
+⎢                          ⎥
+⎣  0      0       0     1.0⎦
+
+Matriz T2:
+⎡C(th2)   0    -S(th2)   0 ⎤
+⎢                          ⎥
+⎢S(th2)   0    C(th2)    0 ⎥
+⎢                          ⎥
+⎢  0     -1.0     0      0 ⎥
+⎢                          ⎥
+⎣  0      0       0     1.0⎦
+
+Matriz T3:
+⎡1.0   0    0      0   ⎤
+⎢                      ⎥
+⎢ 0   1.0   0      0   ⎥
+⎢                      ⎥
+⎢ 0    0   1.0  a₂ + d₁⎥
+⎢                      ⎥
+⎣ 0    0    0     1.0  ⎦
+
+Matriz homogénea total T:
+⎡C(th1)⋅C(th2)  S(th1)   -C(th1)⋅S(th2)  -C(th1)⋅S(th2)⋅(a₂ + d₁)⎤
+⎢                                                                ⎥
+⎢C(th2)⋅S(th1)  -C(th1)  -S(th1)⋅S(th2)  -S(th1)⋅S(th2)⋅(a₂ + d₁)⎥
+⎢                                                                ⎥
+⎢   -S(th2)        0        -C(th2)       -C(th2)⋅(a₂ + d₁) + a₁ ⎥
+⎢                                                                ⎥
+⎣      0           0           0                   1.0           ⎦
+
+Vector de velocidades lineales th1:
+⎡(a₂ + d₁)⋅sin(th₁)⋅sin(th₂) ⎤
+⎢                            ⎥
+⎢-(a₂ + d₁)⋅sin(th₂)⋅cos(th₁)⎥
+⎢                            ⎥
+⎣             0              ⎦
+
+Vector de velocidades lineales th2:
+⎡               -(a₂ + d₁)⋅cos(th₁)⋅cos(th₂)                ⎤
+⎢                                                           ⎥
+⎢               -(a₂ + d₁)⋅sin(th₁)⋅cos(th₂)                ⎥
+⎢                                                           ⎥
+⎢             2                                       2     ⎥
+⎣(a₂ + d₁)⋅sin (th₁)⋅sin(th₂) + (a₂ + d₁)⋅sin(th₂)⋅cos (th₁)⎦
+
+Vector de velocidades lineales d1:
+⎡-sin(th₂)⋅cos(th₁)⎤
+⎢                  ⎥
+⎢-sin(th₁)⋅sin(th₂)⎥
+⎢                  ⎥
+⎣    -cos(th₂)     ⎦
+
+Vector de velocidades angulares th1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+
+Vector de velocidades angulares th2:
+⎡-sin(th₁)⎤
+⎢         ⎥
+⎢cos(th₁) ⎥
+⎢         ⎥
+⎣    0    ⎦
+
+Vector de velocidades angulares d1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣0⎦
+
+Vector de velocidades:
+        ⎡-d₁⋅sin(th₂)⋅cos(th₁) + th₁⋅(a₂ + d₁)⋅sin(th₁)⋅sin(th₂) - th₂⋅(a₂ + d₁)⋅cos(th₁)⋅cos(th₂)⎤
+⎡xᵥ ⎤   ⎢                                                                                         ⎥
+⎢   ⎥   ⎢-d₁⋅sin(th₁)⋅sin(th₂) - th₁⋅(a₂ + d₁)⋅sin(th₂)⋅cos(th₁) - th₂⋅(a₂ + d₁)⋅sin(th₁)⋅cos(th₂)⎥
+⎢yᵥ ⎥   ⎢                                                                                         ⎥
+⎢   ⎥   ⎢                       ⎛             2                                       2     ⎞     ⎥
+⎢zᵥ ⎥   ⎢    -d₁⋅cos(th₂) + th₂⋅⎝(a₂ + d₁)⋅sin (th₁)⋅sin(th₂) + (a₂ + d₁)⋅sin(th₂)⋅cos (th₁)⎠     ⎥
+⎢   ⎥ = ⎢                                                                                         ⎥
+⎢wₓ ⎥   ⎢                                      -th₂⋅sin(th₁)                                      ⎥
+⎢   ⎥   ⎢                                                                                         ⎥
+⎢w_y⎥   ⎢                                      th₂⋅cos(th₁)                                       ⎥
+⎢   ⎥   ⎢                                                                                         ⎥
+⎣w_z⎦   ⎣                                           th₁                                           ⎦
+
+Ejercicio 4: ------------------------------------------------
+Matriz T1:
+⎡1.0   0    0      0   ⎤
+⎢                      ⎥
+⎢ 0   1.0   0      0   ⎥
+⎢                      ⎥
+⎢ 0    0   1.0  a₁ + d₁⎥
+⎢                      ⎥
+⎣ 0    0    0     1.0  ⎦
+
+Matriz T2:
+⎡C(th1)   0   S(th1)   C(th1)⋅a₂⎤
+⎢                               ⎥
+⎢S(th1)   0   -C(th1)  S(th1)⋅a₂⎥
+⎢                               ⎥
+⎢  0     1.0     0         0    ⎥
+⎢                               ⎥
+⎣  0      0      0        1.0   ⎦
+
+Matriz T3:
+⎡1.0   0    0      0   ⎤
+⎢                      ⎥
+⎢ 0   1.0   0      0   ⎥
+⎢                      ⎥
+⎢ 0    0   1.0  a₃ + d₂⎥
+⎢                      ⎥
+⎣ 0    0    0     1.0  ⎦
+
+Matriz homogénea total T:
+⎡C(th1)   0   S(th1)   C(th1)⋅a₂ + S(th1)⋅(a₃ + d₂) ⎤
+⎢                                                   ⎥
+⎢S(th1)   0   -C(th1)  -C(th1)⋅(a₃ + d₂) + S(th1)⋅a₂⎥
+⎢                                                   ⎥
+⎢  0     1.0     0                a₁ + d₁           ⎥
+⎢                                                   ⎥
+⎣  0      0      0                  1.0             ⎦
+
+Vector de velocidades lineales d1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+
+Vector de velocidades lineales th1:
+⎡-a₂⋅sin(th₁) + (a₃ + d₂)⋅cos(th₁)⎤
+⎢                                 ⎥
+⎢a₂⋅cos(th₁) + (a₃ + d₂)⋅sin(th₁) ⎥
+⎢                                 ⎥
+⎣                0                ⎦
+
+Vector de velocidades lineales d2:
+⎡sin(th₁) ⎤
+⎢         ⎥
+⎢-cos(th₁)⎥
+⎢         ⎥
+⎣    0    ⎦
+
+Vector de velocidades angulares d1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣0⎦
+
+Vector de velocidades angulares th1:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+
+Vector de velocidades angulares d2:
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣0⎦
+
+Vector de velocidades:
+⎡xᵥ ⎤   ⎡d₂⋅sin(th₁) + th₁⋅(-a₂⋅sin(th₁) + (a₃ + d₂)⋅cos(th₁))⎤
+⎢   ⎥   ⎢                                                     ⎥
+⎢yᵥ ⎥   ⎢-d₂⋅cos(th₁) + th₁⋅(a₂⋅cos(th₁) + (a₃ + d₂)⋅sin(th₁))⎥
+⎢   ⎥   ⎢                                                     ⎥
+⎢zᵥ ⎥   ⎢                         d₁                          ⎥
+⎢   ⎥ = ⎢                                                     ⎥
+⎢wₓ ⎥   ⎢                          0                          ⎥
+⎢   ⎥   ⎢                                                     ⎥
+⎢w_y⎥   ⎢                          0                          ⎥
+⎢   ⎥   ⎢                                                     ⎥
+⎣w_z⎦   ⎣                         th₁                         ⎦
