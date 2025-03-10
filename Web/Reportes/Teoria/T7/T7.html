@@ -55,8 +55,8 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Tarea 6</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Estudio de robots mediante cinemática inversa y métodos numéricos</p>
+                <h1 class="display-4 fw-bolder">Tarea 7</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Estudio de robots mediante jacobianos de velocidad</p>
                 <a class="btn btn-primary btn-xl" href="../../../teoria.html">Regresar a Teoría</a>
             </div>
         </div>
@@ -67,10 +67,10 @@
             <h3 class="text-secondary mb-0">Introducción</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6">
-                    <p>Se utiliza la librería de python-roboticstoolbox para el análisis.</p>
+                    <p>Se utiliza la librería de sympy para el análisis.</p>
                     </p>
                     <a class="btn btn-primary btn-xl"
-                        href="../T0/assets/Introduction to Robotics Craig 4th Edition Global Edition.pdf#page=118"
+                        href="../T0/assets/Introduction to Robotics Craig 4th Edition Global Edition.pdf#page=154"
                         target="_blank">
                         Descargar teoría PDF</a>
                 </div>
@@ -78,8 +78,6 @@
                     <img class="img-fluid" width="50%" height="auto"
                         src="https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-981-16-0550-5_103/MediaObjects/487800_1_En_103_Fig2_HTML.png"
                         alt="...">
-
-
                 </div>
             </div>
         </div>
@@ -87,45 +85,40 @@
     <!-- Events Section -->
     <section id="events" class="events section">
         <div class="container" data-aos="fade-up">
-            <div class="row">
-                <div class="d-flex align-items-stretch">
-                    <div class="card col-md-12 d-flex align-items-stretch">
-                        <div class="card-img">
-                            <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
-                                loop></video> -->
-                            <iframe id="pdfViewer"
-                                src="../T0/assets/Introduction to Robotics Craig 4th Edition Global Edition.pdf#page=118"
-                                width="100%" height="800px"></iframe>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Teoría de velocidades</a>
-                            </h5>
-                            <p class="fst-italic text-center"></p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                    <div class="card col-md-12 d-flex align-items-stretch">
-                        <div class="card-img">
-                            <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
-                                loop></video> -->
-                            <iframe id="pdfViewer"
-                                src="assets/Cinematica Velocidad.pdf"
-                                width="100%" height="800px"></iframe>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Teoría de velocidades resumen</a>
-                            </h5>
-                            <p class="fst-italic text-center"></p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
+          <div class="row">
+            <!-- Primer Card -->
+            <div class="col-md-12 mb-3">
+              <div class="card align-items-stretch">
+                <div class="card-img">
+                  <iframe id="pdfViewer" src="../T0/assets/Introduction to Robotics Craig 4th Edition Global Edition.pdf#page=154" width="100%" height="800px"></iframe>
                 </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">Teoría de velocidades</a></h5>
+                  <p class="fst-italic text-center"></p>
+                  <p class="card-text"></p>
+                </div>
+              </div>
             </div>
+            <!-- Segundo Card -->
+            <div class="col-md-12">
+              <div class="card align-items-stretch">
+                <div class="card-img">
+                  <iframe id="pdfViewer" src="assets/Cinematica Velocidad.pdf" width="100%" height="800px"></iframe>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">Teoría de velocidades resumen</a></h5>
+                  <p class="fst-italic text-center"></p>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
+      
     <section class="py-5 text-white">
         <div class="container px-4 px-lg-5 my-5">
-            <h3 class="text-secondary mb-0">Código de anális de cinemática inversa de cada robot</h3>
+            <h3 class="text-secondary mb-0">Código de análisis de velocidades de cada robot</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-12">
                     <pre class="line-numbers">
@@ -511,312 +504,514 @@
     sp.pprint(sp.Eq(V, J))</code></pre>
                 </div>
             </div>
-            <div class="d-flex justify-content-center align-items-center" style="margin-top: 20px;">
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
                 <div class="card col-md-12 d-flex align-items-stretch">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
-                                    <img class="card-img-top" src="assets/FK_UR5.png" alt="...">
+                                    <img class="card-img-top" src="assets/R1.png" alt="...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 15%;">
+                                    <img class="card-img-top" src="assets/1.png" alt="...">
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body text-center mt-3">
-                            <div class="card shadow">
-                                <div class="card-body text-black">
-                                    <h5 class="card-title"><a href="#" class="text-decoration-none">Detalles del Robot:
-                                            UR5</a></h5>
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">----- Ejercicio 1 ------</h5>
+                                <hr>
+                                <h6>Matriz T1:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th1)  -S(th1)   0   C(th1)⋅a₂ ⎤
+⎢                               ⎥
+⎢S(th1)  C(th1)    0   S(th1)⋅a₂⎥
+⎢                               ⎥
+⎢  0        0     1.0     a₁    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+                                </pre>
 
-                                    <p><strong>DHRobot:</strong> UR5, 6 joints (RRRRRR), dynamics, standard DH
-                                        parameters</p>
+                                <h6>Matriz T2:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th2)  -S(th2)   0   C(th2)⋅a₄⎤
+⎢                               ⎥
+⎢S(th2)  C(th2)    0   S(th2)⋅a₄⎥
+⎢                               ⎥
+⎢  0        0     1.0     a₃    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+                                </pre>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
-                                            <thead class="table-dark">
-                                                <tr>
-                                                    <th>θⱼ</th>
-                                                    <th>dⱼ</th>
-                                                    <th>aⱼ</th>
-                                                    <th>⍺ⱼ</th>
-                                                    <th>q⁻</th>
-                                                    <th>q⁺</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>q1</td>
-                                                    <td>0.1625</td>
-                                                    <td>0</td>
-                                                    <td>90.0°</td>
-                                                    <td>-180.0°</td>
-                                                    <td>180.0°</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>q2 - 90°</td>
-                                                    <td>0</td>
-                                                    <td>-0.425</td>
-                                                    <td>0.0°</td>
-                                                    <td>-180.0°</td>
-                                                    <td>180.0°</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>q3</td>
-                                                    <td>0</td>
-                                                    <td>-0.3922</td>
-                                                    <td>0.0°</td>
-                                                    <td>-180.0°</td>
-                                                    <td>180.0°</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>q4 - 90°</td>
-                                                    <td>0.1333</td>
-                                                    <td>0</td>
-                                                    <td>90.0°</td>
-                                                    <td>-180.0°</td>
-                                                    <td>180.0°</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>q5</td>
-                                                    <td>0.0997</td>
-                                                    <td>0</td>
-                                                    <td>-90.0°</td>
-                                                    <td>-180.0°</td>
-                                                    <td>180.0°</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>q6 + 180°</td>
-                                                    <td>0.0996</td>
-                                                    <td>0</td>
-                                                    <td>0.0°</td>
-                                                    <td>-360.0°</td>
-                                                    <td>360.0°</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <h6>Matriz homogénea total T:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th1)⋅C(th2) - S(th1)⋅S(th2)  -C(th1)⋅S(th2) - C(th2)⋅S(th1)   0   C(th1)⋅C(th2)⋅a₄ + C(th1)⋅a₂ - S(th1)⋅S(th2)⋅a₄     ⎤
+⎢                                                                                                                   ⎥
+⎢C(th1)⋅S(th2) + C(th2)⋅S(th1)  C(th1)⋅C(th2) - S(th1)⋅S(th2)    0   C(th1)⋅S(th2)⋅a₄ + C(th2)⋅S(th1)⋅a₄ + S(th1)⋅a₂     ⎥
+⎢                                                                                                                   ⎥
+⎢              0                              0                 1.0                      a₁ + a₃                    ⎥
+⎢                                                                                                                   ⎥
+⎣              0                              0                  0                         1.0                      ⎦
+                                </pre>
 
-                                    <p><strong>Matriz de transformación (Directa):</strong></p>
-                                    <pre class="bg-light p-2">
-                            1         0         0         0         
-                            0         0        -1        -0.2329    
-                            0         1         0         1.079     
-                            0         0         0         1         
-                                    </pre>
+                                <h6>Vector de velocidades lineales th1:</h6>
+                                <pre class="bg-light p-2">
+⎡-a₂⋅sin(th₁) - a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁)   ⎤
+⎢                                                          ⎥
+⎢a₂⋅cos(th₁) - a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂)    ⎥
+⎢                                                          ⎥
+⎣                            0                             ⎦
+                                </pre>
 
-                                    <p><strong>Matriz de transformación (Inversa):</strong></p>
-                                    <pre class="bg-light p-2">
-                            0         0         1         0.5       
-                            0         1         0         0.2       
-                            -1        0         0         0.3       
-                            0         0         0         1         
-                                    </pre>
+                                <h6>Vector de velocidades lineales th2:</h6>
+                                <pre class="bg-light p-2">
+⎡-a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁)   ⎤
+⎢                                            ⎥
+⎢-a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂)   ⎥
+⎢                                            ⎥
+⎣                     0                      ⎦
+                                </pre>
 
-                                    <p><strong>Levenberg-Marquardt (ikine_LM):</strong></p>
-                                    <p>IKSolution: q=[-2.981, 0.187, 1.862, 1.093, 1.732, 1.571], success=True,
-                                        iterations=8, searches=1, residual=4.81e-08</p>
-                                    <p><strong>IK LM (Grados):</strong></p>
-                                    <pre class="bg-light p-2">[-170.785  10.714  106.67  62.616  99.215  90.000]</pre>
+                                <h6>Vector de velocidades angulares th1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+                                </pre>
 
-                                    <p><strong>FK con NR:</strong></p>
-                                    <pre class="bg-light p-2">
-                            -4.757e-11  2.2e-11   1         0.5       
-                            7.325e-10  1        -2.2e-11   0.2       
-                            -1         7.325e-10 -4.757e-11  0.3       
-                            0         0         0         1         
-                                    </pre>
+                                <h6>Vector de velocidades angulares th2:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+                                </pre>
 
-                                    <p><strong>Gauss-Newton (ikine_GN):</strong></p>
-                                    <p>IKSolution: q=[-2.981, 2.437, -2.039, -0.3978, -1.732, -1.571], success=True,
-                                        iterations=11, searches=1, residual=3.89e-11</p>
-                                    <p><strong>IK LM (Grados):</strong></p>
-                                    <pre class="bg-light p-2">[-170.785  139.624 -116.83  -22.794 -99.215 -90.000]</pre>
-
-                                    <p><strong>FK con GN:</strong></p>
-                                    <pre class="bg-light p-2">
-                            -9.492e-08  5.395e-08  1         0.5       
-                            -1.263e-07  1        -5.395e-08  0.2       
-                            -1        -1.263e-07 -9.492e-08  0.3       
-                            0         0         0         1         
-                                    </pre>
-
-                                    <p><strong>Newton-Raphson (ikine_NR):</strong></p>
-                                    <p>IKSolution: q=[-2.981, 2.437, -2.039, -0.3978, -1.732, -1.571], success=True,
-                                        iterations=11, searches=1, residual=3.89e-11</p>
-                                    <p><strong>IK LM (Grados):</strong></p>
-                                    <pre class="bg-light p-2">[-170.785  139.624 -116.83  -22.794 -99.215 -90.000]</pre>
-
-                                    <p><strong>FK con LM:</strong></p>
-                                    <pre class="bg-light p-2">
-                            -9.492e-08  5.395e-08  1         0.5       
-                            -1.263e-07  1        -5.395e-08  0.2       
-                            -1        -1.263e-07 -9.492e-08  0.3       
-                            0         0         0         1         
-                                    </pre>
-
-                                    <p><strong>Menores iteraciones:</strong> Levenberg-Marquardt (8)</p>
-                                    <p><strong>Menor error:</strong> Newton-Raphson (3.89e-11)</p>
-                                    <p><strong>Resumen de success:</strong></p>
-                                    <ul>
-                                        <li>Levenberg-Marquardt: <span class="text-success">True</span></li>
-                                        <li>Gauss-Newton: <span class="text-success">True</span></li>
-                                        <li>Newton-Raphson: <span class="text-success">True</span></li>
-                                    </ul>
-                                </div>
+                                <h6>Vector de velocidades:</h6>
+                                <pre class="bg-light p-2">
+⎡xᵥ ⎤   ⎡th₁⋅(-a₂⋅sin(th₁) - a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁)) + th₂⋅(-a₄⋅sin(th₁)⋅cos(th₂) - a₄⋅sin(th₂)⋅cos(th₁))      ⎤
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎢yᵥ ⎥   ⎢th₁⋅(a₂⋅cos(th₁) - a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂)) + th₂⋅(-a₄⋅sin(th₁)⋅sin(th₂) + a₄⋅cos(th₁)⋅cos(th₂))       ⎥
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎢zᵥ ⎥   ⎢                                                          0                                                          ⎥
+⎢   ⎥ = ⎢                                                                                                                     ⎥
+⎢wₓ ⎥   ⎢                                                          0                                                          ⎥
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎢w_y⎥   ⎢                                                          0                                                          ⎥
+⎢   ⎥   ⎢                                                                                                                     ⎥
+⎣w_z⎦   ⎣                                                      th₁ + th₂                                                      ⎦
+                                </pre>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-12 d-flex align-items-stretch">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <img class="card-img-top" src="assets/FK_UR5.png" alt="...">
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R2.png" alt="...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 50%;">
+                                    <img class="card-img-top" src="assets/2.png" alt="...">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body text-center mt-3">
-                        <div class="card shadow">
-                            <div class="card-body text-black">
-                                <h5 class="card-title"><a href="#" class="text-decoration-none">Detalles del Robot:
-                                        UR5</a></h5>
-
-                                <p><strong>DHRobot:</strong> UR5, 6 joints (RRRRRR), dynamics, standard DH
-                                    parameters</p>
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>θⱼ</th>
-                                                <th>dⱼ</th>
-                                                <th>aⱼ</th>
-                                                <th>⍺ⱼ</th>
-                                                <th>q⁻</th>
-                                                <th>q⁺</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>q1</td>
-                                                <td>0.1625</td>
-                                                <td>0</td>
-                                                <td>90.0°</td>
-                                                <td>-180.0°</td>
-                                                <td>180.0°</td>
-                                            </tr>
-                                            <tr>
-                                                <td>q2 - 90°</td>
-                                                <td>0</td>
-                                                <td>-0.425</td>
-                                                <td>0.0°</td>
-                                                <td>-180.0°</td>
-                                                <td>180.0°</td>
-                                            </tr>
-                                            <tr>
-                                                <td>q3</td>
-                                                <td>0</td>
-                                                <td>-0.3922</td>
-                                                <td>0.0°</td>
-                                                <td>-180.0°</td>
-                                                <td>180.0°</td>
-                                            </tr>
-                                            <tr>
-                                                <td>q4 - 90°</td>
-                                                <td>0.1333</td>
-                                                <td>0</td>
-                                                <td>90.0°</td>
-                                                <td>-180.0°</td>
-                                                <td>180.0°</td>
-                                            </tr>
-                                            <tr>
-                                                <td>q5</td>
-                                                <td>0.0997</td>
-                                                <td>0</td>
-                                                <td>-90.0°</td>
-                                                <td>-180.0°</td>
-                                                <td>180.0°</td>
-                                            </tr>
-                                            <tr>
-                                                <td>q6 + 180°</td>
-                                                <td>0.0996</td>
-                                                <td>0</td>
-                                                <td>0.0°</td>
-                                                <td>-360.0°</td>
-                                                <td>360.0°</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <p><strong>Matriz de transformación (Directa):</strong></p>
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">----- Ejercicio 2 ------</h5>
+                                <hr>
+                                <h6>Matriz T1:</h6>
                                 <pre class="bg-light p-2">
-                        1         0         0         0         
-                        0         0        -1        -0.2329    
-                        0         1         0         1.079     
-                        0         0         0         1         
+⎡C(th1)   0    -S(th1)   0 ⎤
+⎢                          ⎥
+⎢S(th1)   0    C(th1)    0 ⎥
+⎢                          ⎥
+⎢  0     -1.0     0     a₁ ⎥
+⎢                          ⎥
+⎣  0      0       0     1.0⎦
                                 </pre>
 
-                                <p><strong>Matriz de transformación (Inversa):</strong></p>
+                                <h6>Matriz T2:</h6>
                                 <pre class="bg-light p-2">
-                        0         0         1         0.5       
-                        0         1         0         0.2       
-                        -1        0         0         0.3       
-                        0         0         0         1         
+⎡C(th2)  -S(th2)   0   C(th2)⋅a₂⎤
+⎢                               ⎥
+⎢S(th2)  C(th2)    0   S(th2)⋅a₂⎥
+⎢                               ⎥
+⎢  0        0     1.0      0    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
+                                </pre>
+                                <h6>Matriz T3:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th3)  -S(th3)   0   C(th3)⋅a₃⎤
+⎢                               ⎥
+⎢S(th3)  C(th3)    0   S(th3)⋅a₃⎥
+⎢                               ⎥
+⎢  0        0     1.0      0    ⎥
+⎢                               ⎥
+⎣  0        0      0      1.0   ⎦
                                 </pre>
 
-                                <p><strong>Levenberg-Marquardt (ikine_LM):</strong></p>
-                                <p>IKSolution: q=[-2.981, 0.187, 1.862, 1.093, 1.732, 1.571], success=True,
-                                    iterations=8, searches=1, residual=4.81e-08</p>
-                                <p><strong>IK LM (Grados):</strong></p>
-                                <pre class="bg-light p-2">[-170.785  10.714  106.67  62.616  99.215  90.000]</pre>
-
-                                <p><strong>FK con NR:</strong></p>
+                                <h6>Matriz homogénea total T:</h6>
                                 <pre class="bg-light p-2">
-                        -4.757e-11  2.2e-11   1         0.5       
-                        7.325e-10  1        -2.2e-11   0.2       
-                        -1         7.325e-10 -4.757e-11  0.3       
-                        0         0         0         1         
+⎡C(th1)⋅C(th2)⋅C(th3) - C(th1)⋅S(th2)⋅S(th3)  -C(th1)⋅C(th2)⋅S(th3) - C(th1)⋅C(th3)⋅S(th2)  -S(th1)  C(th1)⋅C(th2)⋅C(th3)⋅a₃ + C(th1)⋅C(th2)⋅a₂ - C(th1)⋅S(th2)⋅S(th3)⋅a₃        ⎤
+⎢                                                                                                                                                                        ⎥
+⎢C(th2)⋅C(th3)⋅S(th1) - S(th1)⋅S(th2)⋅S(th3)  -C(th2)⋅S(th1)⋅S(th3) - C(th3)⋅S(th1)⋅S(th2)  C(th1)   C(th2)⋅C(th3)⋅S(th1)⋅a₃ + C(th2)⋅S(th1)⋅a₂ - S(th1)⋅S(th2)⋅S(th3)⋅a₃        ⎥
+⎢                                                                                                                                                                        ⎥
+⎢      -C(th2)⋅S(th3) - C(th3)⋅S(th2)                -C(th2)⋅C(th3) + S(th2)⋅S(th3)            0            -C(th2)⋅S(th3)⋅a₃ - C(th3)⋅S(th2)⋅a₃ - S(th2)⋅a₂ + a₁             ⎥
+⎢                                                                                                                                                                        ⎥
+⎣                     0                                            0                           0                                     1.0                                 ⎦
                                 </pre>
 
-                                <p><strong>Gauss-Newton (ikine_GN):</strong></p>
-                                <p>IKSolution: q=[-2.981, 2.437, -2.039, -0.3978, -1.732, -1.571], success=True,
-                                    iterations=11, searches=1, residual=3.89e-11</p>
-                                <p><strong>IK LM (Grados):</strong></p>
-                                <pre class="bg-light p-2">[-170.785  139.624 -116.83  -22.794 -99.215 -90.000]</pre>
-
-                                <p><strong>FK con GN:</strong></p>
+                                <h6>Vector de velocidades lineales th1:</h6>
                                 <pre class="bg-light p-2">
-                        -9.492e-08  5.395e-08  1         0.5       
-                        -1.263e-07  1        -5.395e-08  0.2       
-                        -1        -1.263e-07 -9.492e-08  0.3       
-                        0         0         0         1         
+⎡-a₂⋅sin(th₁)⋅cos(th₂) + a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) - a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃)    ⎤
+⎢                                                                                     ⎥
+⎢a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃)     ⎥
+⎢                                                                                     ⎥
+⎣                                          0                                          ⎦
                                 </pre>
 
-                                <p><strong>Newton-Raphson (ikine_NR):</strong></p>
-                                <p>IKSolution: q=[-2.981, 2.437, -2.039, -0.3978, -1.732, -1.571], success=True,
-                                    iterations=11, searches=1, residual=3.89e-11</p>
-                                <p><strong>IK LM (Grados):</strong></p>
-                                <pre class="bg-light p-2">[-170.785  139.624 -116.83  -22.794 -99.215 -90.000]</pre>
-
-                                <p><strong>FK con LM:</strong></p>
+                                <h6>Vector de velocidades lineales th2:</h6>
                                 <pre class="bg-light p-2">
-                        -9.492e-08  5.395e-08  1         0.5       
-                        -1.263e-07  1        -5.395e-08  0.2       
-                        -1        -1.263e-07 -9.492e-08  0.3       
-                        0         0         0         1         
+⎡                                                              (-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁)                                                                  ⎤
+⎢                                                                                                                                                                                                  ⎥
+⎢                                                              (-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁)                                                                  ⎥
+⎢                                                                                                                                                                                                  ⎥
+⎣-(a₂⋅sin(th₁)⋅cos(th₂) - a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁)         ⎦
+                                </pre>
+                                <h6>Vector de velocidades lineales th3:</h6>
+                                <pre class="bg-light p-2">
+⎡                                               (-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁)                                                ⎤
+⎢                                                                                                                                                    ⎥
+⎢                                               (-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁)                                                ⎥
+⎢                                                                                                                                                    ⎥
+⎣-(-a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (-a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁)     ⎦
                                 </pre>
 
-                                <p><strong>Menores iteraciones:</strong> Levenberg-Marquardt (8)</p>
-                                <p><strong>Menor error:</strong> Newton-Raphson (3.89e-11)</p>
-                                <p><strong>Resumen de success:</strong></p>
-                                <ul>
-                                    <li>Levenberg-Marquardt: <span class="text-success">True</span></li>
-                                    <li>Gauss-Newton: <span class="text-success">True</span></li>
-                                    <li>Newton-Raphson: <span class="text-success">True</span></li>
-                                </ul>
+                                <h6>Vector de velocidades angulares th1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+                                </pre>
+
+                                <h6>Vector de velocidades angulares th2:</h6>
+                                <pre class="bg-light p-2">
+⎡-sin(th₁)⎤
+⎢         ⎥
+⎢cos(th₁) ⎥
+⎢         ⎥
+⎣    0    ⎦
+                                </pre>
+                                <h6>Vector de velocidades angulares th3:</h6>
+                                <pre class="bg-light p-2">
+⎡-sin(th₁)⎤
+⎢         ⎥
+⎢cos(th₁) ⎥
+⎢         ⎥
+⎣    0    ⎦
+                                </pre>
+
+                                <h6>Vector de velocidades:</h6>
+                                <pre class="bg-light p-2">
+⎡xᵥ ⎤   ⎡                                                                 th₁⋅(-a₂⋅sin(th₁)⋅cos(th₂) + a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) - a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃)) + th₂⋅(-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁) + th₃⋅(-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅cos(th₁)                                                                            ⎤
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢yᵥ ⎥   ⎢                                                                 th₁⋅(a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃)) + th₂⋅(-a₂⋅sin(th₂) - a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁) + th₃⋅(-a₃⋅sin(th₂)⋅cos(th₃) - a₃⋅sin(th₃)⋅cos(th₂))⋅sin(th₁)                                                                             ⎥
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢zᵥ ⎥   ⎢th₂⋅(-(a₂⋅sin(th₁)⋅cos(th₂) - a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (a₂⋅cos(th₁)⋅cos(th₂) - a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁)) + th₃⋅(-(-a₃⋅sin(th₁)⋅sin(th₂)⋅sin(th₃) + a₃⋅sin(th₁)⋅cos(th₂)⋅cos(th₃))⋅sin(th₁) - (-a₃⋅sin(th₂)⋅sin(th₃)⋅cos(th₁) + a₃⋅cos(th₁)⋅cos(th₂)⋅cos(th₃))⋅cos(th₁))                 ⎥
+⎢   ⎥ = ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢wₓ ⎥   ⎢                                                                                                                                                                     -th₂⋅sin(th₁) - th₃⋅sin(th₁)                                                                                                                                                                       ⎥
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎢w_y⎥   ⎢                                                                                                                                                                      th₂⋅cos(th₁) + th₃⋅cos(th₁)                                                                                                                                                                       ⎥
+⎢   ⎥   ⎢                                                                                                                                                                                                                                                                                                                                                                       ⎥
+⎣w_z⎦   ⎣                                                                                                                                                                                  th₁                                                                                                                                                                                  ⎦
+                                </pre>
                             </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R3.png" alt="...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 50%;">
+                                    <img class="card-img-top" src="assets/3.png" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">----- Ejercicio 3 ------</h5>
+                                <hr>
+                                <h6>Matriz T1:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th1)   0    -S(th1)   0 ⎤
+⎢                          ⎥
+⎢S(th1)   0    C(th1)    0 ⎥
+⎢                          ⎥
+⎢  0     -1.0     0     a₁ ⎥
+⎢                          ⎥
+⎣  0      0       0     1.0⎦
+                                </pre>
+
+                                <h6>Matriz T2:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th2)   0    -S(th2)   0 ⎤
+⎢                          ⎥
+⎢S(th2)   0    C(th2)    0 ⎥
+⎢                          ⎥
+⎢  0     -1.0     0      0 ⎥
+⎢                          ⎥
+⎣  0      0       0     1.0⎦
+                                </pre>
+                                <h6>Matriz T3:</h6>
+                                <pre class="bg-light p-2">
+⎡1.0   0    0      0   ⎤
+⎢                      ⎥
+⎢ 0   1.0   0      0   ⎥
+⎢                      ⎥
+⎢ 0    0   1.0  a₂ + d₁⎥
+⎢                      ⎥
+⎣ 0    0    0     1.0  ⎦
+                                </pre>
+
+                                <h6>Matriz homogénea total T:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th1)⋅C(th2)  S(th1)   -C(th1)⋅S(th2)  -C(th1)⋅S(th2)⋅(a₂ + d₁)  ⎤
+⎢                                                                ⎥
+⎢C(th2)⋅S(th1)  -C(th1)  -S(th1)⋅S(th2)  -S(th1)⋅S(th2)⋅(a₂ + d₁)  ⎥
+⎢                                                                ⎥
+⎢   -S(th2)        0        -C(th2)       -C(th2)⋅(a₂ + d₁) + a₁  ⎥
+⎢                                                                ⎥
+⎣      0           0           0                   1.0           ⎦
+                                </pre>
+
+                                <h6>Vector de velocidades lineales th1:</h6>
+                                <pre class="bg-light p-2">
+⎡(a₂ + d₁)⋅sin(th₁)⋅sin(th₂)  ⎤
+⎢                            ⎥
+⎢-(a₂ + d₁)⋅sin(th₂)⋅cos(th₁) ⎥
+⎢                            ⎥
+⎣             0              ⎦
+                                </pre>
+
+                                <h6>Vector de velocidades lineales th2:</h6>
+                                <pre class="bg-light p-2">
+⎡               -(a₂ + d₁)⋅cos(th₁)⋅cos(th₂)                 ⎤
+⎢                                                           ⎥
+⎢               -(a₂ + d₁)⋅sin(th₁)⋅cos(th₂)                 ⎥
+⎢                                                           ⎥
+⎢             2                                       2     ⎥
+⎣(a₂ + d₁)⋅sin (th₁)⋅sin(th₂) + (a₂ + d₁)⋅sin(th₂)⋅cos (th₁)  ⎦
+                                </pre>
+                                <h6>Vector de velocidades lineales d1:</h6>
+                                <pre class="bg-light p-2">
+⎡-sin(th₂)⋅cos(th₁)⎤
+⎢                  ⎥
+⎢-sin(th₁)⋅sin(th₂)⎥
+⎢                  ⎥
+⎣    -cos(th₂)     ⎦
+                                </pre>
+
+                                <h6>Vector de velocidades angulares th1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+                                </pre>
+
+                                <h6>Vector de velocidades angulares th2:</h6>
+                                <pre class="bg-light p-2">
+⎡-sin(th₁)⎤
+⎢         ⎥
+⎢cos(th₁) ⎥
+⎢         ⎥
+⎣    0    ⎦
+                                </pre>
+                                <h6>Vector de velocidades angulares d1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣0⎦
+                                </pre>
+
+                                <h6>Vector de velocidades:</h6>
+                                <pre class="bg-light p-2">
+       ⎡-d₁⋅sin(th₂)⋅cos(th₁) + th₁⋅(a₂ + d₁)⋅sin(th₁)⋅sin(th₂) - th₂⋅(a₂ + d₁)⋅cos(th₁)⋅cos(th₂)    ⎤
+⎡xᵥ ⎤   ⎢                                                                                         ⎥
+⎢   ⎥   ⎢-d₁⋅sin(th₁)⋅sin(th₂) - th₁⋅(a₂ + d₁)⋅sin(th₂)⋅cos(th₁) - th₂⋅(a₂ + d₁)⋅sin(th₁)⋅cos(th₂)    ⎥
+⎢yᵥ ⎥   ⎢                                                                                         ⎥
+⎢   ⎥   ⎢                       ⎛             2                                       2     ⎞     ⎥
+⎢zᵥ ⎥   ⎢    -d₁⋅cos(th₂) + th₂⋅⎝(a₂ + d₁)⋅sin (th₁)⋅sin(th₂) + (a₂ + d₁)⋅sin(th₂)⋅cos (th₁)⎠       ⎥
+⎢   ⎥ = ⎢                                                                                         ⎥
+⎢wₓ ⎥   ⎢                                      -th₂⋅sin(th₁)                                      ⎥
+⎢   ⎥   ⎢                                                                                         ⎥
+⎢w_y⎥   ⎢                                      th₂⋅cos(th₁)                                       ⎥
+⎢   ⎥   ⎢                                                                                         ⎥
+⎣w_z⎦   ⎣                                           th₁                                           ⎦
+                                </pre>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R4.png" alt="...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 50%;">
+                                    <img class="card-img-top" src="assets/4.png" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">----- Ejercicio 4 ------</h5>
+                                <hr>
+                                <h6>Matriz T1:</h6>
+                                <pre class="bg-light p-2">
+⎡1.0   0    0      0   ⎤
+⎢                      ⎥
+⎢ 0   1.0   0      0   ⎥
+⎢                      ⎥
+⎢ 0    0   1.0  a₁ + d₁⎥
+⎢                      ⎥
+⎣ 0    0    0     1.0  ⎦
+                                </pre>
+
+                                <h6>Matriz T2:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th1)   0   S(th1)   C(th1)⋅a₂ ⎤
+⎢                               ⎥
+⎢S(th1)   0   -C(th1)  S(th1)⋅a₂ ⎥
+⎢                               ⎥
+⎢  0     1.0     0         0    ⎥
+⎢                               ⎥
+⎣  0      0      0        1.0   ⎦
+                                </pre>
+                                <h6>Matriz T3:</h6>
+                                <pre class="bg-light p-2">
+⎡1.0   0    0      0   ⎤
+⎢                      ⎥
+⎢ 0   1.0   0      0   ⎥
+⎢                      ⎥
+⎢ 0    0   1.0  a₃ + d₂⎥
+⎢                      ⎥
+⎣ 0    0    0     1.0  ⎦
+                                </pre>
+
+                                <h6>Matriz homogénea total T:</h6>
+                                <pre class="bg-light p-2">
+⎡C(th1)   0   S(th1)   C(th1)⋅a₂ + S(th1)⋅(a₃ + d₂)  ⎤
+⎢                                                   ⎥
+⎢S(th1)   0   -C(th1)  -C(th1)⋅(a₃ + d₂) + S(th1)⋅a₂ ⎥
+⎢                                                   ⎥
+⎢  0     1.0     0                a₁ + d₁           ⎥
+⎢                                                   ⎥
+⎣  0      0      0                  1.0             ⎦
+                                </pre>
+
+                                <h6>Vector de velocidades lineales d1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+                                </pre>
+
+                                <h6>Vector de velocidades lineales th1:</h6>
+                                <pre class="bg-light p-2">
+⎡-a₂⋅sin(th₁) + (a₃ + d₂)⋅cos(th₁) ⎤
+⎢                                 ⎥
+⎢a₂⋅cos(th₁) + (a₃ + d₂)⋅sin(th₁)  ⎥
+⎢                                 ⎥
+⎣                0                ⎦
+                                </pre>
+                                <h6>Vector de velocidades lineales d2:</h6>
+                                <pre class="bg-light p-2">
+⎡sin(th₁) ⎤
+⎢         ⎥
+⎢-cos(th₁)⎥
+⎢         ⎥
+⎣    0    ⎦
+                                </pre>
+
+                                <h6>Vector de velocidades angulares d1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣0⎦
+                                </pre>
+
+                                <h6>Vector de velocidades angulares th1:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣1⎦
+                                </pre>
+                                <h6>Vector de velocidades angulares d2:</h6>
+                                <pre class="bg-light p-2">
+⎡0⎤
+⎢ ⎥
+⎢0⎥
+⎢ ⎥
+⎣0⎦
+                                </pre>
+
+                                <h6>Vector de velocidades:</h6>
+                                <pre class="bg-light p-2">
+⎡xᵥ ⎤   ⎡d₂⋅sin(th₁) + th₁⋅(-a₂⋅sin(th₁) + (a₃ + d₂)⋅cos(th₁))  ⎤
+⎢   ⎥   ⎢                                                     ⎥
+⎢yᵥ ⎥   ⎢-d₂⋅cos(th₁) + th₁⋅(a₂⋅cos(th₁) + (a₃ + d₂)⋅sin(th₁))  ⎥
+⎢   ⎥   ⎢                                                     ⎥
+⎢zᵥ ⎥   ⎢                         d₁                          ⎥
+⎢   ⎥ = ⎢                                                     ⎥
+⎢wₓ ⎥   ⎢                          0                          ⎥
+⎢   ⎥   ⎢                                                     ⎥
+⎢w_y⎥   ⎢                          0                          ⎥
+⎢   ⎥   ⎢                                                     ⎥
+⎣w_z⎦   ⎣                         th₁                         ⎦
+                                </pre>
+                            </div>
+
                         </div>
                     </div>
                 </div>

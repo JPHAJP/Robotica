@@ -63,14 +63,21 @@
             <h3 class="text-secondary mb-0">Introducción</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6">
-                    <p>El robot KUKA.
+                    <p>En esta práctica se utilizó el simulador de RoboDK para emular el trabajo de un robot KUKA KR 16.
+                        El proceso consistió en diseñar la celda de trabajo, importar un archivo en formato .dxf que
+                        contenía el logo a dibujar y, a partir de este, programar el seguimiento de curvas para
+                        reproducir el dibujo en un pizarrón. El objetivo principal fue aprender a seleccionar y
+                        configurar un robot, declarar correctamente la herramienta (TCP) y el espacio de trabajo, y
+                        desarrollar un programa de trayectoria que, tras ser exportado, se pueda cargar en el robot para
+                        comprobar su correcto desempeño.
                     </p>
                     <!-- <a class="btn btn-primary btn-xl" href="assets/Ejercicios repaso.pdf" target="_blank">Instrucciones
                         PDF</a> -->
                 </div>
                 <div class="col-lg-6">
                     <img class="img-fluid" width="50%" height="auto"
-                        src="https://onexiarobotics.com/universal-robots/img/UR30-palletizer.jpg" alt="...">
+                        src="https://www.comau.com/wp-content/uploads/2024/03/RoboDK-Comau-RRS-Integration.png"
+                        alt="...">
 
 
                 </div>
@@ -86,20 +93,21 @@
                         <div class="card-img">
                             <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
                                 loop></video> -->
-                            <iframe id="pdfViewer" src="assets/Reporte 3 - Paletizado en UR - Equipo 1.pdf" width="100%"
-                                height="800px"></iframe>
+                            <iframe id="pdfViewer" src="assets/Reporte 4 - Simulador RoboDK KUKA- Equipo 1.pdf"
+                                width="100%" height="800px"></iframe>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="">Pasos para realizar el paletizado en robot UR5e</a>
                             </h5>
-                            <p class="fst-italic text-center">En esta prática se calibró el TCP mediante el método de 4
-                                puntos XYZ, utilizando una referencia y una herremienta específica se programó al robot
-                                UR5e para su uso. Después de la calibración de la herramienta se procedio
-                                con la creación de un porgrama que realizara un paletizado y un pick and place para el
-                                robot UR.</p>
+                            <p class="fst-italic text-center">En esta prática se dibujo la celda de trabajo del robot
+                                KUKA en la Ibero, a partir de ahí se realizo la simulación de un seguimiento de curvas
+                                mediante un logo en dxf que finalmente se llevó al robot y con la herramienta plumón y
+                                su calibración (toma de puntos de referencia de herramienta, área de trabajo, etc.) se
+                                realizó el dibujo del logo en una pizarra.</p>
                             <p class="card-text"></p>
-                            <a class="btn btn-primary btn-xl" href="assets/Reporte 3 - Paletizado en UR - Equipo 1.pdf"
-                                target="_blank">Descargar Reporte PDF</a>
+                            <a class="btn btn-primary btn-xl"
+                                href="assets/Reporte 4 - Simulador RoboDK KUKA- Equipo 1.pdf" target="_blank">Descargar
+                                Reporte PDF</a>
                         </div>
                     </div>
                 </div>
@@ -110,97 +118,73 @@
     <section id="events" class="events section">
         <div class="container" data-aos="fade-up">
             <div class="row">
-                <div class="col-md-12 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Imágenes en la parte superior -->
-                                    <div class="col-md-6 mb-3">
-                                        <img class="img-fluid w-100" style="margin-top: 5%;" src="assets/Programa.jpg"
-                                            alt="Imagen 1">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <video class="w-100" src="assets/3_cubos.mp4" controls muted autoplay
-                                            loop></video>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <!-- Videos en la parte inferior -->
-                                    <div class="col-md-6 mb-3">
-                                        <video class="w-100" src="assets/2_cubos.mp4" controls muted autoplay
-                                            loop></video>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <video class="w-100" src="assets/1_cubo.mp4" controls muted autoplay
-                                            loop></video>
-                                    </div>
-                                </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-12 mb-3">
-                                        <img class="img-fluid w-100" src="assets/im3.jpg" alt="Imagen 2">
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Evidencias</a></h5>
-                            <p class="fst-italic text-center">Se presentan los videos y fotografías como evidencia de la
-                                práctica para ver como es que el programa realizado en la tableta se comporta al
-                                utilizar el robot; se muestra el programa generado, y tres videos
-                                del robot en movimiento realizando el despaletizado de 3 cubos y las configuraciones de
-                                instalación, el despaletizado de dos cubos y el de uno.</p>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
-                </div>
                 <div class="d-flex justify-content-center align-items-center" style="margin-top: 20px;">
                     <div class="card col-md-12 d-flex align-items-stretch">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="card">
-                                        <img class="card-img-top" src="assets/paletizar_prog.jpeg" alt="...">
+                                        <img class="card-img-top" src="assets/Celda_kuka.jpg" alt="...">
+                                    </div>
+                                    <a class="btn btn-primary btn-sm" href="assets/Estación_kuka_ibero.rdk"
+                                        target="_blank">Descargar estación</a>
+                                    <a class="btn btn-primary btn-sm" href="assets/Celda Kuka.zip"
+                                        target="_blank">Descargar planos</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img class="card-img-top" src="assets/Seleccion_robot.jpg" alt="...">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card">
-                                        <video class="w-100" src="assets/paletizar_1.mp4" controls muted autoplay
-                                            loop></video>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <video class="w-100" src="assets/paletizar_2.mp4" controls muted autoplay
-                                            loop></video>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <video class="w-100" src="assets/paletizar_3.mp4" controls muted autoplay
-                                            loop></video>
+                                        <img class="card-img-top" src="assets/Simulacion_dxf.jpg" alt="...">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <video class="w-100" src="assets/paletizar_4.mp4" controls muted autoplay
+                                        <video class="w-100" src="assets/Simulación.mp4" controls muted autoplay
                                             loop></video>
+                                        <img class="card-img-top" src="assets/dxf.jpg" alt="...">
+                                        <a class="btn btn-primary btn-sm" href="assets/RASPBERRY PI logo.dxf" target="_blank">Descargar
+                                            logo dxf</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <video class="w-100" src="assets/paletizar_5.mp4" controls muted autoplay
-                                            loop></video>
+                                        <img class="card-img-top" src="assets/im1.jpg" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <video class="w-100" src="assets/V1.mp4" controls muted autoplay loop></video>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body text-center mt-3">
+                            <div class="card-body text-center mt-3 text-black">
                                 <h5 class="card-title"><a href="#">Evidencias</a></h5>
                                 <p class="fst-italic text-black">Se presentan los videos y fotografías como evidencia de
-                                    la práctica para ver como es que el programa realizado en la tableta se comporta al
-                                    utilizar el robot; se muestra el programa generado, y videos del robot en movimiento
-                                    realizando el paletizado de 5 cubos y las configuraciones del programa usando
-                                    UrScript y variables.</p>
+                                    la práctica para ver como se especificó la simulación en el programa de RoboDK y su
+                                    resultado en el robot KUKA.</p>
+                                <p class="text-black fst-italic">
+                                    <strong>Programas de descarga:</strong> "Expert.src" es el programa principal.
+                                </p>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/Expert.src"
+                                    target="_blank">Expert.src</a>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/P_in_1.src"
+                                    target="_blank">P_in_1.src</a>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/P_in_2.src"
+                                    target="_blank">P_in_2.src</a>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/P_ou_1.src"
+                                    target="_blank">P_ou_1.src</a>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/P_ou_2.src"
+                                    target="_blank">P_ou_2.src</a>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/P_fl_1.src"
+                                    target="_blank">P_fl_1.src</a>
+                                <a class="btn btn-primary btn-sm" href="assets/Programa_raspberry/P_fl_2.src"
+                                    target="_blank">P_fl_2.src</a>
                             </div>
                         </div>
                     </div>
@@ -213,7 +197,19 @@
             <h3 class="text-secondary mb-0">Conclusión</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-12">
-                    <p class="text-white">.
+                    <p class="text-white">Se logró simular de forma exitosa el seguimiento de curvas en RoboDK
+                        utilizando el robot KUKA KR 16, lo que permitió comprobar la viabilidad del proceso en un
+                        entorno virtual. Esta simulación no solo evidenció la capacidad del robot para ejecutar
+                        movimientos complejos, sino que también sirvió como un primer paso fundamental en el desarrollo
+                        del programa.<br>
+                        La práctica permitió comprender la importancia de configurar correctamente el TCP y declarar el
+                        espacio de trabajo para lograr trayectorias precisas. Además, la importación y el análisis del
+                        archivo .dxf demostraron ser herramientas efectivas para transformar diseños CAD en movimientos
+                        robóticos, facilitando la integración de elementos gráficos en la programación del robot.<br>
+                        La simulación previa facilitó la detección y corrección de posibles errores, permitiendo
+                        realizar ajustes necesarios sin afectar equipos reales. Este proceso de validación es esencial
+                        antes de implementar el programa en un entorno real, garantizando así la seguridad y la
+                        eficiencia en la operación del robot.
                     </p>
                 </div>
             </div>
@@ -222,16 +218,21 @@
             <h2 class="text-center mb-4">Referencias Bibliográficas</h2>
             <ul class="list-group">
                 <li class="list-group-item">
-                    Universal Robots. (s. f.-a). <i>User Manual - UR5e.</i>
-                    Disponible en: <a
-                        href="https://www.universal-robots.com/manuals/EN/PDF/SW5_19/user-manual-UR5e-PDF_online/710-965-00_UR5e_User_Manual_en_Global.pdf "
-                        target="_blank">UR5e Manual</a>.
+                    DIG Automation & Technology. (21-08-2023). <i>KUKA Tool Calibration, TCP Calibration (XYZ 4
+                        Point).</i> YouTube [Video]. Disponible en: <a
+                        href="https://www.youtube.com/watch?v=G1NT-39wqqE&ab_channel=DIGAutomation%26Technology"
+                        target="_blank">KUKA Tool Calibration</a>.
+
                 </li>
                 <li class="list-group-item">
-                    Universal Robots. (s. f.-b). <i>User Manual - UR5E E-Series - SW 5.7 - English US (en-US)</i>.
+                    RoboDK. (s.f.). <i>RoboDK Documentation</i>.
+                    Disponible en: <a href="https://www.robodk.com/" target="_blank">RoboDK</a>.
+                </li>
+                <li class="list-group-item">
+                    KUKA. (s.f.). <i>Manual de usuario KUKA</i>.
                     Disponible en: <a
-                        href="https://www.universal-robots.com/download/manuals-e-seriesur20ur30/user/ur5e/57/user-manual-ur5e-e-series-sw-57-english-us-en-us/"
-                        target="_blank">UR5e Manual US</a>.
+                        href="https://www.kuka.com/-/media/kuka-downloads/imported/8350ff3ca11642998dbdc81dcc2ed44c/0000262124_es.pdf"
+                        target="_blank">Manual de usuario KUKA</a>.
                 </li>
             </ul>
         </div>
