@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import roboticstoolbox as rtb
 from spatialmath import SE3
-import numpy as np
 import matplotlib.pyplot as plt
 
 save_path = "Web/Reportes/Teoria/T6/assets"

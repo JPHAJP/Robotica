@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Robótica Aplicada</title>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Simple line icons-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+        rel="stylesheet" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+        rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../../Recursos\Archivos\styles.css">
+    <!--Background color-->
+    <style>
+        body {
+            background-color: #2f3132;
+        }
+    </style>
+    <!-- Prism CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css"
+        rel="stylesheet" />
+
+    <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a>Menu</a></li>
+            <li class="sidebar-nav-item"><a href="../../../../index.html#page-top">Inicio</a></li>
+            <li class="sidebar-nav-item"><a href="../../../../index.html#about">Nosotros</a></li>
+            <li class="sidebar-nav-item"><a href="../../../../index.html#portfolio">Portfolio</a></li>
+            <li class="sidebar-nav-item"><a href="../../../../index.html#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Tarea 8</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Estudio de robots mediante jacobianos de velocidad y toolbox</p>
+                <a class="btn btn-primary btn-xl" href="../../../teoria.html">Regresar a Teoría</a>
+            </div>
+        </div>
+    </header>
+    <!--Info-->
+    <section class="py-5 text-white">
+        <div class="container px-4 px-lg-5 my-5">
+            <h3 class="text-secondary mb-0">Introducción</h3>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-6">
+                    <p>Se utiliza la librería de roboticstoolbox-python para el análisis.</p>
+                    </p>
+                    <a class="btn btn-primary btn-xl"
+                        href="../T0/assets/Introduction to Robotics Craig 4th Edition Global Edition.pdf#page=154"
+                        target="_blank">
+                        Descargar teoría PDF</a>
+                </div>
+                <div class="col-lg-6">
+                    <img class="img-fluid" width="50%" height="auto"
+                        src="https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-981-16-0550-5_103/MediaObjects/487800_1_En_103_Fig2_HTML.png"
+                        alt="...">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Events Section -->
+    <section id="events" class="events section">
+        <div class="container" data-aos="fade-up">
+          <div class="row">
+            <!-- Primer Card -->
+            <div class="col-md-12 mb-3">
+              <div class="card align-items-stretch">
+                <div class="card-img">
+                  <iframe id="pdfViewer" src="../T0/assets/Introduction to Robotics Craig 4th Edition Global Edition.pdf#page=154" width="100%" height="800px"></iframe>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">Teoría de velocidades</a></h5>
+                  <p class="fst-italic text-center"></p>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <!-- Segundo Card -->
+            <div class="col-md-12">
+              <div class="card align-items-stretch">
+                <div class="card-img">
+                  <iframe id="pdfViewer" src="assets/Cinematica Velocidad.pdf" width="100%" height="800px"></iframe>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">Teoría de velocidades resumen</a></h5>
+                  <p class="fst-italic text-center"></p>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    <section class="py-5 text-white">
+        <div class="container px-4 px-lg-5 my-5">
+            <h3 class="text-secondary mb-0">Código de análisis de velocidades de cada robot</h3>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-12">
+                    <pre class="line-numbers">
+<code class="language-python">import numpy as np
+    import matplotlib.pyplot as plt
+    import roboticstoolbox as rtb
+    from spatialmath import SE3
+    import matplotlib.pyplot as plt
+    
+    # Robot UR5 --------------------------------------------------------------
+    name = "UR5"
+    print("Robot: ", name, "--------------------------------------------------\n")
+    # Definir los parámetros de Denavit-Hartenberg
+    a1 = 0.1625
+    a2 = 0.425
+    a3 = 0.3922
+    a4 = 0.1333
+    a5 = 0.0997
+    a6 = 0.0996
+    # Define the articulated robot with 6 revolute joints
+    robot = rtb.DHRobot(
+        [
+            rtb.RevoluteDH( alpha=np.pi/2,      a=0,    d=a1,       offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=0,            a=-a2,   d=0,        offset=-np.pi/2, qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=0,            a=-a3,   d=0,        offset=0, qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=np.pi/2,      a=0,    d=a4,    offset=-np.pi/2, qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=-np.pi/2,     a=0,    d=a5,        offset=0, qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=0,            a=0,    d=a6,    offset=np.pi, qlim=[-2*np.pi, 2*np.pi])
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [np.pi/2, np.pi/2, np.pi/2, np.pi/2, np.pi/2, np.pi/2]
+    q0 = [t_values[0], t_values[1], t_values[2], t_values[3], t_values[4], t_values[5]]
+    
+    # Calculate the Jacobian matrix
+    J = robot.jacob0(q0)
+    #Asignar valores a las velocidades de las articulaciones
+    qdot = np.array([0.1, 0.2, 0.3, 0.1, 0.2, 0.3])
+    # Calcular la velocidad del efector final
+    v = J @ qdot
+    
+    '''
+    Fuerzas y torques
+    Un 'wrench' del efector final es una representación en seis dimensiones que combina tanto 
+    las fuerzas medidas en N como los momentos (torques) medidos en Nm aplicados en el efector final de un robot. 
+    Se utiliza para modelar y controlar las interacciones del robot con su entorno, permitiendo 
+    regular tanto el movimiento lineal
+    '''
+    # Creacion de vector de fureza usando la convencion: [M_x, M_y, M_z, F_x, F_y, F_z]
+    F = np.array([5, 3, 2, 10, 15, 20])
+    '''
+    El método de la transpuesta del Jacobiano es una técnica utilizada en robótica para calcular
+    los torques en las articulaciones a partir de fuerzas de contacto externas.
+    El método se basa en la relación entre la fuerza aplicada en el efector final y los torques
+    resultantes en las articulaciones. La relación se puede expresar matemáticamente como:
+    
+     Cálculo de torques de las articulaciones:
+       tau = J(q)^T * F
+    
+     donde:
+       - J(q) es la matriz Jacobiana evaluada en la configuración q
+       - J(q)^T es su transpuesta
+       - F es el vector de wrench (momentos y fuerzas) aplicado en el efector final
+       - tau es el vector resultante de torques en las articulaciones
+       
+    '''
+    tau = J.T @ F
+    #imprimir resultados
+    print("Velocidad Angular (rad/s):")
+    print("Angular X:", v[0])
+    print("Angular Y:", v[1])
+    print("Angular Z:", v[2])
+    
+    print("\nVelocidad Lineal (m/s):")
+    print("Lineal X:", v[3])
+    print("Lineal Y:", v[4])
+    print("Lineal Z:", v[5])
+    
+    print("Torques Calculados (Nm):")
+    for i, t in enumerate(tau, start=1):
+        print(f"Articulacion {i}: {t:.4f} Nm")
+    
+    
+    # Robot 1 --------------------------------------------------------------
+    name = "Esferico 1"
+    print("Robot: ", name, "--------------------------------------------------\n")
+    # Definir los parámetros de Denavit-Hartenberg
+    a1 = 0.1625
+    a2 = 0.425
+    a3 = 0.3922
+    a4 = 0.1333
+    # Define the articulated robot with 6 revolute joints
+    robot = rtb.DHRobot(
+        [
+            rtb.RevoluteDH( alpha=0,      a=a2,    d=a1,       offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=0,      a=a4,    d=a3,       offset=0 , qlim=[-np.pi, np.pi])
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [np.pi/2, np.pi/2]
+    q0 = [t_values[0], t_values[1]]
+    
+    # Calculate the Jacobian matrix
+    J = robot.jacob0(q0)
+    #Asignar valores a las velocidades de las articulaciones
+    qdot = np.array([0.1, 0.2])
+    # Calcular la velocidad del efector final
+    v = J @ qdot
+    
+    # Creacion de vector de fureza usando la convencion: [M_x, M_y, M_z, F_x, F_y, F_z]
+    F = np.array([5, 3, 2, 10, 15, 20])
+    
+    tau = J.T @ F
+    #imprimir resultados
+    print("Velocidad Angular (rad/s):")
+    print("Angular X:", v[0])
+    print("Angular Y:", v[1])
+    print("Angular Z:", v[2])
+    
+    print("\nVelocidad Lineal (m/s):")
+    print("Lineal X:", v[3])
+    print("Lineal Y:", v[4])
+    print("Lineal Z:", v[5])
+    
+    print("Torques Calculados (Nm):")
+    for i, t in enumerate(tau, start=1):
+        print(f"Articulacion {i}: {t:.4f} Nm")
+    
+    # Robot 2 --------------------------------------------------------------
+    name = "Articulado 2 "
+    print("Robot: ", name, "--------------------------------------------------\n")
+    # Definir los parámetros de Denavit-Hartenberg
+    a1 = 0.1625
+    a2 = 0.425
+    a3 = 0.3922
+    # Define the articulated robot with 6 revolute joints
+    robot = rtb.DHRobot(
+        [
+            rtb.RevoluteDH( alpha=-np.pi/2,      a=0,     d=a1,      offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=0,             a=a2,    d=0,       offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH( alpha=0,             a=a3,    d=0,       offset=0 , qlim=[-np.pi, np.pi])
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [np.pi/2, np.pi/2, np.pi/2]
+    q0 = [t_values[0], t_values[1], t_values[2]]
+    
+    # Calculate the Jacobian matrix
+    J = robot.jacob0(q0)
+    #Asignar valores a las velocidades de las articulaciones
+    qdot = np.array([0.1, 0.2, 0.3])
+    # Calcular la velocidad del efector final
+    v = J @ qdot
+    
+    # Creacion de vector de fureza usando la convencion: [M_x, M_y, M_z, F_x, F_y, F_z]
+    F = np.array([5, 3, 2, 10, 15, 20])
+    
+    tau = J.T @ F
+    #imprimir resultados
+    print("Velocidad Angular (rad/s):")
+    print("Angular X:", v[0])
+    print("Angular Y:", v[1])
+    print("Angular Z:", v[2])
+    
+    print("\nVelocidad Lineal (m/s):")
+    print("Lineal X:", v[3])
+    print("Lineal Y:", v[4])
+    print("Lineal Z:", v[5])
+    
+    print("Torques Calculados (Nm):")
+    for i, t in enumerate(tau, start=1):
+        print(f"Articulacion {i}: {t:.4f} Nm")
+    
+    # Robot 3 --------------------------------------------------------------
+    name = "Articulado 3 "
+    print("Robot: ", name, "--------------------------------------------------\n")
+    # Definir los parámetros de Denavit-Hartenberg
+    a1 = 0.1625
+    a2 = 0.425
+    # Define the articulated robot with 6 revolute joints
+    robot = rtb.DHRobot(
+        [
+            rtb.RevoluteDH(  alpha=-np.pi/2,     a=0,     d=a1,      offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH(  alpha=-np.pi/2,     a=0,     d=0,       offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.PrismaticDH( alpha=0,            a=0,     theta=0,   offset=a2 , qlim=[-np.pi, np.pi])
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [np.pi/2, np.pi/2, np.pi/2]
+    q0 = [t_values[0], t_values[1], t_values[2]]
+    
+    # Calculate the Jacobian matrix
+    J = robot.jacob0(q0)
+    #Asignar valores a las velocidades de las articulaciones
+    qdot = np.array([0.1, 0.2, 0.3])
+    # Calcular la velocidad del efector final
+    v = J @ qdot
+    
+    # Creacion de vector de fureza usando la convencion: [M_x, M_y, M_z, F_x, F_y, F_z]
+    F = np.array([5, 3, 2, 10, 15, 20])
+    
+    tau = J.T @ F
+    #imprimir resultados
+    print("Velocidad Angular (rad/s):")
+    print("Angular X:", v[0])
+    print("Angular Y:", v[1])
+    print("Angular Z:", v[2])
+    
+    print("\nVelocidad Lineal (m/s):")
+    print("Lineal X:", v[3])
+    print("Lineal Y:", v[4])
+    print("Lineal Z:", v[5])
+    
+    print("Torques Calculados (Nm):")
+    for i, t in enumerate(tau, start=1):
+        print(f"Articulacion {i}: {t:.4f} Nm")
+    
+    # Robot 4 --------------------------------------------------------------
+    name = "Cilindrico 4 "
+    print("Robot: ", name, "--------------------------------------------------\n")
+    # Definir los parámetros de Denavit-Hartenberg
+    a1 = 0.1625
+    a2 = 0.425
+    a3 = 0.3922
+    # Define the articulated robot with 6 revolute joints
+    robot = rtb.DHRobot(
+        [
+            rtb.PrismaticDH(  alpha=0,     a=0,     theta=0,      offset=a1 , qlim=[-np.pi, np.pi]),
+            rtb.RevoluteDH(  alpha=np.pi/2,     a=a2,     d=0,       offset=0 , qlim=[-np.pi, np.pi]),
+            rtb.PrismaticDH( alpha=0,            a=0,     theta=0,   offset=a3 , qlim=[-np.pi, np.pi])
+        ],
+        name=name
+    )
+    
+    print("Detalles del Robot: ", name)
+    print(robot)
+    
+    # Define the displacement values for each revolute joint
+    t_values = [np.pi/2, np.pi/2, np.pi/2]
+    q0 = [t_values[0], t_values[1], t_values[2]]
+    
+    # Calculate the Jacobian matrix
+    J = robot.jacob0(q0)
+    #Asignar valores a las velocidades de las articulaciones
+    qdot = np.array([0.1, 0.2, 0.3])
+    # Calcular la velocidad del efector final
+    v = J @ qdot
+    
+    # Creacion de vector de fureza usando la convencion: [M_x, M_y, M_z, F_x, F_y, F_z]
+    F = np.array([5, 3, 2, 10, 15, 20])
+    
+    tau = J.T @ F
+    #imprimir resultados
+    print("Velocidad Angular (rad/s):")
+    print("Angular X:", v[0])
+    print("Angular Y:", v[1])
+    print("Angular Z:", v[2])
+    
+    print("\nVelocidad Lineal (m/s):")
+    print("Lineal X:", v[3])
+    print("Lineal Y:", v[4])
+    print("Lineal Z:", v[5])
+    
+    print("Torques Calculados (Nm):")
+    for i, t in enumerate(tau, start=1):
+        print(f"Articulacion {i}: {t:.4f} Nm")</code></pre>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Sección de imagen 1 -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R1.png" alt="Robot Esférico 1">
+                                </div>
+                            </div>
+            
+                            <!-- Sección de imagen 2 -->
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 15%;">
+                                    <img class="card-img-top" src="assets/1.png" alt="Robot Esférico 2">
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">Robot: Esférico 1</h5>
+                                <hr>
+            
+                                <!-- Información detallada del robot -->
+                                <h6>Detalles del Robot: Esférico 1</h6>
+                                <p><strong>DHRobot:</strong> Esférico 1, 2 joints (RR), dynamics, standard DH parameters</p>
+            
+                                <!-- Tabla de parámetros -->
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>θⱼ</th>
+                                            <th>dⱼ</th>
+                                            <th>aⱼ</th>
+                                            <th>⍺ⱼ</th>
+                                            <th>q⁻</th>
+                                            <th>q⁺</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>q1</td>
+                                            <td>0.1625</td>
+                                            <td>0.425</td>
+                                            <td>0.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>q2</td>
+                                            <td>0.3922</td>
+                                            <td>0.1333</td>
+                                            <td>0.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+            
+                                <!-- Velocidades y torques calculados -->
+                                <h6>Velocidad Angular (rad/s):</h6>
+                                <ul>
+                                    <li><strong>Angular X:</strong> -0.0425</li>
+                                    <li><strong>Angular Y:</strong> -0.03999</li>
+                                    <li><strong>Angular Z:</strong> 0.0</li>
+                                </ul>
+            
+                                <h6>Velocidad Lineal (m/s):</h6>
+                                <ul>
+                                    <li><strong>Lineal X:</strong> 0.0</li>
+                                    <li><strong>Lineal Y:</strong> 0.0</li>
+                                    <li><strong>Lineal Z:</strong> 0.300</li>
+                                </ul>
+            
+                                <h6>Torques Calculados (Nm):</h6>
+                                <ul>
+                                    <li><strong>Articulación 1:</strong> 17.4751 Nm</li>
+                                    <li><strong>Articulación 2:</strong> 19.6001 Nm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Sección de imagen 1 -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R2.png" alt="Robot Articulado 2">
+                                </div>
+                            </div>
+            
+                            <!-- Sección de imagen 2 -->
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 15%;">
+                                    <img class="card-img-top" src="assets/2.png" alt="Robot Articulado 2 detalles">
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">Robot: Articulado 2</h5>
+                                <hr>
+            
+                                <!-- Información detallada del robot -->
+                                <h6>Detalles del Robot: Articulado 2</h6>
+                                <p><strong>DHRobot:</strong> Articulado 2, 3 joints (RRR), dynamics, standard DH parameters</p>
+            
+                                <!-- Tabla de parámetros -->
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>θⱼ</th>
+                                            <th>dⱼ</th>
+                                            <th>aⱼ</th>
+                                            <th>⍺ⱼ</th>
+                                            <th>q⁻</th>
+                                            <th>q⁺</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>q1</td>
+                                            <td>0.1625</td>
+                                            <td>0</td>
+                                            <td>-90.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>q2</td>
+                                            <td>0</td>
+                                            <td>0.425</td>
+                                            <td>0.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>q3</td>
+                                            <td>0</td>
+                                            <td>0.3922</td>
+                                            <td>0.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+            
+                                <!-- Velocidades y torques calculados -->
+                                <h6>Velocidad Angular (rad/s):</h6>
+                                <ul>
+                                    <li><strong>Angular X:</strong> 0.03922</li>
+                                    <li><strong>Angular Y:</strong> -0.08500</li>
+                                    <li><strong>Angular Z:</strong> 0.1961</li>
+                                </ul>
+            
+                                <h6>Velocidad Lineal (m/s):</h6>
+                                <ul>
+                                    <li><strong>Lineal X:</strong> -0.5</li>
+                                    <li><strong>Lineal Y:</strong> 3.061616997868383e-17</li>
+                                    <li><strong>Lineal Z:</strong> 0.100</li>
+                                </ul>
+            
+                                <h6>Torques Calculados (Nm):</h6>
+                                <ul>
+                                    <li><strong>Articulación 1:</strong> 21.9610 Nm</li>
+                                    <li><strong>Articulación 2:</strong> -10.4906 Nm</li>
+                                    <li><strong>Articulación 3:</strong> -9.2156 Nm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Sección de imagen 1 -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R3.png" alt="Robot Articulado 3">
+                                </div>
+                            </div>
+            
+                            <!-- Sección de imagen 2 -->
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 15%;">
+                                    <img class="card-img-top" src="assets/3.png" alt="Robot Articulado 3 detalles">
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">Robot: Articulado 3</h5>
+                                <hr>
+            
+                                <!-- Información detallada del robot -->
+                                <h6>Detalles del Robot: Articulado 3</h6>
+                                <p><strong>DHRobot:</strong> Articulado 3, 3 joints (RRP), dynamics, standard DH parameters</p>
+            
+                                <!-- Tabla de parámetros -->
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>θⱼ</th>
+                                            <th>dⱼ</th>
+                                            <th>aⱼ</th>
+                                            <th>⍺ⱼ</th>
+                                            <th>q⁻</th>
+                                            <th>q⁺</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>q1</td>
+                                            <td>0.1625</td>
+                                            <td>0</td>
+                                            <td>-90.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>q2</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>-90.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>0.0°</td>
+                                            <td>q3 + 0.425</td>
+                                            <td>0</td>
+                                            <td>0.0°</td>
+                                            <td>-π</td>
+                                            <td>π</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+            
+                                <!-- Velocidades y torques calculados -->
+                                <h6>Velocidad Angular (rad/s):</h6>
+                                <ul>
+                                    <li><strong>Angular X:</strong> 0.1996</li>
+                                    <li><strong>Angular Y:</strong> -0.3000</li>
+                                    <li><strong>Angular Z:</strong> 0.3992</li>
+                                </ul>
+            
+                                <h6>Velocidad Lineal (m/s):</h6>
+                                <ul>
+                                    <li><strong>Lineal X:</strong> -0.2</li>
+                                    <li><strong>Lineal Y:</strong> 1.2246467991473534e-17</li>
+                                    <li><strong>Lineal Z:</strong> 0.100</li>
+                                </ul>
+            
+                                <h6>Torques Calculados (Nm):</h6>
+                                <ul>
+                                    <li><strong>Articulación 1:</strong> 29.9790 Nm</li>
+                                    <li><strong>Articulación 2:</strong> -6.0084 Nm</li>
+                                    <li><strong>Articulación 3:</strong> -3.0000 Nm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center text-black" style="margin-top: 20px;">
+                <div class="card col-md-12 d-flex align-items-stretch">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Sección de imagen 1 -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/R4.png" alt="Robot Cilíndrico 4">
+                                </div>
+                            </div>
+            
+                            <!-- Sección de imagen 2 -->
+                            <div class="col-md-6">
+                                <div class="card" style="margin-top: 15%;">
+                                    <img class="card-img-top" src="assets/4.png" alt="Robot Cilíndrico 4 detalles">
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="card-body mt-3">
+                            <div class="card-body shadow">
+                                <h5 class="card-title text-center">Robot: Cilíndrico 4</h5>
+                                <hr>
+            
+                                <!-- Información detallada del robot -->
+                                <h6>Detalles del Robot: Cilíndrico 4</h6>
+                                <p><strong>DHRobot:</strong> Cilíndrico 4, 3 joints (PRP), dynamics, standard DH parameters</p>
+            
+                                <!-- Tabla de parámetros -->
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>θⱼ</th>
+                                            <th>dⱼ</th>
+                                            <th>aⱼ</th>
+                                            <th>⍺ⱼ</th>
+                                            <th>q⁻</th>
+                                            <th>q⁺</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0.0°</td>
+                                            <td>q1 + 0.1625</td>
+                                            <td>0</td>
+                                            <td>0.0°</td>
+                                            <td>-π</td>
+                                            <td>π</td>
+                                        </tr>
+                                        <tr>
+                                            <td>q2</td>
+                                            <td>0</td>
+                                            <td>0.425</td>
+                                            <td>90.0°</td>
+                                            <td>-180.0°</td>
+                                            <td>180.0°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>0.0°</td>
+                                            <td>q3 + 0.3922</td>
+                                            <td>0</td>
+                                            <td>0.0°</td>
+                                            <td>-π</td>
+                                            <td>π</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+            
+                                <!-- Velocidades y torques calculados -->
+                                <h6>Velocidad Angular (rad/s):</h6>
+                                <ul>
+                                    <li><strong>Angular X:</strong> 0.2150</li>
+                                    <li><strong>Angular Y:</strong> 0.3926</li>
+                                    <li><strong>Angular Z:</strong> 0.1000</li>
+                                </ul>
+            
+                                <h6>Velocidad Lineal (m/s):</h6>
+                                <ul>
+                                    <li><strong>Lineal X:</strong> 0.0</li>
+                                    <li><strong>Lineal Y:</strong> -3.0081e-50</li>
+                                    <li><strong>Lineal Z:</strong> 0.2</li>
+                                </ul>
+            
+                                <h6>Torques Calculados (Nm):</h6>
+                                <ul>
+                                    <li><strong>Articulación 1:</strong> 2.0000 Nm</li>
+                                    <li><strong>Articulación 2:</strong> 23.7640 Nm</li>
+                                    <li><strong>Articulación 3:</strong> 5.0000 Nm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </section>
+    <section class=" text-white">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Referencias Bibliográficas</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Niku, S. B. (2020). <i>Introduction to robotics: Analysis, control, applications</i>. John Wiley and
+                    Sons Ltd.
+                </li>
+                <li class="list-group-item">
+                    Craig, J. J. (2018). <i>Introduction to robotics: Mechanics and control</i>. Pearson.
+                </li>
+                <li class="list-group-item">
+                    D'Addario, M. (2016). <i>Manual de robótica industrial: Fundamentos, usos y aplicaciones</i>.
+                    CreateSpace Independent Publishing Platform.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container px-4 px-lg-5"></div>
+        <ul class="list-inline mb-5">
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3"
+                    href="https://mx.linkedin.com/in/jos%C3%A9-pablo-hern%C3%A1ndez-alonso-03a195256"><i
+                        class="icon-social-linkedin"></i></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3"
+                    href="https://www.instagram.com/jose_pablo_ha?igsh=MTlvb2s1ejFuY210MQ%3D%3D&utm_source=qr"><i
+                        class="icon-social-instagram"></i></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white" href="https://github.com/JPHAJP"><i
+                        class="icon-social-github"></i></a>
+            </li>
+        </ul>
+        <img src="../../../Recursos/Imagenes/IM3.png" alt="University Logo" style="width:100px;">
+        <p>Universidad Iberoamericana Puebla.</p>
+        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title"
+                rel="cc:attributionURL" href="https://jphajp.github.io/Robotica/">Portafolio Robótica Aplicada</a>
+            by <a rel="cc:attributionURL dct:creator" property="cc:attributionName"
+                href="https://github.com/JPHAJP">José Pablo Hernández Alonso</a> is licensed under <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
+                rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../../../Recursos\Archivos\scripts.js"></script>
+    <!-- Prism.js script -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script> -->
+    <!-- Prism.js plugin for line numbers -->
+    <!-- <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script> -->
+    <!-- Prism.js plugin for toolbar -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/toolbar/prism-toolbar.min.js"></script> -->
+    <!-- Prism.js plugin for copy to clipboard functionality -->
+    <!-- <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script> -->
+</body>
+
+</html>
