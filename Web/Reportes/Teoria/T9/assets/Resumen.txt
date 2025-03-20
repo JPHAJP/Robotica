@@ -1,0 +1,38 @@
+Velocidades
+Velocidad V1
+   _____
+  ╱   2 
+╲╱  a₁  
+⎡-a₂⋅th_2_dot⋅sin(th₁ + th₂) + th_1_dot⋅(-a₁⋅sin(th₁) - a₂⋅sin(th₁ + th₂))⎤
+⎢                                                                         ⎥
+⎣ a₂⋅th_2_dot⋅cos(th₁ + th₂) + th_1_dot⋅(a₁⋅cos(th₁) + a₂⋅cos(th₁ + th₂)) ⎦
+-a₂⋅th_2_dot⋅sin(th₁ + th₂) + th_1_dot⋅(-a₁⋅sin(th₁) - a₂⋅sin(th₁ + th₂))
+a₂⋅th_2_dot⋅cos(th₁ + th₂) + th_1_dot⋅(a₁⋅cos(th₁) + a₂⋅cos(th₁ + th₂))
+Velocidad V2
+   ___________________________________________________________________________________________________________________________________________
+  ╱   2         2                   2                                                   2         2       2                       2         2 
+╲╱  a₁ ⋅th_1_dot  + 2⋅a₁⋅a₂⋅th_1_dot ⋅cos(th₂) + 2⋅a₁⋅a₂⋅th_1_dot⋅th_2_dot⋅cos(th₂) + a₂ ⋅th_1_dot  + 2⋅a₂ ⋅th_1_dot⋅th_2_dot + a₂ ⋅th_2_dot  
+
+Energía cinética
+Para k1
+      2   
+0.5⋅a₁ ⋅m₁
+Para k2
+       ⎛  2         2                   2                                                   2         2       2                       2         2⎞
+0.5⋅m₂⋅⎝a₁ ⋅th_1_dot  + 2⋅a₁⋅a₂⋅th_1_dot ⋅cos(th₂) + 2⋅a₁⋅a₂⋅th_1_dot⋅th_2_dot⋅cos(th₂) + a₂ ⋅th_1_dot  + 2⋅a₂ ⋅th_1_dot⋅th_2_dot + a₂ ⋅th_2_dot ⎠
+
+Energía potencial
+Para P1
+a₁⋅g⋅m₁⋅sin(th₁)
+Para P2
+g⋅m₂⋅(a₁⋅sin(th₁) + a₂⋅sin(th₁ + th₂))
+
+Lagrangiano
+      2                                                                         ⎛  2         2                   2                                                   2         2       2                       2         2⎞
+0.5⋅a₁ ⋅m₁ - a₁⋅g⋅m₁⋅sin(th₁) - g⋅m₂⋅(a₁⋅sin(th₁) + a₂⋅sin(th₁ + th₂)) + 0.5⋅m₂⋅⎝a₁ ⋅th_1_dot  + 2⋅a₁⋅a₂⋅th_1_dot ⋅cos(th₂) + 2⋅a₁⋅a₂⋅th_1_dot⋅th_2_dot⋅cos(th₂) + a₂ ⋅th_1_dot  + 2⋅a₂ ⋅th_1_dot⋅th_2_dot + a₂ ⋅th_2_dot ⎠
+
+Ecuación de Euler-Lagrange para V1
+g⋅(a₁⋅m₁⋅cos(th₁) + m₂⋅(a₁⋅cos(th₁) + a₂⋅cos(th₁ + th₂)))
+
+Ecuación de Euler-Lagrange para V2
+a₂⋅m₂⋅(1.0⋅a₁⋅th_1_dot⋅(th_1_dot + th_2_dot)⋅sin(th₂) - 1.0⋅a₁⋅th_1_dot⋅sin(th₂) + g⋅cos(th₁ + th₂))
