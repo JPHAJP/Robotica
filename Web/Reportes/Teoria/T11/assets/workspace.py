@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 # Función para calcular el espacio de trabajo (esfera con cono invertido)
 def calcular_espacio_trabajo(radio_max, apertura_cono, puntos=10000):
     # Generar puntos aleatorios dentro de una esfera
