@@ -88,7 +88,7 @@ def es_punto_lineal_o_articulado(x, y, z, radio_max, apertura_cono):
 
 # Revisar si los puntos de la trayectoria son lineales o articulados
 radio_max = a2+a3  # Radio máximo del robot
-apertura_cono = np.deg2rad(60)  # Ángulo de apertura del cono
+apertura_cono = np.deg2rad(40)  # Ángulo de apertura del cono
 
 # Verificar si es lineal o articulado
 for i in range(P.shape[1]):
