@@ -51,9 +51,8 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Práctica 5</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Simulador RoboDK para celda de trabajo KUKA para corte
-                    router</p>
+                <h1 class="display-4 fw-bolder">Práctica 6</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Uso de PLC S7-1200 SIMENS con robot</p>
                 <a class="btn btn-primary btn-xl" href="../../../laboratorio.html">Regresar a Laboratorio</a>
             </div>
         </div>
@@ -64,15 +63,15 @@
             <h3 class="text-secondary mb-0">Introducción</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6">
-                    <p>En esta práctica se utilizó el simulador de RoboDK para emular el trabajo de un robot KUKA KR 16.
-                        En este se realizo el corte de un logo mediante el uso de un router.
+                    <p>En esta práctica se utilizó un PLC Simens y una interface HMI para dar indicaciones al robot para
+                        realizar un paletizado.
                     </p>
                     <!-- <a class="btn btn-primary btn-xl" href="assets/Ejercicios repaso.pdf" target="_blank">Instrucciones
                         PDF</a> -->
                 </div>
                 <div class="col-lg-6">
                     <img class="img-fluid" width="50%" height="auto"
-                        src="https://www.comau.com/wp-content/uploads/2024/03/RoboDK-Comau-RRS-Integration.png"
+                        src="https://i.ytimg.com/vi/jao1G9JN0ug/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCnEMYYU22xLHfg4mTshxdyPw53mA"
                         alt="...">
 
 
@@ -81,37 +80,56 @@
         </div>
     </section>
     <!-- Events Section -->
-    <section id="events" class="events section">
-        <div class="container" data-aos="fade-up">
-            <div class="row">
-                <div class="d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <!-- <video width="100%" height="auto" src="assets/FluidSIM.mp4" controls muted autoplay
-                                loop></video> -->
-                            <iframe id="pdfViewer" src="assets/Reporte 5- Router en KUKA- Equipo 1.pdf"
-                                width="100%" height="800px"></iframe>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Pasos para realizar el corte</a>
-                            </h5>
-                            <p class="fst-italic text-center">En esta práctica primero se tomaron las medidias de la
-                                herremienta a utilizar y se dibujo su CAD; a continuación se montó en el robot y se
-                                realizó la calibración de herremienta y de plano de trabajo. Después, se creó la
-                                estación de trabajo en RoboDK con los marcos de trabajo y herramienta adecudos, se
-                                inserto el logo a trazar y se porgramo un seguimiento de curvas; este programa se
-                                exportó y se puso en el robot KUKA para verificar lo que se realizó en la simulación.
-                            </p>
-                            <p class="card-text"></p>
-                            <a class="btn btn-primary btn-xl"
-                                href="assets/Reporte 5- Router en KUKA- Equipo 1.pdf" target="_blank">Descargar
-                                Reporte PDF</a>
+<section id="events" class="events section py-5">
+    <div class="container" data-aos="fade-up">
+        <div class="row g-4"> <!-- g-4 agrega espacio entre las columnas -->
+
+            <!-- Tarjeta 1 -->
+            <div class="col-md-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-img">
+                        <iframe id="pdfViewer1" src="assets/Reporte 6 - PLC y RobotUR5e - Equipo 1.pdf"
+                            width="100%" height="400px" style="border: none;"></iframe>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <a href="#">Pasos para realizar paletizado</a>
+                        </h5>
+                        <p class="fst-italic text-center">
+                            En esta práctica se desarrolló una celda robótica para el paletizado automatizado de bloques blancos y negros utilizando un robot colaborativo UR5e, un PLC Siemens S7 1200, una interfaz HMI K400P y un sistema de detección de color basado en Arduino. El objetivo fue implementar una rutina de paletizado en dos torres diferenciadas por el color de los cubos, integrando señales de entrada/salida digitales entre los dispositivos para garantizar la correcta coordinación del proceso.
+                        </p>
+                        <div class="mt-auto text-center">
+                            <a class="btn btn-primary" href="assets/Reporte 6 - PLC y RobotUR5e - Equipo 1.pdf" target="_blank">Descargar Reporte PDF</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="col-md-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-img">
+                        <iframe id="pdfViewer2" src="assets/PLC_robot.pdf"
+                            width="100%" height="400px" style="border: none;"></iframe>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <a href="#">Documento técnico Tia Portal</a>
+                        </h5>
+                        <p class="card-text text-center">
+                            Documento técnico sobre el proceso de corte automático utilizando TIA Portal.
+                        </p>
+                        <div class="mt-auto text-center">
+                            <a class="btn btn-primary" href="assets/PLC_robot.pdf" target="_blank">Descargar Documentación TIA PORTAL</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
     <br>
     <section id="events" class="events section">
         <div class="container" data-aos="fade-up">
@@ -122,77 +140,65 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="card">
-                                        <img class="card-img-top" src="assets/IM5.jpg" alt="...">
-                                    </div>
-                                    <a class="btn btn-primary btn-sm" href="assets/Estación_kuka_ibero_router.rdk"
-                                        target="_blank">Descargar estación</a>
-                                    <a class="btn btn-primary btn-sm" href="assets/Dibujos.zip"
-                                        target="_blank">Descargar planos</a>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
                                         <img class="card-img-top" src="assets/IM1.jpg" alt="...">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card">
-                                        <img class="card-img-top" src="assets/IM6.jpg" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <video class="w-100" src="assets/V2.mp4" controls muted autoplay
-                                            loop></video>
-                                        <img class="card-img-top" src="assets/IM7.png" alt="...">
-                                        <a class="btn btn-primary btn-sm" href="assets/Logo_jpha_3.0.dxf"
-                                            target="_blank">Descargar
-                                            logo dxf</a>
-                                            <a class="btn btn-primary btn-sm" href="assets/Corte_JPHA.dxf"
-                                            target="_blank">Descargar
-                                            corte dxf</a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card">
                                         <img class="card-img-top" src="assets/IM2.jpg" alt="...">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="card">
                                         <img class="card-img-top" src="assets/IM3.jpg" alt="...">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="card">
                                         <img class="card-img-top" src="assets/IM4.jpg" alt="...">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img class="card-img-top" src="assets/IM7.jpg" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img class="card-img-top" src="assets/IM8.jpg" alt="...">
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <video class="w-100" src="assets/V1.mp4" controls muted autoplay loop></video>
+                                        <img class="card-img-top" src="assets/IM5.jpg" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <img class="card-img-top" src="assets/IM6.jpg" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <video src="assets/V1.mp4" controls muted autoplay loop></video>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <video src="assets/V2.mp4" controls muted autoplay loop></video>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body text-center mt-3 text-black">
                                 <h5 class="card-title"><a href="#">Evidencias</a></h5>
                                 <p class="fst-italic text-black">Se presentan los videos y fotografías como evidencia de
-                                    la práctica para ver como se especificó la simulación en el programa de RoboDK y su
-                                    resultado en el robot KUKA.</p>
-                                <p class="text-black fst-italic">
-                                    <strong>Programas de descarga:</strong> "MainProgram.src" es el programa principal.
-                                </p>
-                                <a class="btn btn-primary btn-sm" href="assets/Programa/MainProgram.src"
-                                    target="_blank">MainProgram.src</a>
-                                <a class="btn btn-primary btn-sm" href="assets/Programa/O_ON.src"
-                                    target="_blank">O_ON.src</a>
-                                <a class="btn btn-primary btn-sm" href="assets/Programa/O_OFF.src"
-                                    target="_blank">O_OFF.src</a>
-                                <a class="btn btn-primary btn-sm" href="assets/Programa/Corte_JP.src"
-                                    target="_blank">Corte_JP.src</a>
-                                <a class="btn btn-primary btn-sm" href="assets/Programa/Grabado_JP.src"
-                                    target="_blank">Grabado_JP.src</a>
+                                    la práctica para ver como se realizo el paletizado de los cubos.</p>
+                                <a class="btn btn-primary btn-sm" href="assets/Robot_ur_lab.zip"
+                                        target="_blank">Descargar proyecto tia portal .zip</a>
+                                    <a class="btn btn-primary btn-sm" href="assets/Robot_ur_lab_20250403_2200.zap15_1"
+                                    target="_blank">Descargar proyecto tia portal archive</a>
+                                    <a class="btn btn-primary btn-sm" href="assets/RobotUR_files.zip"
+                                        target="_blank">Descargar archivos UR5e</a>
                             </div>
                         </div>
                     </div>
@@ -205,19 +211,17 @@
             <h3 class="text-secondary mb-0">Conclusión</h3>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-12">
-                    <p class="text-white">Se logró simular de forma exitosa el seguimiento de curvas en RoboDK
-                        utilizando el robot KUKA KR 16, lo que permitió comprobar la viabilidad del proceso en un
-                        entorno virtual. Esta simulación no solo evidenció la capacidad del robot para ejecutar
-                        movimientos complejos, sino que también sirvió como un primer paso fundamental en el desarrollo
-                        del programa.<br>
-                        La práctica permitió comprender la importancia de configurar correctamente el TCP y declarar el
-                        espacio de trabajo para lograr trayectorias precisas. Además, la importación y el análisis del
-                        archivo .dxf demostraron ser herramientas efectivas para transformar diseños CAD en movimientos
-                        robóticos, facilitando la integración de elementos gráficos en la programación del robot.<br>
-                        La simulación previa facilitó la detección y corrección de posibles errores, permitiendo
-                        realizar ajustes necesarios sin afectar equipos reales. Este proceso de validación es esencial
-                        antes de implementar el programa en un entorno real, garantizando así la seguridad y la
-                        eficiencia en la operación del robot.
+                    <p class="text-white">La práctica permitió integrar múltiples sistemas industriales de forma coordinada para 
+                        lograr una tarea de paletizado eficiente y automatizada. Destacamos los siguientes 
+                        logros:<br> <br>
+                        - Se logró una comunicación efectiva entre Arduino, PLC y UR5e usando señales digitales. <br>
+                        - Se diseñó una lógica de paletizado flexible y tolerante a errores (por ejemplo, cuando se 
+                        obtiene un cubo de un color ya finalizado). <br>
+                        - Se utilizó de forma adecuada la interfaz HMI para interactuar con el usuario y mostrar el 
+                        estado del proceso. <br>
+                        - El robot UR5e demostró su capacidad para tareas de manipulación precisa y repetitiva. <br>
+                        - Además, la práctica fomentó el aprendizaje sobre integración de hardware y 
+                        programación lógica de procesos secuenciales.<br>
                     </p>
                 </div>
             </div>
@@ -226,21 +230,23 @@
             <h2 class="text-center mb-4">Referencias Bibliográficas</h2>
             <ul class="list-group">
                 <li class="list-group-item">
-                    DIG Automation & Technology. (21-08-2023). <i>KUKA Tool Calibration, TCP Calibration (XYZ 4
-                        Point).</i> YouTube [Video]. Disponible en: <a
-                        href="https://www.youtube.com/watch?v=G1NT-39wqqE&ab_channel=DIGAutomation%26Technology"
-                        target="_blank">KUKA Tool Calibration</a>.
-
+                    Universal Robots. (s.f.). <i> UR5e Datasheet</i>. Disponible en: <a href="https://www.universal-robots.com" target="_blank">UR5e Datasheet</a>.
                 </li>
                 <li class="list-group-item">
-                    RoboDK. (s.f.). <i>RoboDK Documentation</i>.
-                    Disponible en: <a href="https://www.robodk.com/" target="_blank">RoboDK</a>.
+                    Siemens. (2023). <i>S7-1200 System Manual</i>.
+                    Disponible en: <a href="https://support.industry.siemens.com" target="_blank">S7-1200 System Manual</a>.
                 </li>
                 <li class="list-group-item">
-                    KUKA. (s.f.). <i>Manual de usuario KUKA</i>.
-                    Disponible en: <a
-                        href="https://www.kuka.com/-/media/kuka-downloads/imported/8350ff3ca11642998dbdc81dcc2ed44c/0000262124_es.pdf"
-                        target="_blank">Manual de usuario KUKA</a>.
+                    Siemens. (2023). <i>KTP400 Basic Panel Manual</i>.
+                    Disponible en: <a href="https://support.industry.siemens.com" target="_blank">KTP400 Basic Panel Manual</a>.
+                </li>
+                <li class="list-group-item">
+                    Arduino. (s.f.). <i>Arduino Uno Documentation</i>.
+                    Disponible en: <a href="https://www.arduino.cc" target="_blank">Arduino Uno Documentation</a>.
+                </li>
+                <li class="list-group-item">
+                    TCS34725. (s.f.) Datasheet. <i>RGB Color Sensor Adafruit</i>.
+                    Disponible en: <a href="https://www.adafruit.com/product/1334" target="_blank">RGB Color Sensor Adafruit</a>.
                 </li>
             </ul>
         </div>
