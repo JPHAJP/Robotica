@@ -703,7 +703,7 @@ class RobotTargetTracker:
     """
     def __init__(self, robot_id=0, target_id=1, 
                  robot_offset_px=190, target_offset_px=83, 
-                 robot_offset_mm=268, target_offset_mm=138, 
+                 robot_offset_mm=268, target_offset_mm=135, 
                  visual=True, width=1280, height=720):
         """
         Initialize Robot and Target tracker
@@ -724,12 +724,12 @@ class RobotTargetTracker:
         self.robot_offset_px = robot_offset_px
         self.target_offset_px = target_offset_px
         
-        # Calculate pixel to mm conversion factors
-        self.robot_mm_per_px = robot_offset_mm / robot_offset_px
-        self.target_mm_per_px = target_offset_mm / target_offset_px
-        
+        # Calculate pixel to mm conversion factors always absolute values
+        self.robot_mm_per_px = 1#abs(robot_offset_mm / robot_offset_px)
+        self.target_mm_per_px = abs(target_offset_mm / target_offset_px)
         # Use average conversion factor for general calculations
-        self.mm_per_px = (self.robot_mm_per_px + self.target_mm_per_px) / 2
+        #self.mm_per_px = (self.robot_mm_per_px + self.target_mm_per_px) / 2
+        self.mm_per_px = self.target_mm_per_px
         
         print(f"Conversion factors - Robot: {self.robot_mm_per_px:.4f} mm/px, Target: {self.target_mm_per_px:.4f} mm/px")
         print(f"Using average conversion factor: {self.mm_per_px:.4f} mm/px")

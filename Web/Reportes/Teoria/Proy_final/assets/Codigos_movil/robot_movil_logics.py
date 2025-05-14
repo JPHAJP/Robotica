@@ -10,7 +10,7 @@ class RobotController:
     """
     def __init__(self, robot_id=0, target_id=1, 
                 bluetooth_mac="88:13:BF:70:40:72", 
-                k=0.5, visual=True, target_threshold=1):
+                k=0.5, visual=True, target_threshold=10):
         """
         Inicializa el controlador del robot
         
@@ -31,10 +31,10 @@ class RobotController:
         
         # Parámetros del robot
         self.wmax = 150  # Velocidad angular máxima
-        self.l = -1      # Distancia del centro del robot al centro de las llantas (mm)
+        self.l = 130      # Distancia del centro del robot al centro de las llantas (mm)
         self.r = 127     # Radio de llanta (mm)
         self.L = 260     # Distancia entre centros de llantas (mm)
-        self.pwm_min = 170  # PWM mínimo para el movimiento
+        self.pwm_min = 150  # PWM mínimo para el movimiento
         
         # [Resto del código del constructor permanece igual]
         
@@ -48,7 +48,7 @@ class RobotController:
             robot_offset_px=-190, 
             target_offset_px=83,
             robot_offset_mm=268, 
-            target_offset_mm=138, 
+            target_offset_mm=80, 
             visual=visual
         )
         
@@ -305,13 +305,13 @@ class RobotController:
 
                         # Calcular distancia al objetivo
                         distancia_al_objetivo = math.sqrt(self.ex[self.i]**2 + self.ey[self.i]**2)
+                        print(f"Distancia al objetivo: {distancia_al_objetivo} mm, ex: {self.ex[self.i]}, ey: {self.ey[self.i]}")
 
                         # Verificar si se ha alcanzado el objetivo
                         if distancia_al_objetivo <= self.target_threshold:
                             # Si estamos dentro del umbral, detener el robot
                             self.bt_controller.stop_motors()
-                            cv2.putText(frame, "¡Objetivo alcanzado!", 
-                                    (30, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                            print("Objetivo alcanzado")
                         else:
                         
                             # Resolver sistema para obtener velocidades del robot
@@ -380,7 +380,7 @@ class RobotController:
                 cv2.putText(frame, "Presiona ESC para salir", (30, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.imshow('Robot Control', frame)
 
-                time.sleep(0.01)  # Esperar un poco para evitar sobrecarga de CPU
+                #time.sleep(0.01)  # Esperar un poco para evitar sobrecarga de CPU
                 #stop motors
                 #self.bt_controller.stop_motors() 
 
@@ -406,7 +406,7 @@ if __name__ == "__main__":
         robot_id=0,
         target_id=1,
         bluetooth_mac="88:13:BF:70:40:72",  # Ajustar según tu dispositivo
-        k=10,                              # Ganancia proporcional
+        k=12.5,                              # Ganancia proporcional
         visual=True
     )
     
