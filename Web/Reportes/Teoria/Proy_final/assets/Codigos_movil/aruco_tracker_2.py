@@ -1098,6 +1098,8 @@ class ObstacleDetector:
                 closest_point = end_position
             else:
                 # Calculate point along path
+                if path_length == 0:
+                    path_length = 0.000000001 # Avoid division by zero
                 t = projection / path_length
                 closest_point = (
                     start_position[0] + t * path_vector[0],
