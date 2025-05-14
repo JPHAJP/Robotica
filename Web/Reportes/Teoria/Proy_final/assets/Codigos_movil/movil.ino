@@ -83,6 +83,9 @@ void loop() {
       int16_t wr =  (int16_t)SerialBT.read() | ((int16_t)SerialBT.read() << 8);
       int16_t wl =  (int16_t)SerialBT.read() | ((int16_t)SerialBT.read() << 8);
 
+      // wr = -wr;
+      // wl = -wl;
+
       // Parpadeo indicador
       digitalWrite(ledPin, HIGH);
 
@@ -98,6 +101,19 @@ void loop() {
       // Aplicar a motores
       setMotorB(dutyWr);
       setMotorA(dutyWl);
+
+      //PRINT en serial para debug
+      Serial.print("wr: ");
+      Serial.print(wr);
+      Serial.print(" wl: ");
+      Serial.print(wl);
+      Serial.print(" dutyWr: ");
+      Serial.print(dutyWr);
+      Serial.print(" dutyWl: ");
+      Serial.print(dutyWl);
+      Serial.println();
+      // Apagar indicador
+      delay(10);
 
       digitalWrite(ledPin, LOW);
     } else {
