@@ -99,8 +99,8 @@ void loop() {
       if (wlNeg) dutyWl = -dutyWl;
 
       // Aplicar a motores
-      setMotorB(dutyWr);
-      setMotorA(dutyWl);
+      setMotorB(dutyWl);
+      setMotorA(dutyWr);
 
       //PRINT en serial para debug
       Serial.print("wr: ");
