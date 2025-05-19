@@ -385,12 +385,52 @@ void procesarComandoArticulados(String comando) {
 
 // Procesa un comando H para los motores móviles
 void procesarComandoMovil() {
+  Serial.println("Entrando a procesarComandoMovil");
+  
+  // Leer el comando completo
+  String comando = "";
+  unsigned long startTime = millis();
+  
+  // Leer hasta encontrar salto de línea o timeout
+  while ((millis() - startTime) < 2000) {  // 2 segundos de timeout
+    if (SerialBT.available()) {
+      char c = SerialBT.read();
+      comando += c;
+      Serial.print(c);  // Debug - mostrar cada carácter
+      if (c == '\n' || c == '\r') {
+        break;  // Terminar cuando se encuentre un fin de línea
+      }
+    }
+    yield();  // Permitir procesos de fondo de ESP32
+  }
+  
+  Serial.print("Comando completo: ");
+  Serial.println(comando);
+  
+  comando.trim();  // Eliminar espacios y saltos de línea
+  
+  // Dividir la cadena para obtener las velocidades
+  // Esperamos formato: "100 100" (ya se leyó el 'H' en loop())
+  int espacio = comando.indexOf(' ');
+  if (espacio <= 0) {
+    // Si no hay espacio, podría ser solo un número
+    Serial.println("Error: formato inválido, falta espacio separador");
+    return;
+  }
+  
+  String wrStr = comando.substring(0, espacio);
+  String wlStr = comando.substring(espacio + 1);
+  
+  Serial.print("wrStr: ");
+  Serial.println(wrStr);
+  Serial.print("wlStr: ");
+  Serial.println(wlStr);
+  
+  int16_t wr = wrStr.toInt();
+  int16_t wl = wlStr.toInt();
+  
   // Parpadeo indicador
   digitalWrite(ledPin, HIGH);
-  
-  // Leer los bytes para wr y wl (4 bytes)
-  int16_t wr = (int16_t)SerialBT.read() | ((int16_t)SerialBT.read() << 8);
-  int16_t wl = (int16_t)SerialBT.read() | ((int16_t)SerialBT.read() << 8);
   
   // Convertir rangos 0…255 → 0…100%
   bool wrNeg = wr < 0;
@@ -402,8 +442,8 @@ void procesarComandoMovil() {
   if (wlNeg) dutyWl = -dutyWl;
   
   // Aplicar a motores
-  setMotorB(dutyWl);
-  setMotorA(dutyWr);
+  setMotorB(dutyWr);  // Motor derecho
+  setMotorA(dutyWl);  // Motor izquierdo
   
   // PRINT en serial para debug
   Serial.print("wr: ");
@@ -432,12 +472,18 @@ void loop() {
   if (SerialBT.available() > 0) {
     char commandType = SerialBT.read();  // Leer primer carácter
     
-    // Comando H para motores móviles - necesita 4 bytes adicionales
-    if (commandType == 'H' && SerialBT.available() >= 4) {
+    // Imprimir para debug qué comando se recibió
+    Serial.print("Comando recibido: ");
+    Serial.println(commandType);
+    
+    // Comando H para motores móviles
+    if (commandType == 'H') {
+      Serial.println("Procesando comando de motores móviles...");
       procesarComandoMovil();
     } 
     // Comando J para motores articulados
     else if (commandType == 'J') {
+      Serial.println("Procesando comando de motores articulados...");
       // Esperar a que llegue el comando completo
       String comando = "J ";
       unsigned long startTime = millis();
@@ -462,7 +508,17 @@ void loop() {
     } 
     // Comando no reconocido - descartar
     else {
-      // Ignorar caracteres no reconocidos
+      Serial.print("Comando no reconocido: ");
+      Serial.println(commandType);
+      // Limpiar buffer
+      while (SerialBT.available()) {
+        SerialBT.read();
+      }
     }
+  }
+  
+  // Ejecutar los pasos necesarios para los motores stepper
+  for (int i = 0; i < 3; i++) {
+    motors[i].stepper.run();
   }
 }

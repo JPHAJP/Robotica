@@ -81,11 +81,16 @@ class BluetoothController:
         right_speed = max(-255, min(255, right_speed))
         left_speed = max(-255, min(255, left_speed))
         
-        # Pack the packet with header 'H' + right_speed + left_speed (little-endian int16)
-        packet = struct.pack('<c hh', b'H', right_speed, left_speed)
-        
+        # Intentar con formato de texto simple como los comandos J
         try:
-            self.sock.send(packet)
+            # Crear un comando en formato similar a los comandos J
+            command = f"H {right_speed} {left_speed}\n"
+            
+            if self.debug:
+                print(f"📤 Enviando comando: {command.strip()}")
+            
+            self.sock.send(command.encode('utf-8'))
+            
             if self.debug:
                 print(f"📤 Enviado: Motor D: {right_speed}, Motor I: {left_speed}")
             return True
@@ -114,7 +119,7 @@ class BluetoothController:
         Returns:
             Boolean indicating if command was sent successfully
         """
-        return self.send_motor_speeds(speed, speed)
+        return self.send_motor_speeds(-speed, -speed)
     
     def move_backward(self, speed=100):
         """
@@ -126,7 +131,7 @@ class BluetoothController:
         Returns:
             Boolean indicating if command was sent successfully
         """
-        return self.send_motor_speeds(-speed, -speed)
+        return self.send_motor_speeds(speed, speed)
     
     def turn_left(self, speed=100):
         """
@@ -138,7 +143,7 @@ class BluetoothController:
         Returns:
             Boolean indicating if command was sent successfully
         """
-        return self.send_motor_speeds(-speed, speed)
+        return self.send_motor_speeds(speed, -speed)
     
     def turn_right(self, speed=100):
         """
@@ -150,7 +155,7 @@ class BluetoothController:
         Returns:
             Boolean indicating if command was sent successfully
         """
-        return self.send_motor_speeds(speed, -speed)
+        return self.send_motor_speeds(-speed, speed)
     
     def set_differential_drive(self, forward_speed, turn_rate):
         """

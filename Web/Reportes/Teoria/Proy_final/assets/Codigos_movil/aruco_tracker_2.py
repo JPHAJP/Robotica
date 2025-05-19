@@ -425,6 +425,7 @@ class ArucoDetector:
         
         # Try with direct device access first (often more reliable on Linux)
         for i in range(10):  # Check up to 10 possible video devices
+            i=2
             device_path = f"/dev/video{i}"
             try:
                 if os.path.exists(device_path):
