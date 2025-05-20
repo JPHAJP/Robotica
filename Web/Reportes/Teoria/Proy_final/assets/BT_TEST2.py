@@ -333,7 +333,7 @@ def print_help():
     print("  m <motor> <pasos>  - Mover motor articulado (motor: 1-3, pasos: negativo=atrás)")
     print("  mm <motor1> <pasos1> <motor2> <pasos2> ... - Mover múltiples motores")
     print("  traj               - Enviar trayectoria completa")
-    print("  traj simple        - Enviar trayectoria de ejemplo simple")
+    print("  traj leer          - Leer trayectoria desde archivo movements.txt")
     print("  traj completa      - Enviar trayectoria de ejemplo completa")
     print("\nOtras Comandos:")
     print("  h, ?               - Mostrar esta ayuda")
@@ -420,12 +420,27 @@ def main():
             # Nuevos comandos para trayectorias
             elif parts[0] == 'traj':
                 if len(parts) > 1:
-                    if parts[1] == 'simple':
-                        # Ejemplo de trayectoria simple
-                        movements = [
-                            [(1, 50, 1000, 1000), (2, 30, 800, 800), (3, -40, 1200, 1200)],
-                            [(1, -50, 1000, 1000), (2, -30, 800, 800), (3, 40, 1200, 1200)]
-                        ]
+                    if parts[1] == 'leer':
+                        # Leer trayectoria desde archivo
+                        print("Leyendo trayectoria desde archivo...")
+                        movements = []
+                        try:
+                            with open("Web/Reportes/Teoria/Proy_final/assets/movements.txt", "r") as file:
+                                content = file.read()
+                                # El archivo contiene una representación de lista de Python
+                                # Evaluar de manera segura el contenido como una estructura de Python
+                                # Asumiendo que el archivo contiene una lista de listas de tuplas
+                                movements = eval(content)
+                                
+                            if movements:
+                                print(f"Trayectoria leída correctamente. {len(movements)} movimientos encontrados.")
+                                #print(movements)
+                                controller.send_trajectory_command(movements)
+                            else:
+                                print("❌ No se encontraron movimientos válidos en el archivo.")
+                        except FileNotFoundError:
+                            print("❌ Archivo de movimientos no encontrado.")
+
                         print("Enviando trayectoria simple...")
                         controller.send_trajectory_command(movements)
                     elif parts[1] == 'completa':
