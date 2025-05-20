@@ -277,6 +277,45 @@ class BluetoothController:
         
         command = ", ".join(command_parts)
         return self.send_articulated_command(command)
+    
+    def send_trajectory_command(self, movements):
+        """
+        Move multiple articulated motors in sequence
+        
+        Args:
+            movements: List of movements, where each movement is a list of 
+                    tuples (motor_id, steps, velocity, acceleration)
+                    
+        Returns:
+            Boolean indicating if command was sent successfully
+        """
+        if not self.connected:
+            if self.debug:
+                print("❌ No hay conexión Bluetooth establecida.")
+            return False
+            
+        # Construir el comando de trayectoria completo
+        command_parts = []
+        
+        for movement in movements:
+            motor_configs = []
+            for motor_id, steps, velocity, accel in movement:
+                if motor_id < 1 or motor_id > 3:
+                    if self.debug:
+                        print(f"❌ Número de motor inválido: {motor_id}. Debe ser 1-3.")
+                    continue
+                motor_configs.append(f"{motor_id},{steps},{velocity},{accel}")
+            
+            if motor_configs:
+                command_parts.append(";".join(motor_configs))
+        
+        if not command_parts:
+            if self.debug:
+                print("❌ No hay movimientos válidos para enviar.")
+            return False
+        
+        full_command = "|".join(command_parts)
+        return self.send_articulated_command(full_command)
 
 
 def print_help():
@@ -293,6 +332,9 @@ def print_help():
     print("  init               - Iniciar secuencia de homing")
     print("  m <motor> <pasos>  - Mover motor articulado (motor: 1-3, pasos: negativo=atrás)")
     print("  mm <motor1> <pasos1> <motor2> <pasos2> ... - Mover múltiples motores")
+    print("  traj               - Enviar trayectoria completa")
+    print("  traj simple        - Enviar trayectoria de ejemplo simple")
+    print("  traj completa      - Enviar trayectoria de ejemplo completa")
     print("\nOtras Comandos:")
     print("  h, ?               - Mostrar esta ayuda")
     print("  q, quit, exit      - Salir del programa")
@@ -374,6 +416,63 @@ def main():
                     controller.move_multiple_motors(movements)
                 else:
                     print("❌ Formato correcto: mm <motor1> <pasos1> <motor2> <pasos2> ...")
+            
+            # Nuevos comandos para trayectorias
+            elif parts[0] == 'traj':
+                if len(parts) > 1:
+                    if parts[1] == 'simple':
+                        # Ejemplo de trayectoria simple
+                        movements = [
+                            [(1, 50, 1000, 1000), (2, 30, 800, 800), (3, -40, 1200, 1200)],
+                            [(1, -50, 1000, 1000), (2, -30, 800, 800), (3, 40, 1200, 1200)]
+                        ]
+                        print("Enviando trayectoria simple...")
+                        controller.send_trajectory_command(movements)
+                    elif parts[1] == 'completa':
+                        # Ejemplo de trayectoria completa
+                        movements = [
+                            [(1, 80, 2000, 2000), (2, 60, 1800, 1800), (3, -70, 2200, 2200)],
+                            [(1, -40, 1000, 1000), (2, 30, 900, 900), (3, 35, 1100, 1100)],
+                            [(1, -40, 1500, 1500), (2, -90, 1800, 1800), (3, 35, 2000, 2000)]
+                        ]
+                        print("Enviando trayectoria completa...")
+                        controller.send_trajectory_command(movements)
+                    else:
+                        print("❌ Opción de trayectoria no reconocida")
+                else:
+                    # Solicitar trayectoria personalizada
+                    print("Introduce la trayectoria en formato: motor_id,pasos,velocidad,aceleracion;...")
+                    traj_input = input("Trayectoria> ")
+                    # Parsear la entrada del usuario
+                    try:
+                        # Dividir por | para separar movimientos
+                        movement_strings = traj_input.split('|')
+                        movements = []
+                        
+                        for mov_str in movement_strings:
+                            # Dividir por ; para separar configuraciones de motores
+                            motor_configs = mov_str.split(';')
+                            movement = []
+                            
+                            for config in motor_configs:
+                                # Dividir por , para obtener los parámetros
+                                params = config.split(',')
+                                if len(params) == 4:
+                                    motor_id = int(params[0])
+                                    steps = int(params[1])
+                                    velocity = float(params[2])
+                                    accel = float(params[3])
+                                    movement.append((motor_id, steps, velocity, accel))
+                            
+                            if movement:
+                                movements.append(movement)
+                        
+                        if movements:
+                            controller.send_trajectory_command(movements)
+                        else:
+                            print("❌ No se pudo parsear la trayectoria correctamente")
+                    except Exception as e:
+                        print(f"❌ Error al parsear la trayectoria: {e}")
             
             else:
                 print(f"❌ Comando desconocido: {parts[0]}")

@@ -54,3 +54,12 @@ pip install -r requirements.txt
 Este proyecto está disponible bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
 K33BN38P3Y1HHK8PCFWBVWY1
+
+
+El formato para ingresar una trayectoria manual sería:
+1,50,1000,1000;2,30,800,800;3,-40,1200,1200|1,-50,1000,1000;2,-30,800,800;3,40,1200,1200
+Donde:
+
+El carácter | separa movimientos secuenciales
+El carácter ; separa configuraciones de motor dentro de un mismo movimiento
+Cada configuración de motor tiene 4 parámetros separados por comas: ID del motor, pasos, velocidad, aceleración
