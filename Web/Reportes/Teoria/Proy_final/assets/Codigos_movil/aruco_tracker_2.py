@@ -85,11 +85,15 @@ class BluetoothController:
         right_speed = max(-255, min(255, right_speed))
         left_speed = max(-255, min(255, left_speed))
         
-        # Pack the packet with header 'H' + right_speed + left_speed (little-endian int16)
-        packet = struct.pack('<c hh', b'H', right_speed, left_speed)
+        # # Pack the packet with header 'H' + right_speed + left_speed (little-endian int16)
+        # packet = struct.pack('<c hh', b'H', right_speed, left_speed)
         
         try:
-            self.sock.send(packet)
+            # self.sock.send(packet)
+            # Crear un comando en formato similar a los comandos J
+            command = f"H {right_speed} {left_speed}\n"
+            self.sock.send(command.encode('utf-8'))
+
             if self.debug:
                 print(f"📤 Enviado: Motor D: {right_speed}, Motor I: {left_speed}")
             return True

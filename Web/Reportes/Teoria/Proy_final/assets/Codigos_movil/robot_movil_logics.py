@@ -170,7 +170,7 @@ class RobotController:
         """
         self.bt_controller.disconnect()
     
-    /////////////////////funcion mandar bt//////////////////////////
+    #/////////////////////funcion mandar bt//////////////////////////
     def send_motor_speeds(self, right_speed, left_speed):
         """
         Send motor speed values to ESP32
@@ -209,7 +209,7 @@ class RobotController:
                 print("❌ Error enviando datos:", e)
             self.connected = False
             return False
-    ////////////////////////////////////////////////////////////////
+    #////////////////////////////////////////////////////////////////
     
     def run(self):
         """
