@@ -33,15 +33,15 @@ print(robot)
 #    2. Creación de matriz de coordenadas para trayectoria
 # ---------------------------
 # Para este ejemplo se genera la letra M en el plano XZ, con offset en Y
-offset = 0.10 # Desplazamiento en Y
+offset = 0.15 # Desplazamiento en Y
 
 # Definir los vértices 3D (en este caso en el plano XZ, Y constante)
 vertices_3d = [
-    (-0.10, offset, 0.05),
+    (-0.12, offset, 0.15),
     #(-0.06, offset, 0.075),
-    (-0.06, offset, 0.075),
+    (-0.08, offset, 0.175),
     #(-0.03, offset, 0.075),
-    (-0.02, offset, 0.05)
+    (-0.04, offset, 0.15)
 ]
 
 # Inicializar P con el primer vértice

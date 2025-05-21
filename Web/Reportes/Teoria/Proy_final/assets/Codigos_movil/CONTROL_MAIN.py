@@ -328,6 +328,11 @@ def print_help():
     print("  d <velocidad>      - Girar derecha (velocidad: 0-255, default=100)")
     print("  v <avance> <giro>  - Control diferencial (avance: -255-255, giro: -255-255)")
     print("  x                  - Detener motores")
+    print("\nModo Autónomo con ArUco:")
+    print("  aruco <robot_id> <target_id> <ganancia> - Activar seguimiento de ArUco")
+    print("      robot_id: ID del marcador ArUco del robot (default=0)")
+    print("      target_id: ID del marcador ArUco del objetivo (default=1)")
+    print("      ganancia: Ganancia del controlador proporcional (default=12.5)")
     print("\nMotores Articulados:")
     print("  init               - Iniciar secuencia de homing")
     print("  m <motor> <pasos>  - Mover motor articulado (motor: 1-3, pasos: negativo=atrás)")
@@ -396,6 +401,47 @@ def main():
                 else:
                     print("❌ Formato correcto: v <avance> <giro>")
             
+            # NUEVO COMANDO: Activar modo autónomo con ArUco
+            elif parts[0] == 'aruco':
+                # Importar la clase RobotController de robot_movil_logics
+                try:
+                    from robot_movil_logics import RobotController
+                    
+                    # Desconectar el controlador Bluetooth actual para evitar conflictos
+                    controller.disconnect()
+                    print("Iniciando modo de seguimiento de ArUco...")
+                    
+                    # Configurar parámetros del RobotController
+                    robot_id = int(parts[1]) if len(parts) > 1 else 0
+                    target_id = int(parts[2]) if len(parts) > 2 else 1
+                    k_gain = float(parts[3]) if len(parts) > 3 else 12.5
+                    
+                    print(f"Configuración: Robot ID={robot_id}, Target ID={target_id}, Ganancia={k_gain}")
+                    
+                    # Inicializar controlador de robot con ArUco
+                    aruco_controller = RobotController(
+                        robot_id=robot_id,
+                        target_id=target_id,
+                        bluetooth_mac=esp32_mac,
+                        k=k_gain,
+                        visual=True
+                    )
+                    
+                    # Ejecutar el controlador (esto bloqueará hasta que se cierre con ESC)
+                    aruco_controller.run()
+                    
+                    # Una vez terminado, reconectar el controlador Bluetooth original
+                    print("Reconectando al controlador Bluetooth...")
+                    controller.connect()
+                    
+                except ImportError:
+                    print("❌ No se pudo importar la clase RobotController desde robot_movil_logics.py")
+                    print("Asegúrate de que el archivo esté en el mismo directorio.")
+                except Exception as e:
+                    print(f"❌ Error al iniciar el modo ArUco: {e}")
+                    # Intentar reconectar en caso de error
+                    controller.connect()
+            
             # Comandos para motores articulados
             elif parts[0] == 'init':  # Iniciar homing
                 controller.init_homing()
@@ -417,8 +463,10 @@ def main():
                 else:
                     print("❌ Formato correcto: mm <motor1> <pasos1> <motor2> <pasos2> ...")
             
-            # Nuevos comandos para trayectorias
+            # Comandos para trayectorias
             elif parts[0] == 'traj':
+                # [El código existente para trayectorias se mantiene igual]
+                # ... [Código original para trayectorias]
                 if len(parts) > 1:
                     if parts[1] == 'leer':
                         # Leer trayectoria desde archivo
