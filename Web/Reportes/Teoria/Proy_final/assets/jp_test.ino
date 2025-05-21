@@ -343,8 +343,8 @@ void ejecutarMovimientoSimultaneo(String movimiento) {
       
       // Obtener posición actual y calcular posición objetivo
       long posicionActual = motors[motorIndex].stepper.currentPosition();
-      long posicionObjetivo = posicionActual + pasos[i];
-      motors[motorIndex].stepper.moveTo(posicionObjetivo);
+      long posicionObjetivo = posicionActual + pasos[i]; //no sirve
+      motors[motorIndex].stepper.moveTo(pasos[i]);
     }
     
     SerialBT.println("Ejecutando movimiento simultáneo");

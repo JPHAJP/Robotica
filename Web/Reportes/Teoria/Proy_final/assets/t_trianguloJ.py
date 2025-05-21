@@ -39,7 +39,7 @@ offset = 0.15 # Desplazamiento en Y
 vertices_3d = [
     (-0.12, offset, 0.15),
     #(-0.06, offset, 0.075),
-    (-0.08, offset, 0.175),
+    (0.08, offset, 0.175),
     #(-0.03, offset, 0.075),
     (-0.04, offset, 0.15)
 ]
@@ -268,15 +268,15 @@ def rad_to_steps_and_derivatives():
 
     # Convertir velocidades (rad/s -> pasos/s)
     qd_steps = np.zeros_like(qd_traj)
-    qd_steps[:, 0] = 100
-    qd_steps[:, 1] = 100
-    qd_steps[:, 2] = 100
+    qd_steps[:, 0] = 2000
+    qd_steps[:, 1] = 2000
+    qd_steps[:, 2] = 2000
     
     # Convertir aceleraciones (rad/s² -> pasos/s²)
     qdd_steps = np.zeros_like(qdd_traj)
-    qdd_steps[:, 0] = 1000
-    qdd_steps[:, 1] = 1000
-    qdd_steps[:, 2] = 1000
+    qdd_steps[:, 0] = 2000
+    qdd_steps[:, 1] = 2000
+    qdd_steps[:, 2] = 2000
 
     
     return q_steps, qd_steps, qdd_steps, steps_per_rad

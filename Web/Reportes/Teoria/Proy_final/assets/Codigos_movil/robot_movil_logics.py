@@ -34,7 +34,7 @@ class RobotController:
         self.l = 130      # Distancia del centro del robot al centro de las llantas (mm)
         self.r = 127     # Radio de llanta (mm)
         self.L = 260     # Distancia entre centros de llantas (mm)
-        self.pwm_min = 150  # PWM mínimo para el movimiento
+        self.pwm_min = 180  # PWM mínimo para el movimiento
         
         # [Resto del código del constructor permanece igual]
         
@@ -169,6 +169,47 @@ class RobotController:
         Cierra la conexión Bluetooth con el robot
         """
         self.bt_controller.disconnect()
+    
+    /////////////////////funcion mandar bt//////////////////////////
+    def send_motor_speeds(self, right_speed, left_speed):
+        """
+        Send motor speed values to ESP32
+        
+        Args:
+            right_speed: Right motor speed (pwm to 255)
+            left_speed: Left motor speed (-255 to 255)
+            
+        Returns:
+            Boolean indicating if values were sent successfully
+        """
+        if not self.connected:
+            if self.debug:
+                print("❌ No hay conexión Bluetooth establecida.")
+            return False
+            
+        # Ensure values are within valid range
+        right_speed = max(-255, min(255, right_speed))
+        left_speed = max(-255, min(255, left_speed))
+        
+        # Intentar con formato de texto simple como los comandos J
+        try:
+            # Crear un comando en formato similar a los comandos J
+            command = f"H {right_speed} {left_speed}\n"
+            
+            if self.debug:
+                print(f"📤 Enviando comando: {command.strip()}")
+            
+            self.sock.send(command.encode('utf-8'))
+            
+            if self.debug:
+                print(f"📤 Enviado: Motor D: {right_speed}, Motor I: {left_speed}")
+            return True
+        except OSError as e:
+            if self.debug:
+                print("❌ Error enviando datos:", e)
+            self.connected = False
+            return False
+    ////////////////////////////////////////////////////////////////
     
     def run(self):
         """
