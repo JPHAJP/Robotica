@@ -82,17 +82,31 @@ def es_punto_lineal_o_articulado(x, y, z, radio_max, apertura_cono):
 
     return es_lineal, es_articular
 
-# Resto del código para pruebas y visualización
-x, y, z = 0.005, 0.004, 0.15  # Punto de ejemplo
+# Parámetros del sistema
 radio_max = 18/100  # Radio máximo de la esfera
 apertura_cono = np.deg2rad(100)  # Ángulo de apertura del cono
+
 print(f"Apertura del cono: {apertura_cono} radianes ({np.rad2deg(apertura_cono)} grados)")
 print(f"Radio máximo: {radio_max}")
 
-# Verificar si el punto es verde o azul
-es_lineal, es_articular = es_punto_lineal_o_articulado(x, y, z, radio_max, apertura_cono)
-print(f"¿Es el punto verde? {es_lineal}")
-print(f"¿Es el punto azul? {es_articular}")
+# ===== PUNTOS DE PRUEBA =====
+# Aquí puedes agregar todos los puntos que quieras
+puntos_prueba = [
+    (-0.10, 0.09, 0.05, "Punto 1"),
+    (-0.06, 0.09, 0.075, "Punto 2"),
+    (-0.02, 0.09, 0.05, "Punto 3")
+]
+
+# Colores para cada punto de prueba
+colores_prueba = ['magenta', 'red', 'orange', 'yellow', 'cyan', 'purple']
+
+print("\n===== ANÁLISIS DE PUNTOS DE PRUEBA =====")
+for i, (x, y, z, nombre) in enumerate(puntos_prueba):
+    es_lineal, es_articular = es_punto_lineal_o_articulado(x, y, z, radio_max, apertura_cono)
+    print(f"{nombre} ({x}, {y}, {z}):")
+    print(f"  ¿Es verde (lineal)? {es_lineal}")
+    print(f"  ¿Es azul (articular)? {es_articular}")
+    print()
 
 # Función para dibujar el cubo dentro de la esfera
 def dibujar_cubo(radio_max):
@@ -116,23 +130,25 @@ puntos_cubo = dibujar_cubo(radio_max)
 puntos_cubo_filtrados = filtrar_puntos_por_cono(puntos_cubo, apertura_cono)
 
 # Graficar el espacio de trabajo
-fig = plt.figure(figsize=(10, 8))
+fig = plt.figure(figsize=(12, 10))
 ax = fig.add_subplot(111, projection='3d')
 
 # Graficar los puntos dentro del área de trabajo (esfera)
 ax.scatter(puntos_trabajo[:, 0], puntos_trabajo[:, 1], puntos_trabajo[:, 2], 
-          c='b', s=0.5, alpha=0.6, label="Espacio de trabajo")
+          c='blue', s=0.5, alpha=0.6, label="Espacio de trabajo")
 
 # Graficar los puntos verdes dentro del cubo, que están fuera del cono
 if len(puntos_cubo_filtrados) > 0:
     ax.scatter(puntos_cubo_filtrados[:, 0], puntos_cubo_filtrados[:, 1], puntos_cubo_filtrados[:, 2], 
-              c='g', s=20, label="Puntos del cubo fuera del cono")
+              c='green', s=20, label="Puntos del cubo fuera del cono")
 
-# Graficar punto de prueba como morado
-ax.scatter(x, y, z, c='m', s=100, label="Punto de prueba")
+# Graficar todos los puntos de prueba
+for i, (x, y, z, nombre) in enumerate(puntos_prueba):
+    color = colores_prueba[i % len(colores_prueba)]  # Usar colores cíclicamente
+    ax.scatter(x, y, z, c=color, s=100, label=nombre, edgecolors='black', linewidth=1)
 
 # Marcar el origen (punta del cono)
-ax.scatter(0, 0, 0, c='r', s=100, label="Origen (punta del cono)")
+ax.scatter(0, 0, 0, c='red', s=100, label="Origen (punta del cono)", marker='x')
 
 # Configuración de la visualización
 ax.set_xlabel('X')
@@ -145,6 +161,7 @@ ax.set_xlim([-radio_max, radio_max])
 ax.set_ylim([-radio_max, radio_max])
 ax.set_zlim([-radio_max, radio_max])
 
-# Mostrar gráfico
-ax.legend()
+# Mostrar gráfico con leyenda
+ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
 plt.show()
