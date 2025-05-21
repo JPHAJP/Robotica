@@ -29,33 +29,20 @@ robot = rtb.DHRobot(
 print("Robot details:")
 print(robot)
 
-# q0 = [0, 0, 0]  # Configuración inicial del robot
-# robot.plot(q0, block=True)
 
 # ---------------------------
 #    2. Creación de matriz de coordenadas para trayectoria
 # ---------------------------
 # Para este ejemplo se genera la letra M en el plano XZ, con offset en Y
-offset = 0.10 # Desplazamiento en Y
-
-# Definir los vértices 3D (en este caso en el plano XZ, Y constante)
-# vertices_3d = [
-#     (-0.10, 0.05, offset),       # punto inferior izquierdo
-#     #(-0.09, 0.075, offset),   # punto superior izquierdo
-#     (-0.06, 0.075, offset),    # punto medio izquierdo (ajustado)
-#     #(-0.03, 0.075, offset),   # punto medio derecho (ajustado)
-#     (-0.02, 0.05, offset),       # punto inferior derecho
-# ]
+offset = 0.15 # Desplazamiento en Y
 
 vertices_3d = [
-    (-0.10, offset, 0.05),
+    (-0.12, offset, 0.15),
     #(-0.06, offset, 0.075),
-    (-0.06, offset, 0.075),
+    (-0.08, offset, 0.175),
     #(-0.03, offset, 0.075),
-    (-0.02, offset, 0.05)
+    (-0.04, offset, 0.15)
 ]
-
-
 
 # Inicializar P con el primer vértice
 P = np.array(vertices_3d[0]).reshape(3, 1)
@@ -115,37 +102,17 @@ for i, pos in enumerate(coordenadas):
 # ---------------------------
 #    3. Generar la trayectoria usando ctraj (trayectoria cartesiana)
 # ---------------------------
-# T_segment = 10      # Duración conceptual de cada segmento en segundos
-# n_points = 50       # Número de puntos por segmento
-# q_traj_segments = []  # Lista para almacenar trayectorias en espacio articular
-# q_current = np.zeros(robot.n)  # Condición inicial para IK
 
-# ik_start = time.time()
-
-# # Para cada segmento entre waypoints consecutivos (trayectoria cartesiana)
-# for i in range(len(coordenadas) - 1):
-#     cart_traj = ctraj(coordenadas[i], coordenadas[i+1], n_points)
-#     q_traj_seg = []  # Trayectoria articular para este segmento
-#     for pose in cart_traj:
-#         sol = robot.ikine_LM(pose, q0=q_current, mask=(1,1,1,0,0,0))
-#         if sol.success:
-#             q_traj_seg.append(sol.q)
-#             q_current = sol.q  # Actualizar q_current para la siguiente iteración
-#         else:
-#             print(f"IK falló en el segmento {i+1} para una pose intermedia")
-#     q_traj_segments.append(np.array(q_traj_seg))
-
-# ik_end = time.time()
 
 #region
-q_traj_segments = []                           
+q_sol = []                           
 q_current = np.zeros(robot.n)      
 ik_init = time.time()
 
 for i, pos in enumerate(coordenadas):
     sol = robot.ikine_LM(pos, q0=q_current, mask=(1,1,1,0,0,0))
     if sol.success:
-        q_traj_segments.append(sol.q)
+        q_sol.append(sol.q)
         q_current = sol.q
         #print(f"IK para coord{i+1} resuelta: {sol.q}")
     else:
@@ -159,74 +126,28 @@ print("\nTiempo total de cálculo de IK en segmentos: {:.4f} segs".format(ik_end
 #    4. Generar trayectoria de retorno circular en el espacio articular
 #    (de la última pose al primer waypoint)
 # ---------------------------
-# Obtener las configuraciones articulares para el primer y último waypoint
-# sol_first = robot.ikine_LM(coordenadas[0], q0=q_current, mask=(1,1,1,0,0,0))
-# if sol_first.success:
-#     q_first = sol_first.q
-#     q_current = sol_first.q
-#     print(f"IK para primer waypoint resuelta: {q_first}")
-# else:
-#     print("IK falló para primer waypoint")
-
-# sol_last = robot.ikine_LM(coordenadas[-1], q0=q_current, mask=(1,1,1,0,0,0))
-# if sol_last.success:
-#     q_last = sol_last.q
-#     q_current = sol_last.q
-#     print(f"IK para último waypoint resuelta: {q_last}")
-# else:
-#     print("IK falló para último waypoint")
-
-# # Definir la parametrización del círculo en el espacio articular
-# # Queremos pasar de q_last (inicio del retorno) a q_first (final del retorno)
-# m = (q_last + q_first) / 2           # Centro del arco
-# d = q_first - q_last                 # Vector de la cuerda
-# r = np.linalg.norm(d) / 2            # Radio del círculo
-
-# # Elegir un vector arbitrario para definir el plano del círculo
-# v = np.array([0, 0, 1])
-# if np.allclose(np.cross(d, v), 0):
-#     v = np.array([0, 1, 0])
-# u = np.cross(d, v)
-# u = u / np.linalg.norm(u)
-
-# n_points_circular = 50
-# theta = np.linspace(0, np.pi, n_points_circular)
-# q_circular = []
-# for t in theta:
-#     # Parametrización del círculo:
-#     # Para t=0 se obtiene q_last y para t=pi se obtiene q_first
-#     q_t = m + (q_last - m) * np.cos(t) + u * r * np.sin(t)
-#     q_circular.append(q_t)
-# q_circular = np.array(q_circular)
-
-# # Agregar la trayectoria circular a la lista de segmentos de trayectoria
-# q_traj_segments.append(q_circular)
-# print("Trayectoria de retorno circular generada exitosamente.")
-
-# # Concatenar todas las trayectorias en una secuencia completa de configuraciones articulares
-# q_traj = np.vstack(q_traj_segments)
 
 tray_segments = []  # Lista de posiciones
 vel_segments = []   # Lista de velocidades
 acc_segments = []   # Lista de aceleraciones
 T_segment = 1       # Duracion de cada segmento en segs
-n_points = 5       # Numero de puntos por segmento
-
+n_points = 50       # Numero de puntos por segmento
+ 
 # Generar trayectorias entre cada par de configuraciones
-for i in range(len(q_traj_segments) - 1):
+for i in range(len(q_sol) - 1):
     t_segment = np.linspace(0, T_segment, n_points)
-    traj_seg = jtraj(q_traj_segments[i], q_traj_segments[i+1], t_segment)
+    traj_seg = jtraj(q_sol[i], q_sol[i+1], t_segment)
     tray_segments.append(traj_seg.q)
     vel_segments.append(traj_seg.qd)
     acc_segments.append(traj_seg.qdd)
-
+ 
 # Trayectoria de regreso al punto inicial
 t_segment = np.linspace(0, T_segment, n_points)
-traj_return = jtraj(q_traj_segments[-1], q_traj_segments[0], t_segment)
+traj_return = jtraj(q_sol[-1], q_sol[0], t_segment)
 tray_segments.append(traj_return.q)
 vel_segments.append(traj_return.qd)
 acc_segments.append(traj_return.qdd)
-
+ 
 # Apilar los segmentos en una trayectoria completa
 q_traj  = np.vstack(tray_segments)
 qd_traj = np.vstack(vel_segments)
@@ -264,7 +185,7 @@ ax.legend()
 ax.set_box_aspect([1, 1, 1])
 
 # Vector de tiempo para la trayectoria completa.
-num_segments = len(q_traj_segments)
+num_segments = len(q_sol)
 time_total = T_segment * num_segments
 t_vec = np.linspace(0, time_total, q_traj.shape[0])
 
@@ -336,23 +257,27 @@ def rad_to_steps_and_derivatives():
     for motor, spr in steps_per_rad.items():
         print(f"{motor}: {spr:.2f} pasos/rad = {spr * 180/np.pi:.2f} pasos/grado")
     
-    # Convertir posiciones (rad -> pasos)
-    q_steps = np.zeros_like(q_traj)
-    q_steps[:, 0] = q_traj[:, 0] * steps_per_rad['M1']
-    q_steps[:, 1] = q_traj[:, 1] * steps_per_rad['M2'] 
-    q_steps[:, 2] = q_traj[:, 2] * steps_per_rad['M3']
+    # Convertir q_sol (lista de arrays) a un array numpy
+    q_sol_array = np.array(q_sol)
     
+    # Convertir posiciones (rad -> pasos)
+    q_steps = np.zeros_like(q_sol_array)
+    q_steps[:, 0] = q_sol_array[:, 0] * steps_per_rad['M1']
+    q_steps[:, 1] = q_sol_array[:, 1] * steps_per_rad['M2'] 
+    q_steps[:, 2] = q_sol_array[:, 2] * steps_per_rad['M3']
+
     # Convertir velocidades (rad/s -> pasos/s)
     qd_steps = np.zeros_like(qd_traj)
-    qd_steps[:, 0] = qd_traj[:, 0] * steps_per_rad['M1']
-    qd_steps[:, 1] = qd_traj[:, 1] * steps_per_rad['M2']
-    qd_steps[:, 2] = qd_traj[:, 2] * steps_per_rad['M3']
+    qd_steps[:, 0] = 100
+    qd_steps[:, 1] = 100
+    qd_steps[:, 2] = 100
     
     # Convertir aceleraciones (rad/s² -> pasos/s²)
     qdd_steps = np.zeros_like(qdd_traj)
-    qdd_steps[:, 0] = qdd_traj[:, 0] * steps_per_rad['M1']
-    qdd_steps[:, 1] = qdd_traj[:, 1] * steps_per_rad['M2']
-    qdd_steps[:, 2] = qdd_traj[:, 2] * steps_per_rad['M3']
+    qdd_steps[:, 0] = 1000
+    qdd_steps[:, 1] = 1000
+    qdd_steps[:, 2] = 1000
+
     
     return q_steps, qd_steps, qdd_steps, steps_per_rad
 
@@ -394,6 +319,9 @@ def create_absolute_movement_list(q_steps, qd_steps, qdd_steps, simplify_factor=
 #    8. Ejecutar conversiones y crear lista de movimientos (CORREGIDO)
 # ---------------------------
 # Convertir a pasos
+print ("\n" + "="*50)
+print("Conversion de radianes a pasos")
+print(q_sol)
 q_steps, qd_steps, qdd_steps, steps_per_rad = rad_to_steps_and_derivatives()
 
 print(f"\nRango de posiciones en pasos:")
@@ -407,7 +335,7 @@ for i in range(3):
 print("\n Movimientos absolutos")
 print("\n" + "="*50)
 movements_absolute = create_absolute_movement_list(q_steps, qd_steps, qdd_steps,
-                                                 simplify_factor=10, vel_scale=1, acc_scale=1)
+                                                 simplify_factor=1, vel_scale=1, acc_scale=1)
 print(f"Primeros 3 movimientos absolutos:")
 for i, mov in enumerate(movements_absolute[:3]):
     print(f"Movimiento {i+1}: {mov}")

@@ -29,9 +29,6 @@ robot = rtb.DHRobot(
 print("Robot details:")
 print(robot)
 
-# q0 = [0, 0, 0]  # Configuración inicial del robot
-# robot.plot(q0, block=True)
-
 # ---------------------------
 #    2. Creación de matriz de coordenadas para trayectoria
 # ---------------------------
@@ -39,14 +36,6 @@ print(robot)
 offset = 0.10 # Desplazamiento en Y
 
 # Definir los vértices 3D (en este caso en el plano XZ, Y constante)
-# vertices_3d = [
-#     (-0.10, 0.05, offset),       # punto inferior izquierdo
-#     #(-0.09, 0.075, offset),   # punto superior izquierdo
-#     (-0.06, 0.075, offset),    # punto medio izquierdo (ajustado)
-#     #(-0.03, 0.075, offset),   # punto medio derecho (ajustado)
-#     (-0.02, 0.05, offset),       # punto inferior derecho
-# ]
-
 vertices_3d = [
     (-0.10, offset, 0.05),
     #(-0.06, offset, 0.075),
@@ -54,8 +43,6 @@ vertices_3d = [
     #(-0.03, offset, 0.075),
     (-0.02, offset, 0.05)
 ]
-
-
 
 # Inicializar P con el primer vértice
 P = np.array(vertices_3d[0]).reshape(3, 1)

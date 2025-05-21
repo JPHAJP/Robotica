@@ -8,5 +8,7 @@ venv/
 *.db
 *.sqlite3
 
+juan.py
+
 #Ignorar cache
 __pycache__/
