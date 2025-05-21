@@ -4,6 +4,10 @@
 #include "BluetoothSerial.h"
 #include <AccelStepper.h>
 
+//Banderas
+bool funcionHoming = false; // bandera para controlar Homing
+bool yaEnderezado = false;  // bandera para controlar Enderezado
+
 // Comprobación de compatibilidad con Bluetooth
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth no está habilitado! Por favor ejecuta `make menuconfig` para habilitarlo
@@ -44,12 +48,10 @@ struct StepperMotor {
 };
 
 // Parámetros generales
-const float velocidadHoming = 50.0;
-const float aceleracionHoming = 50.0;
-const long limiteHomingPasos = 2100;
-const int maxIntentosHoming = 3;
-const int delayEntreIntentos = 2000;        // ms
-const unsigned long timeoutHoming = 30000;  // 30 segundos
+const int pasosHoming = 50;
+// Parámetros exclusivos para homing
+const float velocidadHoming   = 50.0;   // pasos por segundo en homing
+const float aceleracionHoming = 150.0;   // pasos/s² en homing
 
 // Configuración de los tres motores (pines, velocidades, etc.)
 StepperMotor motors[3] = {
@@ -57,12 +59,6 @@ StepperMotor motors[3] = {
   { AccelStepper(motorInterfaceType, 22, 21), 22, 21, 36, -160, 1000.0, 2000.0, 2 },
   { AccelStepper(motorInterfaceType, 19, 18), 19, 18, 39, -40, 5000.0, 5000.0, 3 }
 };
-
-// Variables para control
-bool homingCompletado = false;
-bool homingIniciado = false;
-unsigned long ultimoTiempo = 0;
-const int intervaloChequeo = 500;  // Intervalo para verificar comandos BT (ms)
 
 void setup() {
   Serial.begin(115200);
@@ -129,158 +125,65 @@ void setMotorB(int duty) {
   mcpwm_set_duty_type(MCPWM_UNIT_1, MCPWM_TIMER_B, MCPWM_OPR_A, MCPWM_DUTY_MODE_0);
   mcpwm_set_duty_type(MCPWM_UNIT_1, MCPWM_TIMER_B, MCPWM_OPR_B, MCPWM_DUTY_MODE_0);
 }
-
-// Función para realizar homing secuencial para los motores articulados
-void realizarHomingSecuencial() {
-  Serial.println("=== INICIANDO SECUENCIA DE HOMING ESTRICTAMENTE SECUENCIAL ===");
-  SerialBT.println("=== INICIANDO SECUENCIA DE HOMING ===");
-
-  // Configurar velocidades iniciales para homing
-  for (int i = 0; i < 3; i++) {
-    motors[i].stepper.setMaxSpeed(velocidadHoming);
-    motors[i].stepper.setAcceleration(aceleracionHoming);
-  }
-
-  // Realizar homing de cada motor en secuencia
-  for (int motorIndex = 0; motorIndex < 3; motorIndex++) {
-    bool homeExitoso = false;
-
-    for (int intento = 1; intento <= maxIntentosHoming && !homeExitoso; intento++) {
-      Serial.print("Motor ");
-      Serial.print(motors[motorIndex].motorID);
-      Serial.print(": Intento ");
-      Serial.print(intento);
-      Serial.println(" de homing");
-
-      SerialBT.print("Motor ");
-      SerialBT.print(motors[motorIndex].motorID);
-      SerialBT.print(": Intento ");
-      SerialBT.print(intento);
-      SerialBT.println(" de homing");
-
-      homeExitoso = homingMotorSeguro(motors[motorIndex]);
-
-      if (!homeExitoso && intento < maxIntentosHoming) {
-        Serial.print("Esperando antes del siguiente intento para Motor ");
-        Serial.print(motors[motorIndex].motorID);
-        Serial.println("...");
-        delay(delayEntreIntentos);
+////////////////////////////////////////////////////////
+bool Homing() {
+  unsigned long tiempoInicio = millis(); // Momento de inicio
+  const unsigned long tiempoLimite = 13000; // 6 segundos en milisegundos
+  while (true) {
+    // Verificar si han pasado 10 segundos
+    if (millis() - tiempoInicio >= tiempoLimite) {
+      // Detener todos los motores
+      for (int i = 0; i < 3; i++) {
+        motors[i].stepper.stop();
       }
+      break;
     }
-
-    // Si el homing falló para este motor, detenerse completamente
-    if (!homeExitoso) {
-      Serial.print("ERROR CRÍTICO: Homing fallido en Motor ");
-      Serial.print(motors[motorIndex].motorID);
-      Serial.println(". No se puede continuar.");
-
-      SerialBT.print("ERROR: Homing fallido en Motor ");
-      SerialBT.print(motors[motorIndex].motorID);
-      SerialBT.println(". Reinicia el sistema.");
-
-      while (true) {
-        delay(1000);  // Loop infinito de error
-      }
+    for (int i = 0; i < 3; i++) {
+    AccelStepper &st      = motors[i].stepper;
+    int pinSensor = motors[i].sensorPin;
+    
+    // Si ya terminó su movimiento anterior, iniciamos homing
+    if (st.distanceToGo() == 0) {
+        // Aplicar parámetros de homing
+        st.setMaxSpeed(velocidadHoming);
+        st.setAcceleration(aceleracionHoming);
+        
+        // Motor 1 (i=1) dirección positiva, motores 0 y 2 dirección negativa
+        int pasos = (i == 1) ? pasosHoming : -pasosHoming;
+        st.move(pasos);
     }
-
-    Serial.print("Motor ");
-    Serial.print(motors[motorIndex].motorID);
-    Serial.println(": Homing exitoso.");
-
-    SerialBT.print("Motor ");
-    SerialBT.print(motors[motorIndex].motorID);
-    SerialBT.println(": Homing exitoso.");
-
-    if (motorIndex < 2) {
-      delay(1000);  // Pausa antes del siguiente motor
+    
+    // Lectura del sensor Hall de este motor
+    if (digitalRead(pinSensor) == LOW) {
+        st.stop();  // detiene el motor con aceleración
+    } else {
+        st.run();   // continúa el movimiento
     }
+}
   }
-
-  // Si llegamos aquí, todos los motores han hecho homing correctamente
-  Serial.println("=== HOMING SECUENCIAL COMPLETADO EXITOSAMENTE EN LOS 3 MOTORES ===");
-  SerialBT.println("=== HOMING COMPLETADO EN LOS 3 MOTORES ===");
-
-  // Cambiar a velocidades normales para la rutina
-  for (int i = 0; i < 3; i++) {
-    motors[i].stepper.setMaxSpeed(motors[i].velocidadNormal);
-    motors[i].stepper.setAcceleration(motors[i].aceleracionNormal);
-    motors[i].stepper.setCurrentPosition(0);
-  }
-
-  homingCompletado = true;
-  Serial.println("Sistema listo para comandos de movimiento.");
-  SerialBT.println("Sistema listo para comandos de movimiento.");
+  return true; // Función completada
 }
 
-bool homingMotorSeguro(StepperMotor &motor) {
-  Serial.print("Homing motor ");
-  Serial.print(motor.motorID);
-  Serial.println(" hasta detectar sensor...");
-
-  // Verificar si ya está en la posición de home
-  if (digitalRead(motor.sensorPin) == LOW) {
-    // Verificación doble para evitar falsas lecturas
-    delay(50);
-    if (digitalRead(motor.sensorPin) == LOW) {
-      Serial.print("Motor ");
-      Serial.print(motor.motorID);
-      Serial.println(" ya está en posición de home!");
-      motor.stepper.setCurrentPosition(0);
-      return true;
-    }
+void enderezar() {
+  
+  // Motor 2 (índice 1): -180 pasos
+  {
+    AccelStepper &st = motors[1].stepper;
+    st.setMaxSpeed(velocidadHoming);
+    st.setAcceleration(aceleracionHoming);
+    st.moveTo(st.currentPosition() - 175);
+    st.runToPosition();
   }
-
-  // Mover hacia atrás (negativo) para buscar el sensor
-  motor.stepper.moveTo(-limiteHomingPasos);
-  unsigned long startTime = millis();
-  bool sensorDetectado = false;
-
-  while (!sensorDetectado) {
-    // Mover el motor un paso y verificar si debe detenerse
-    motor.stepper.run();
-
-    // Verificar si el sensor se activó (LOW)
-    if (digitalRead(motor.sensorPin) == LOW) {
-      // Verificación doble para evitar falsas lecturas
-      delay(50);
-      if (digitalRead(motor.sensorPin) == LOW) {
-        // Detener el motor inmediatamente
-        motor.stepper.stop();
-        // Asegurarse de que el motor pare completamente
-        while (motor.stepper.isRunning()) {
-          motor.stepper.run();
-        }
-        Serial.print("Motor ");
-        Serial.print(motor.motorID);
-        Serial.println(": Sensor Hall detectado!");
-        sensorDetectado = true;
-      }
-    }
-
-    // Verificar si alcanzó el límite de pasos
-    if (abs(motor.stepper.currentPosition()) >= limiteHomingPasos) {
-      Serial.print("ERROR: Motor ");
-      Serial.print(motor.motorID);
-      Serial.println(" alcanzó el límite de pasos sin detectar sensor");
-      return false;
-    }
-
-    // Verificar si se excedió el tiempo límite
-    if (millis() - startTime > timeoutHoming) {
-      Serial.print("ERROR: Motor ");
-      Serial.print(motor.motorID);
-      Serial.println(" superó el tiempo máximo de homing");
-      return false;
-    }
+  // Motor 3 (índice 2): +180 pasos
+  {
+    AccelStepper &st = motors[2].stepper;
+    st.setMaxSpeed(velocidadHoming);
+    st.setAcceleration(aceleracionHoming);
+    st.moveTo(st.currentPosition() + 175);
+    st.runToPosition();
   }
-
-  // Si llegó aquí, el homing fue exitoso
-  motor.stepper.setCurrentPosition(0);
-  Serial.print("Motor ");
-  Serial.print(motor.motorID);
-  Serial.println(": Homing completado con éxito");
-  return true;
 }
+///////////////////////////////////////////////////////
 
 void moverMotorConPasos(StepperMotor &motor, int pasos) {
   int pasosAMover = (pasos == 0) ? motor.pasosPorVuelta : pasos;
@@ -324,23 +227,17 @@ void procesarComandoArticulados(String comando) {
   comando.trim();
   
   if (comando == "INIT") {
-    // Iniciar secuencia de homing si no se ha hecho
-    if (!homingCompletado) {
-      homingIniciado = true;
-      realizarHomingSecuencial();
-    } else {
-      Serial.println("El homing ya está completado.");
-      SerialBT.println("El homing ya está completado.");
+    // Ejecutar homing solo una vez
+    if (!funcionHoming) {
+        Homing();
+        funcionHoming = true;
     }
-  } else {
-    // Verificar si el homing está completado
-    if (!homingCompletado) {
-      SerialBT.println("ERROR: Debe inicializar primero con 'J INIT'");
-      Serial.println("ERROR: Debe inicializar primero con 'J INIT'");
-      digitalWrite(ledPin, LOW);
-      return;
+    // Ejecutar homing solo una vez
+    if (!yaEnderezado) {
+        enderezar();
+        yaEnderezado = true;
     }
-    
+  }
     // Dividir la trayectoria completa en movimientos individuales
     int movStartPos = 0;
     int movEndPos;
@@ -360,7 +257,7 @@ void procesarComandoArticulados(String comando) {
       ejecutarMovimientoSimultaneo(movimiento);
       
     } while (movEndPos != -1);
-  }
+  
   
   digitalWrite(ledPin, LOW);  // Apagar indicador LED
 }
@@ -556,10 +453,6 @@ void procesarComandoMovil() {
 
 void loop() {
   // Procesar comandos de homing si se solicitó y aún no está completado
-  if (homingIniciado && !homingCompletado) {
-    realizarHomingSecuencial();
-    homingIniciado = false;  // Resetear la bandera
-  }
   
   // Comprobar si hay datos disponibles por Bluetooth
   if (SerialBT.available() > 0) {
